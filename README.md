@@ -1,124 +1,361 @@
-# 语雀 AI Skills
+# 语雀 AI Skill
 
-> 纯 Skills 版 — 零 MCP 开销，`exec` + `curl` 直调语雀 API。比 MCP 版省 ~80% token，功能完全一致。
+> 语雀全功能 AI Agent 技能 —— 40 MCP Tools + 19 业务 Skills（批量运维/写作辅助/知识分析/翻译/同步/导入/备份），全面超越官方 yuque-ecosystem。纯 LLM + 语雀 API，零外部依赖。
 
-[![License](https://img.shields.io/github/license/yehuoshun/yuque-ai-skills)](./LICENSE)
+[![License](https://img.shields.io/github/license/yehuoshun/yuque-ai-mcp)](./LICENSE)
 [![SKILL.md](https://img.shields.io/badge/SKILL.md-执行规范-green)](./SKILL.md)
+[![MCP](https://img.shields.io/badge/MCP-Server-blue)](./mcp-server)
 
 ---
 
-## vs MCP 版
+## ⚠️ 免责声明
 
-| 维度 | MCP 版（yuque-ai-mcp） | Skills 版（本项目） |
-|------|----------------------|-------------------|
-| 安装 | clone + npm build | clone 即用 |
-| 依赖 | Node.js + TypeScript | 零依赖 |
-| Token 消耗 | 40 个 tool 定义常驻 context（~15K tokens） | 仅按需加载 skill 文件 |
-| API 调用 | MCP tool → stdio → HTTP | `exec` + `curl` 直调 |
-| 功能 | 40 个 API 端点 | 40 个 API 端点（完全相同） |
-| 业务 Skills | 18 个 | 18 个（完全相同） |
-| 文件上传 | ✅ | ✅（multipart/form-data curl） |
-| 回收站管理 | ✅ | ✅ |
-| 个人仪表盘 | ✅ | ✅ |
+- 本项目**非语雀官方产品**，与蚂蚁集团/语雀团队无任何关联
+- 使用前请**备份重要数据**。本工具涉及文档创建/修改/删除，误操作可能导致数据丢失
+- 作者对因使用本工具造成的任何数据丢失、账号限制或其他后果**不承担责任**
+- 请遵守[语雀服务协议](https://www.yuque.com/yuque/qeyyk7/bl95f1imynp9u6pg?view=doc_embed&title=0)，控制请求频率避免触发限流
 
 ---
 
-## 快速开始
+## vs 官方生态
 
-### 1. 安装 Skill
+官方生态由 3 个核心组件构成：[yuque-mcp-server](https://github.com/yuque/yuque-mcp-server)（MCP Server 核心，16 tools） + [yuque-ecosystem](https://github.com/yuque/yuque-ecosystem)（OpenClaw 插件，8 skills） + [yuque-plugin](https://github.com/yuque/yuque-plugin)（Claude Code 插件，4+2 skills）。
 
-```bash
-cd ~/.openclaw/workspace/skills
-git clone https://github.com/yehuoshun/yuque-ai-skills.git
-```
+### MCP Tools 逐类对比
 
-### 2. 配置
+| 分类 | 官方（yuque-mcp-server） | 🦞 本项目 |
+|------|--------------------------|--------|
+| 用户 | `get_user` | `get_user` + `health_check` 🆕 |
+| 搜索 | `search` | `search` + `kb_search` 🆕 + `batch_get_docs_body` 🆕 |
+| 知识库 | `list_books` `get_book` `create_book` `update_book` | 同左 + `delete_repo` 🆕 |
+| 文档 | `list_docs` `get_doc` `create_doc` `update_doc` | 同左 + `delete_doc` 🆕 + `list_doc_versions` 🆕 + `get_doc_version` 🆕 |
+| 目录 | `get_toc` `update_toc` | 同左 + `remove_toc_node` 🆕 |
+| 小记 | `list_notes` `get_note` `create_note` `update_note` | 同左 + `delete_note` 🆕 + `restore_note` 🆕 |
+| 回收站 | ❌ | `list_recycles` 🆕 `restore_recycle` 🆕 `destroy_recycle` 🆕 |
+| 群组 | ❌ | `list_group_users` 🆕 `update_group_user` 🆕 `remove_group_user` 🆕 |
+| 统计 | ❌ | `get_group_stats` 🆕 `get_member_stats` 🆕 `get_book_stats` 🆕 `get_doc_stats` 🆕 |
+| 上传 & 导入 | ❌ | `upload_attachment` 🆕 `import_doc` 🆕 |
+| 索引构建 | ❌ | `index_create` 🆕 |
+| **合计** | **16 个** | **40 个**（16 基础 + 24 独有） |
 
-```bash
-cd yuque-ai-skills
-cp config/yuque-config.example.json config/yuque-config.json
-# 编辑填入 token、group、default_book、index_book
-```
+> 🦞 本项目覆盖官方全部 16 个工具，并多出 24 个独有工具：删除/恢复/版本历史/群组/统计/回收站/上传导入/索引构建/个人仪表盘/健康检查。
 
-```json
-{
-  "token": "语雀 API Token（必填，在 https://www.yuque.com/settings/tokens 生成）",
-  "group": "语雀用户名/login（必填）",
-  "default_book": { "book_id": 78276514, "namespace": "yehuoshun/index-sub-1" },
-  "index_book": { "book_id": 51689762, "namespace": "yehuoshun/rqgc16" },
-  "user_id": "用户 ID（文件上传必填）",
-  "cookie": "浏览器 Cookie（回收站/仪表盘/文件上传必填）",
-  "ctoken": "CSRF Token（从 Cookie 提取 yuque_ctoken 值）"
-}
-```
+### Skills 矩阵
 
-### 3. 使用
+| 维度 | 🏛 yuque-ecosystem | 🏛 yuque-plugin | 🦞 本项目 |
+|------|-------------------|----------------|--------|
+| Skills 总数 | 8 个 | 4（个人）/ 6（团队） | **19 个** |
+| 知识库问答 | `smart-search` | `smart-search` | **两层索引 + 多路并发 + 降级** |
+| 智能摘要 | `smart-summary`（两档） | `smart-summary`（两档） | `summarize`（L1-L4 四级） |
+| 阅读摘录 | `reading-digest` | — | `digest`（五维提取 + 知识卡片） |
+| 碎片收集 | `daily-capture` | — | `inbox`（三种模式 + 可配置清理） |
+| 笔记打磨 | `note-refine` | — | `polish`（打磨 + 风格分析 + 迁移 + 模板） |
+| 风格分析 | `style-extract` | — | ↑ 合入 polish |
+| 知识关联 | `knowledge-connect` | — | `knowledge`（图谱 + 交叉引用 + 聚类） |
+| 过时检测 | `stale-detector` | — | `audit`（版本审计 + 变更追踪 + 对比） |
+| 会议纪要 | — | `meeting-notes` | 🟰 无专用模板 |
+| 技术方案 | — | `tech-design` | 🟰 无专用模板 |
+| 周报 | — | `weekly-report` | `dashboard`（维度远超周报） |
+| 入职指南 | — | `onboarding-guide`（团队） | ❌ 官方独有 |
+| 知识报告 | — | `knowledge-report`（团队） | `dashboard`（覆盖健康度+运营） |
+| 批量运维 | — | — | ✅ 归档/分类/格式化/重命名/重构/仪表盘/审计 |
+| 翻译 & 同步 | — | — | ✅ 批量翻译 + 文档镜像同步 |
+| 拆分 & 合并 | — | — | ✅ split + merge |
+| 备份 & 快照 | — | — | ✅ 全量/增量备份到本地，含目录+图片+恢复 |
+| 外部导入 | — | — | ✅ 本地/Obsidian/Notion |
 
-直接在对话中说「语雀」相关内容即可触发：
-
-- 「搜一下语雀里关于 Kubernetes 的文档」
-- 「把知识库 A 里去年之前的文档归档」
-- 「帮我看看回收站有什么」
-- 「分析下我的写作统计」
-- 「批量翻译这篇文档」
+> 🦞 官方优势仅在 CLI 开箱体验 + `meeting-notes`/`tech-design`/`onboarding-guide` 三个专用模板，其余维度本项目全面超越。
 
 ---
 
 ## 架构
 
 ```
-SKILL.md         ← 端点速查表 + 业务路由
+yuque-mcp (MCP Server)     ← 40 个 MCP Tools（CRUD/搜索/导入/统计/群组/回收站/仪表盘/健康检查）
     ↓
-业务 Skills      ← 18 个 Markdown（batch/write/map）
+业务 Skills                ← 19 个 Skill Markdown（batch/write/map 三分类）
     ↓
-LLM Agent        ← exec + curl → 语雀 API
+LLM Agent                  ← 问答编排 & 业务流转
+```
+
+| 组件 | 技术栈 | 说明 |
+|------|--------|------|
+| `mcp-server/` | TypeScript + `@modelcontextprotocol/sdk` | MCP Server，提供 40 个 tools |
+| `skills/` | Markdown | 业务 Skills（batch/write/map 三分类，19 个技能） |
+| `SKILL.md` | Markdown | AI Agent 执行指南（问答 pipeline + 索引构建 + 业务 skill 路由） |
+
+---
+
+## 快速开始
+
+### 1. 安装
+
+```bash
+cd mcp-server
+npm install
+npm run build
+```
+
+### 2. 配置
+
+```bash
+cp config/yuque-config.example.json config/yuque-config.json
+# 编辑填入 token、group、default_book、index_book
+```
+
+配置格式：
+
+```json
+{
+  "token": "语雀 API Token",
+  "group": "yehuoshun",
+  "default_book": { "book_id": 78276514, "namespace": "yehuoshun/index-sub-1" },
+  "index_book": { "book_id": 51689762, "namespace": "yehuoshun/rqgc16" },
+  "user_id": "25689388",
+  "cookie": "完整的浏览器 Cookie 字符串（文件上传/回收站管理必填）",
+  "ctoken": "从 Cookie 中提取 yuque_ctoken 的值"
+}
+```
+
+| 配置项 | 必填 | 说明 |
+|--------|------|------|
+| `token` | ✅ | 语雀 API Token（需 doc:read/doc:write/repo:read/repo:write） |
+| `group` | ✅ | 语雀用户名/login |
+| `default_book` | ✅ | 默认知识库（创建文档时未指定目标则用此库） |
+| `index_book` | ✅ | 索引库（知识库问答用） |
+| `user_id` | 按需 | 用户 ID（文件上传必填，`yuque_get_user` 可查） |
+| `cookie` | 按需 | 浏览器 Cookie 完整字符串（文件上传/回收站管理必填） |
+| `ctoken` | 按需 | 从 Cookie 中提取 `yuque_ctoken` 的值 |
+
+### 3. 在 MCP 客户端配置
+
+**方式一：npm 安装（规划中）**
+
+```json
+{
+  "mcpServers": {
+    "yuque-mcp": {
+      "command": "npx",
+      "args": ["yuque-mcp"],
+      "env": {
+        "YUQUE_TOKEN": "<Token>",
+        "YUQUE_GROUP": "<用户名>",
+        "YUQUE_DEFAULT_BOOK_ID": "<知识库ID>",
+        "YUQUE_DEFAULT_BOOK_NS": "<namespace>",
+        "YUQUE_INDEX_BOOK_ID": "<索引库ID>",
+        "YUQUE_INDEX_BOOK_NS": "<namespace>",
+        "YUQUE_COOKIE": "<Cookie>",
+        "YUQUE_CTOKEN": "<CSRF Token>",
+        "YUQUE_USER_ID": "<用户ID>"
+      }
+    }
+  }
+}
+```
+
+**方式二：本地开发**
+
+```json
+{
+  "mcpServers": {
+    "yuque-mcp": {
+      "command": "node",
+      "args": ["mcp-server/dist/index.js"],
+      "cwd": "/path/to/yuque-ai-mcp"
+    }
+  }
+}
 ```
 
 ---
 
-## API 覆盖（40+ 端点）
+## MCP Tools 全览（40 个）
 
-### v2 OpenAPI（Token 认证）
+### 知识库
 
-- 用户/搜索/知识库 CRUD/文档 CRUD/版本历史/目录管理
-- 小记 CRUD + 软删除/恢复
-- 群组成员管理
-- 四维统计（团队/成员/知识库/文档）
+| Tool | 说明 |
+|------|------|
+| `yuque_list_repos` | 列出所有知识库 |
+| `yuque_get_repo` | 获取知识库详情 |
+| `yuque_create_repo` | 创建知识库 |
+| `yuque_update_repo` | 更新知识库（名称/描述/可见性） |
+| `yuque_delete_repo` | ⚠️ 硬删除知识库，不可恢复 |
 
-### Web API（Cookie 认证）
+### 文档
 
-- 回收站（列表/恢复/彻底删除）
-- 个人写作仪表盘（知识库/文档/编辑/字数/社交/小记全维度）
-- 文件上传 CDN
+| Tool | 说明 |
+|------|------|
+| `yuque_list_docs` | 列出文档 |
+| `yuque_get_doc` | 获取文档（JSON 多格式，body/body_html/body_lake） |
+| `yuque_create_doc` | 创建文档 + 自动挂 TOC |
+| `yuque_update_doc` | 更新文档（标题/正文/路径/格式/可见性） |
+| `yuque_delete_doc` | ⚠️ 硬删除文档，不可恢复 |
+| `yuque_list_doc_versions` | 文档版本历史 |
+| `yuque_get_doc_version` | 文档版本详情 |
+
+### 目录
+
+| Tool | 说明 |
+|------|------|
+| `yuque_list_toc` | 列出目录结构 |
+| `yuque_update_toc` | 更新目录（append/prepend/edit/remove + sibling/child） |
+| `yuque_remove_toc_node` | 移除目录节点（不删文档） |
+
+### 小记
+
+| Tool | 说明 |
+|------|------|
+| `yuque_list_notes` | 列出小记（支持 status=9 查已删除） |
+| `yuque_get_note` | 获取小记详情 |
+| `yuque_create_note` | 创建小记 |
+| `yuque_update_note` | 更新小记 |
+| `yuque_delete_note` | 软删除小记（移入回收站，可恢复） |
+| `yuque_restore_note` | 恢复已删除的小记 |
+
+### 回收站 ⚠️ 需 Cookie 登录态
+
+| Tool | 说明 |
+|------|------|
+| `yuque_list_recycles` | 列出回收站项目（支持分页+类型筛选） |
+| `yuque_restore_recycle` | 恢复回收站中的文档/小记 |
+| `yuque_destroy_recycle` | ⚠️ 彻底删除，不可恢复 |
+
+### 群组
+
+| Tool | 说明 |
+|------|------|
+| `yuque_list_group_users` | 列出群组成员 |
+| `yuque_update_group_user` | 变更成员角色 |
+| `yuque_remove_group_user` | ⚠️ 移除成员 |
+
+### 统计（需 statistic:read 权限）
+
+| Tool | 说明 |
+|------|------|
+| `yuque_get_group_stats` | 团队整体统计 |
+| `yuque_get_member_stats` | 团队成员统计 |
+| `yuque_get_book_stats` | 团队知识库统计 |
+| `yuque_get_doc_stats` | 团队文档统计 |
+
+### 知识库搜索 & 索引
+
+| Tool | 说明 |
+|------|------|
+| `yuque_kb_search` | 知识库管道搜索：token 数组 → N 路并行搜索子索引库 → 去重 → entries 解析 |
+| `yuque_index_create` | 在子索引库创建关键词索引文档，标准三层格式 + 自动挂 TOC |
+
+### 搜索 & 批量获取 & 元信息
+
+| Tool | 说明 |
+|------|------|
+| `yuque_search` | 搜索语雀内容（文档/知识库，支持 scope 限定范围） |
+| `yuque_batch_get_docs_body` | 批量获取多篇文档 Markdown 正文（并发 5） |
+| `yuque_get_user` | 当前 Token 用户详情 |
+| `yuque_get_user_stats` | 个人写作统计仪表盘（知识库/文档/编辑/字数/社交/小记全维度，⚠️ 需 Cookie） |
+| `yuque_health_check` | 健康检查（Token 有效性 + 知识库连通性） |
+
+### 上传 & 导入
+
+| Tool | 说明 |
+|------|------|
+| `yuque_upload_attachment` | 上传文件到语雀 CDN（image/attachment/video，上限按类型） |
+| `yuque_import_doc` | 导入本地文件到知识库（自动适配格式/图片上传） |
 
 ---
 
-## 业务 Skills（18 个）
+## 知识库问答
+
+两级索引架构：总库路由 + 子索引库。一级索引按关键词分片子索引库，二级索引在子索引库内搜索找到源文档指针，LLM 跨库读原文生成答案。纯 LLM + 语雀 API，零外部向量数据库依赖。
+
+搜索管线、索引构建、搜索降级 → **[SKILL.md](./SKILL.md#二知识库问答系统)**。
+
+---
+
+## 业务 Skills
+
+基于 MCP 40 tools 的高层业务能力。全部遵循：先预览后确认、单篇隔离不传染、上限 100 篇、结束出报告。
+
+### 批量运维（batch/）
 
 | Skill | 说明 |
 |-------|------|
-| [archive](skills/batch/archive.md) | 批量归档/备份旧文档 |
-| [audit](skills/batch/audit.md) | 版本审计 & 变更追踪 |
-| [classify](skills/batch/classify.md) | 智能分类打标 |
-| [dashboard](skills/batch/dashboard.md) | 运营仪表盘 |
-| [format](skills/batch/format.md) | 批量格式标准化 |
-| [import](skills/batch/import.md) | 外部文档导入 |
-| [merge](skills/batch/merge.md) | 文档合并 |
-| [rebuild-toc](skills/batch/rebuild-toc.md) | 目录智能重构 |
-| [rename](skills/batch/rename.md) | 批量重命名 |
-| [split](skills/batch/split.md) | 长文拆分 |
-| [summarize](skills/batch/summarize.md) | 多粒度智能摘要 |
-| [sync](skills/batch/sync.md) | 文档镜像同步 |
-| [translate](skills/batch/translate.md) | AI 批量翻译 |
-| [polish](skills/write/polish.md) | AI 写作工作室 |
-| [digest](skills/map/digest.md) | 阅读摘录 |
-| [inbox](skills/map/inbox.md) | 碎片收集整理 |
-| [knowledge](skills/map/knowledge.md) | 文档关联图谱 |
-| [search](skills/map/search.md) | 知识库搜索 & 索引 |
+| [archive](skills/batch/archive.md) | 批量归档/备份旧文档（归档移动 / 备份复制两种模式） |
+| [backup](skills/batch/backup.md) | 知识库完整备份/快照到本地（全量/增量，含TOC结构+图片+附件+恢复） |
+| [audit](skills/batch/audit.md) | 文档版本审计 & 变更追踪（变更日报/单篇历史/版本对比/协作追踪） |
+| [classify](skills/batch/classify.md) | 智能分类打标（AI 分析主题 → 自动设计目录树 → 重建结构） |
+| [dashboard](skills/batch/dashboard.md) | 知识库运营仪表盘（周报/概览/成员详情，纯只读） |
+| [format](skills/batch/format.md) | 批量格式标准化（预设风格 / 参考文档 / 自定义规则三种来源） |
+| [import](skills/batch/import.md) | 外部文档导入（本地/Obsidian/Notion，格式适配 + 图片上传） |
+| [merge](skills/batch/merge.md) | 多篇文档合并为单篇长文 |
+| [rebuild-toc](skills/batch/rebuild-toc.md) | 目录智能重构（保留意图优化现有结构） |
+| [rename](skills/batch/rename.md) | 批量重命名（前缀/后缀/序号/查找替换/正则/模板/移除） |
+| [split](skills/batch/split.md) | 长文按标题层级自动拆分为多篇 |
+| [summarize](skills/batch/summarize.md) | 多粒度智能摘要（L1-L4 四级 + 单篇/多篇/知识库） |
+| [sync](skills/batch/sync.md) | 文档镜像 & 知识库同步（单向/双向/增量/差异检测） |
+| [translate](skills/batch/translate.md) | AI 批量翻译（单篇/批量/多语言/增量，保留 Markdown 格式） |
+
+### 写作辅助（write/）
+
+| Skill | 说明 |
+|-------|------|
+| [polish](skills/write/polish.md) | AI 写作工作室（风格分析/笔记打磨/风格迁移/模板写作） |
+
+### 知识分析（map/）
+
+| Skill | 说明 |
+|-------|------|
+| [digest](skills/map/digest.md) | 阅读摘录（核心观点/金句/行动项/疑思五维 + 知识卡片） |
+| [inbox](skills/map/inbox.md) | 碎片收集整理（三种模式 + 可配置清理策略） |
+| [knowledge](skills/map/knowledge.md) | 文档关联图谱（单篇关联/全库图谱/自动补引用） |
+| [search](skills/map/search.md) | 知识库管道搜索 & 索引构建（N 路并行 + 去重 + entries 解析） |
 
 ---
 
-## 免责声明
+## 项目结构
 
-- 本项目**非语雀官方产品**
-- 使用前请**备份重要数据**，误操作可能导致数据丢失
+```
+yuque-ai-mcp/
+├── SKILL.md                  # AI Agent 执行规范
+├── README.md                 # 本文件
+├── config/
+│   ├── yuque-config.example.json
+│   └── yuque-config.json     # 不入库
+├── references/
+│   └── api_reference.md      # 语雀 OpenAPI 完整参考
+├── skills/                   # 业务 Skills（18 个）
+│   ├── batch/                # 批量运维（13 个，见上表）
+│   ├── write/                # 写作辅助（1 个）
+│   └── map/                  # 知识分析（4 个）
+├── mcp-server/               # MCP Server (TypeScript)
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── src/
+│       ├── index.ts           # Server 入口（注册 40 个 tools）
+│       ├── client.ts          # 语雀 HTTP 客户端（v2 API + web API）
+│       ├── config.ts          # 配置读取（支持环境变量 + 配置文件）
+│       ├── shared/types.ts    # 共享类型
+│       └── tools/
+│           ├── repos.ts       # 知识库 CRUD
+│           ├── docs.ts        # 文档 CRUD + 版本 + 目录
+│           ├── notes.ts       # 小记 CRUD + 软删除/恢复
+│           ├── recycles.ts    # 回收站 list/restore/destroy
+│           ├── search.ts      # 搜索
+│           ├── export.ts      # 批量获取正文
+│           ├── user.ts        # 用户信息 + 健康检查
+│           ├── groups.ts      # 群组成员管理
+│           ├── statistic.ts   # 四维统计
+│           ├── upload.ts      # CDN 文件上传
+│           ├── import.ts      # 文件导入
+│           ├── kb.ts          # 知识库搜索 & 索引构建
+│           └── dark-arts-loader.ts  # 🕶️ 邪修玩法加载器
+└── .github/workflows/
+    └── dingtalk-notify.yml
+```
+
+---
+
+## API 参考
+
+基地址：`https://www.yuque.com/api/v2`
+
+完整端点/参数/错误码/限流/回收站 Web API → **[references/api_reference.md](./references/api_reference.md)**
