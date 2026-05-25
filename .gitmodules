@@ -1,0 +1,3 @@
+[submodule "dark-arts"]
+	path = dark-arts
+	url = https://github.com/yehuoshun/yuque-ai-mcp-dark.git
