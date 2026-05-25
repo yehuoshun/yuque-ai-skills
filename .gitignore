@@ -1,0 +1,6 @@
+*config.json
+!config.example.json
+!yuque-config.example.json
+.env
+.DS_Store
+*.db
