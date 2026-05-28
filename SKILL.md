@@ -391,22 +391,22 @@ entries:
 
 ## 2.1 构建时字符清洗（强制，代码层）
 
-> ⚠️ 语雀搜索 API 实测：只可靠匹配**字母、数字、中文**。空格 `# $ % _ ;` 反引号 `！？；【】《》` 等直接导致 0 命中，`- .` 命中打折。
+> ⚠️ 语雀搜索 API 实测结论：
+> - ✅ 可搜：字母、数字、中文、`.`、`_`、`-`（`-` 被当分隔符）
+> - ❌ 不可搜（0 命中）：`@` `#` `$` `%` `` ` `` `;` `；` `《` `》` `…` `—`
+> - ❓ 其余符号：无法验证（新文档索引延迟），保守保留 `.` `_` `-`
 
-```python
-import re
+```typescript
+// kb.ts cleanSearchText — 构建时强制执行
+export function cleanSearchText(text: string): string {
+  return text
+    .replace(/\s+/g, "")                     // 空格拆 token → 粘连
+    .replace(/[@#$%`;；《》…—]/g, "");          // 确认破坏搜索的符号
+}
 
-def clean_search_text(text):
-    """清洗搜索面和标题，只保留字母、数字、中文"""
-    # 去空格
-    text = re.sub(r'\s+', '', text)
-    # 去掉所有非字母/数字/中文的字符
-    text = re.sub(r'[^a-zA-Z0-9\u4e00-\u9fff]', '', text)
-    return text
-
-# 构建时强制执行
-title = clean_search_text(llm_title)
-search_surface = clean_search_text(llm_search_surface)
+// title 和 keywords 写入前都会经过此清洗
+const cleanKeywords = cleanSearchText(block.keywords);
+const cleanTitle = cleanSearchText(source_title) || source_title;
 ```
 
 > 一行代码兜底。LLM 写出什么符号都无所谓——写入前洗掉。
