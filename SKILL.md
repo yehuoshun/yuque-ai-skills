@@ -239,7 +239,7 @@ entries 字段：
          │     "springboot怎么连多个库" → ["SpringBoot", "多数据源", "DataSource"]
          │
          ├─[3] Agent 调 yuque_kb_search(tokens, index_book_ns, index_book_id)
-         │     in:title 搜总库 → 拿到 [{did, ns}] → 并发 GET 子库索引文档
+         │     in:title 搜总库 → GET 路由文档 → 解析 index_books → 并发读子库索引文档
          │     → parseIndexDoc 解析 keywords / summary / entries JSON
          │     → 展开 entries → 返回 source_entries（源文档指针列表）
          │
