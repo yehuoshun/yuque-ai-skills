@@ -1,6 +1,6 @@
 # 语雀 AI Skill
 
-> 语雀全功能 AI Agent 技能 —— 40 MCP Tools + 19 业务 Skills（批量运维/写作辅助/知识分析/翻译/同步/导入/备份），全面超越官方 yuque-ecosystem。纯 LLM + 语雀 API，零外部依赖。
+> 语雀全功能 AI Agent 技能 —— 41 MCP Tools + 19 业务 Skills（批量运维/写作辅助/知识分析/翻译/同步/导入/备份），全面超越官方 yuque-ecosystem。纯 LLM + 语雀 API，零外部依赖。
 
 [![License](https://img.shields.io/github/license/yehuoshun/yuque-ai-mcp)](./LICENSE)
 [![SKILL.md](https://img.shields.io/badge/SKILL.md-执行规范-green)](./SKILL.md)
@@ -36,7 +36,7 @@
 | 统计 | ❌ | `get_group_stats` 🆕 `get_member_stats` 🆕 `get_book_stats` 🆕 `get_doc_stats` 🆕 |
 | 上传 & 导入 | ❌ | `upload_attachment` 🆕 `import_doc` 🆕 |
 | 索引构建 | ❌ | `index_create` 🆕 |
-| **合计** | **16 个** | **40 个**（16 基础 + 24 独有） |
+| **合计** | **16 个** | **41 个**（16 基础 + 25 独有） |
 
 > 🦞 本项目覆盖官方全部 16 个工具，并多出 24 个独有工具：删除/恢复/版本历史/群组/统计/回收站/上传导入/索引构建/个人仪表盘/健康检查。
 
@@ -71,7 +71,7 @@
 ## 架构
 
 ```
-yuque-mcp (MCP Server)     ← 40 个 MCP Tools（CRUD/搜索/导入/统计/群组/回收站/仪表盘/健康检查）
+yuque-mcp (MCP Server)     ← 41 个 MCP Tools（CRUD/搜索/导入/统计/群组/回收站/仪表盘/健康检查/热重载）
     ↓
 业务 Skills                ← 19 个 Skill Markdown（batch/write/map 三分类）
     ↓
@@ -80,7 +80,7 @@ LLM Agent                  ← 问答编排 & 业务流转
 
 | 组件 | 技术栈 | 说明 |
 |------|--------|------|
-| `mcp-server/` | TypeScript + `@modelcontextprotocol/sdk` | MCP Server，提供 40 个 tools |
+| `mcp-server/` | TypeScript + `@modelcontextprotocol/sdk` | MCP Server，提供 41 个 tools |
 | `skills/` | Markdown | 业务 Skills（batch/write/map 三分类，19 个技能） |
 | `SKILL.md` | Markdown | AI Agent 执行指南（问答 pipeline + 索引构建 + 业务 skill 路由） |
 
@@ -100,7 +100,7 @@ npm run build
 
 ```bash
 cp config/yuque-config.example.json config/yuque-config.json
-# 编辑填入 token、group、default_book、index_book
+# 编辑填入 token、group、default_book、route_book、route_book_sub
 ```
 
 配置格式：
@@ -110,7 +110,12 @@ cp config/yuque-config.example.json config/yuque-config.json
   "token": "语雀 API Token",
   "group": "yehuoshun",
   "default_book": { "book_id": 78276514, "namespace": "yehuoshun/index-sub-1" },
-  "index_book": { "book_id": 51689762, "namespace": "yehuoshun/rqgc16" },
+  "route_book": [
+    { "book_id": 51689762, "namespace": "yehuoshun/rqgc16" }
+  ],
+  "route_book_sub": [
+    { "book_id": 78276514, "namespace": "yehuoshun/index-sub-1" }
+  ],
   "user_id": "25689388",
   "cookie": "完整的浏览器 Cookie 字符串（文件上传/回收站管理必填）",
   "ctoken": "从 Cookie 中提取 yuque_ctoken 的值"
@@ -122,7 +127,8 @@ cp config/yuque-config.example.json config/yuque-config.json
 | `token` | ✅ | 语雀 API Token（需 doc:read/doc:write/repo:read/repo:write） |
 | `group` | ✅ | 语雀用户名/login |
 | `default_book` | ✅ | 默认知识库（创建文档时未指定目标则用此库） |
-| `index_book` | ✅ | 索引库（知识库问答用） |
+| `route_book` | ✅ | 索引总库列表（存路由文档，kb_search 路由层用，支持多总库分片） |
+| `route_book_sub` | 按需 | 默认子索引库列表（创建索引文档时未指定目标则用首个） |
 | `user_id` | 按需 | 用户 ID（文件上传必填，`yuque_get_user` 可查） |
 | `cookie` | 按需 | 浏览器 Cookie 完整字符串（文件上传/回收站管理必填） |
 | `ctoken` | 按需 | 从 Cookie 中提取 `yuque_ctoken` 的值 |
@@ -142,8 +148,8 @@ cp config/yuque-config.example.json config/yuque-config.json
         "YUQUE_GROUP": "<用户名>",
         "YUQUE_DEFAULT_BOOK_ID": "<知识库ID>",
         "YUQUE_DEFAULT_BOOK_NS": "<namespace>",
-        "YUQUE_INDEX_BOOK_ID": "<索引库ID>",
-        "YUQUE_INDEX_BOOK_NS": "<namespace>",
+        "YUQUE_ROUTE_BOOK": "[{\"book_id\":51689762,\"namespace\":\"yehuoshun/rqgc16\"}]",
+        "YUQUE_ROUTE_SUB": "[{\"book_id\":78276514,\"namespace\":\"yehuoshun/index-sub-1\"}]",
         "YUQUE_COOKIE": "<Cookie>",
         "YUQUE_CTOKEN": "<CSRF Token>",
         "YUQUE_USER_ID": "<用户ID>"
@@ -169,7 +175,7 @@ cp config/yuque-config.example.json config/yuque-config.json
 
 ---
 
-## MCP Tools 全览（40 个）
+## MCP Tools 全览（41 个）
 
 ### 知识库
 
@@ -241,14 +247,14 @@ cp config/yuque-config.example.json config/yuque-config.json
 
 | Tool | 说明 |
 |------|------|
-| `yuque_kb_search` | 知识库管道搜索：token 数组 → N 路并行搜索子索引库 → 去重 → entries 解析 |
-| `yuque_index_create` | 在子索引库创建关键词索引文档，标准三层格式 + 自动挂 TOC |
+| `yuque_kb_search` | 知识库管道搜索（多总库路由）：token 数组 → 并行搜所有总库路由文档 → 多子库并行搜 → Markdown 输出 |
+| `yuque_index_create` | 创建文档索引（v2 格式）：一篇源文档一篇索引，多主题 `---` 分块，关键词行 `cleanSearchText` 清洗 + 自动挂 TOC |
 
 ### 搜索 & 批量获取 & 元信息
 
 | Tool | 说明 |
 |------|------|
-| `yuque_search` | 搜索语雀内容（文档/知识库，支持 scope 限定范围） |
+| `yuque_search` | 搜索语雀内容（文档/知识库，支持 scope 限定范围），Markdown 输出（分页+去重+URL） |
 | `yuque_batch_get_docs_body` | 批量获取多篇文档 Markdown 正文（并发 5） |
 | `yuque_get_user` | 当前 Token 用户详情 |
 | `yuque_get_user_stats` | 个人写作统计仪表盘（知识库/文档/编辑/字数/社交/小记全维度，⚠️ 需 Cookie） |
@@ -260,6 +266,12 @@ cp config/yuque-config.example.json config/yuque-config.json
 |------|------|
 | `yuque_upload_attachment` | 上传文件到语雀 CDN（image/attachment/video，上限按类型） |
 | `yuque_import_doc` | 导入本地文件到知识库（自动适配格式/图片上传） |
+
+### 配置管理
+
+| Tool | 说明 |
+|------|------|
+| `yuque_reload_config` | 热重载配置文件，修改后无需重启 MCP Server |
 
 ---
 
@@ -273,7 +285,7 @@ cp config/yuque-config.example.json config/yuque-config.json
 
 ## 业务 Skills
 
-基于 MCP 40 tools 的高层业务能力。全部遵循：先预览后确认、单篇隔离不传染、上限 100 篇、结束出报告。
+基于 MCP 41 tools 的高层业务能力。全部遵循：先预览后确认、单篇隔离不传染、上限 100 篇、结束出报告。
 
 ### 批量运维（batch/）
 
@@ -330,7 +342,7 @@ yuque-ai-mcp/
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── src/
-│       ├── index.ts           # Server 入口（注册 40 个 tools）
+│       ├── index.ts           # Server 入口（注册 41 个 tools）
 │       ├── client.ts          # 语雀 HTTP 客户端（v2 API + web API）
 │       ├── config.ts          # 配置读取（支持环境变量 + 配置文件）
 │       ├── shared/types.ts    # 共享类型

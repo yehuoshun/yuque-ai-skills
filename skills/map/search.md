@@ -76,28 +76,32 @@
 
 **一个关键词 = 一篇索引文档。** 标题就是关键词本身，命中直接对得上。
 
-### Phase 1 — 关键词规划
+### Phase 1 — 逐文档评分（v4 文档中心）
 
 ```
 1. yuque_list_docs → 列出源库全部文档（标题 + ID）
-2. LLM 扫全量标题 → 输出关键词清单 + 每篇文档的预分配
+2. 逐文档 yuque_get_doc 读 body → LLM 提取关键词 + 权重
 
-规划原则：
-- 同一概念的多种表述合并为一个关键词
-- 密集领域细分（>15 篇 → 拆分）
-- 稀疏领域合并（<3 篇 → 合并）
-- 每篇文档至少归属 1 个关键词
+   文档类型处理：
+   - Markdown/代码可读 → 从正文提取关键词（1-5 个），w=1-10
+   - Lake 乱码/附件/body 为空 → 降级标题提取，w=5
+   - 代码文档 → 从 import/注解/类名/方法签名提取
+
+3. 聚合去重 → **细粒度策略**：仅合并真正的同义不同名（如 "SpringBoot"="Spring Boot"），
+   不合并语义不同的概念（Vue2≠Vue3≠前端，JWT≠JavaWeb≠MyBatis）。
+   宁多勿少，每个微粒度关键词独立保留。
+
+**⚠️ 容量提示**：细粒度关键词可能较多（168 个关键词/55 篇）。
+子索引库文档数 > 200 或总库 > 300 时，需提示用户新建或扩容。
 ```
 
-### Phase 2 — 逐关键词构建
+### Phase 2 — 逐关键词写入
 
 ```
 对每个关键词：
-1. yuque_get_doc 读关联源文档正文
-2. LLM 判断拟合度（提到 Java ≠ Java 主题）
-3. LLM 生成 keywords[] + summary + entries
-4. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id)
-5. 构建后验证：搜 2-3 个预期 query → 0 命中立即修复
+1. LLM 汇总该关键词下所有 {did, w} → 生成 keywords[] + summary
+2. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id)
+3. 构建后验证：搜 2-3 个预期 query → 0 命中立即修复
 ```
 
 ### yuque_index_create 参数
@@ -107,7 +111,7 @@
 | `keyword` | 索引关键词（直接用作文档标题，不含前缀符号） |
 | `keywords` | 搜索面关键词数组 `string[]`（同义词/变体/缩写/口语问法） |
 | `summary` | 摘要（100-200 字） |
-| `entries` | 源文档指针数组 `[{did, ns, t?, s?}]` |
+| `entries` | 源文档指针数组 `[{did, ns, t?, s?, url?, w?}]` |
 | `index_book_id` | 子索引库 book_id |
 
 ---
@@ -124,7 +128,7 @@
 摘要：SpringBoot 通过 @EnableAutoConfiguration 实现自动配置，条件装配注解按 classpath 动态决定 Bean 注册。多数据源场景通过 @ConfigurationProperties 分别配置 DataSource。
 
 entries：
-[{"did":584,"ns":"yehuoshun/dil9w3","t":"Spring Boot 自动配置原理","s":"abc"},{"did":591,"ns":"yehuoshun/dil9w3","t":"条件装配与多数据源","s":"def"}]
+[{"did":584,"ns":"yehuoshun/dil9w3","t":"Spring Boot 自动配置原理","s":"abc","url":"https://www.yuque.com/yehuoshun/dil9w3/abc"},{"did":591,"ns":"yehuoshun/dil9w3","t":"条件装配与多数据源","s":"def","url":"https://www.yuque.com/yehuoshun/dil9w3/def"}]
 ```
 
 ### keywords 规则

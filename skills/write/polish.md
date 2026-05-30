@@ -1,5 +1,3 @@
-> ⚠️ 纯 Skills 版：所有 API 调用通过 `exec` + `curl` 完成，参考 `SKILL.md` 中的端点速查表。本文中的 `yuque_xxx` 仅为操作名，需翻译为对应 curl 命令。
-
 # AI 写作工作室（writing-studio）
 
 分析写作风格 → 打磨粗糙笔记 → 风格迁移改写 → 模板填充输出。合官方 note-refine + style-extract 为一体，加风格迁移和模板写作。

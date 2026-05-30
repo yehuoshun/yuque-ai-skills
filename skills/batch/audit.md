@@ -1,5 +1,3 @@
-> ⚠️ 纯 Skills 版：所有 API 调用通过 `exec` + `curl` 完成，参考 `SKILL.md` 中的端点速查表。本文中的 `yuque_xxx` 仅为操作名，需翻译为对应 curl 命令。
-
 # 文档版本审计 & 变更追踪（batch-version-audit）
 
 利用 `yuque_list_doc_versions` / `yuque_get_doc_version`（官方 MCP 没有的能力），提供变更日报、单篇历史、版本对比、协作追踪四个只读场景。
