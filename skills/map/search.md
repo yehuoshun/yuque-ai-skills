@@ -20,9 +20,9 @@
 ① LLM 生成 2-5 个搜索 token
   "Spring事务怎么配" → ["Spring", "事务", "Transactional"]
   ↓
-② 调 yuque_kb_search(tokens, index_book_ns, index_book_id)
-  → N 路并行搜索子索引库
-  → doc_id 去重
+② 调 yuque_kb_search(tokens)
+  → in:title 搜总库（route_book）→ 命中路由文档 → 解析 source_books
+  → in:title 搜子库（route_book_sub）→ 命中关键词索引文档
   → 5 并发读索引文档 body
   → parseIndexDoc 解析 keywords / summary / entries
   → 展开 entries → did 去重合并
@@ -100,8 +100,21 @@
 ```
 对每个关键词：
 1. LLM 汇总该关键词下所有 {did, w} → 生成 keywords[] + summary
-2. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id)
-3. 构建后验证：搜 2-3 个预期 query → 0 命中立即修复
+2. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id) → 写入子库
+3. 调 yuque_create_doc → 总库创建路由文档（标题=关键词，body=source_books 数组）
+4. 构建后验证：搜 2-3 个预期 query → 0 命中立即修复
+```
+
+### 总库路由文档格式
+
+标题：`{关键词}`（与子库索引文档标题一致，token in:title 直接命中）
+
+Body（source_books 数组）：
+
+```json
+[
+  {"book_id": 68130459, "namespace": "yehuoshun/huwsx0", "last_built": "2026-05-31T12:40:00Z"}
+]
 ```
 
 ### yuque_index_create 参数
