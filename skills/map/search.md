@@ -113,7 +113,7 @@ Body（source_books 数组）：
 
 ```json
 [
-  {"book_id": 68130459, "namespace": "yehuoshun/huwsx0", "last_built": "2026-05-31T12:40:00Z"}
+  {"book_id": 68130459, "namespace": "yehuoshun/huwsx0"}
 ]
 ```
 
