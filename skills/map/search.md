@@ -122,7 +122,7 @@ Body（指向子库索引文档的指针数组）：
 
 ```json
 [
-  {"did": 272102803, "ns": "yehuoshun/cgoza0"}
+  {"did": 272102803, "ns": "yehuoshun/cgoza0/gkdtd0v1zd6u9v5u"}
 ]
 ```
 > ⚠️ 指向子库的具体索引文档（did+ns），不是子库本身。
