@@ -95,14 +95,23 @@
 子索引库文档数 > 200 或总库 > 300 时，需提示用户新建或扩容。
 ```
 
-### Phase 2 — 逐关键词写入
+### Phase 2 — 逐关键词写入（子代理 — 阶段 1）
 
 ```
 对每个关键词：
 1. LLM 汇总该关键词下所有 {did, w} → 生成 keywords[] + summary
 2. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id) → 写入子库
-3. 调 yuque_create_doc → 总库创建路由文档（标题=关键词，body=source_books 数组）
-4. 构建后验证：搜 2-3 个预期 query → 0 命中立即修复
+```
+
+### Phase 3 — 总库路由同步（主会话 — 阶段 2）
+
+```
+⚠️ 子代理完成后，主会话执行：
+
+逐关键词：
+1. yuque_search(scope=总库namespace, query=关键词) 检查是否已有路由文档
+2. 已有 → yuque_update_doc 合并 source_books
+3. 没有 → yuque_create_doc(总库, 标题=关键词, body=source_books数组)
 ```
 
 ### 总库路由文档格式
