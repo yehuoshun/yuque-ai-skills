@@ -118,14 +118,14 @@
 
 标题：`{关键词}`（与子库索引文档标题一致，token in:title 直接命中）
 
-Body（source_books 数组，指向子索引库）：
+Body（指向子库索引文档的指针数组）：
 
 ```json
 [
-  {"book_id": 79576301, "namespace": "yehuoshun/cgoza0"}
+  {"did": 272102803, "ns": "yehuoshun/cgoza0"}
 ]
 ```
-> ⚠️ source_books 指向子索引库（关键词索引文档所在的子库），不是源知识库。
+> ⚠️ 指向子库的具体索引文档（did+ns），不是子库本身。
 
 ### yuque_index_create 参数
 
