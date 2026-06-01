@@ -286,7 +286,7 @@ Content-Type: application/json
 | `description` | 简介 | - |
 | `public` | 0=私有 / 1=公开 / 2=团队内公开 | 0 |
 
-⚠️ **slug 必填**：语雀不再自动生成 slug。生成规则：`{英文名}-{时间戳秒}`，如 `python-course-1714473600`，避免重复。
+⚠️ **slug 必填**：语雀不再自动生成 slug。生成规则：`{拼音缩写}-{时间戳}`，如 `javamst-1714473600`，避免重复。
 
 **slug 格式约束**：仅支持 `[a-z0-9._-]`，大写自动转小写，禁止空格。
 
@@ -1199,3 +1199,27 @@ GET /api/v2/groups/{login}/statistics/docs?bookId={bookId}&name={name}&range={ra
 | `X-RateLimit-Remaining` | 剩余可用次数 |
 
 **使用方式**：每次请求后检查 `X-RateLimit-Remaining`，合理控制请求节奏。
+
+---
+
+## Web API（非 v2，需 Cookie 登录态）
+
+以下端点不在 v2 OpenAPI 范围内，需浏览器 Cookie + CSRF Token 认证。
+
+### 知识库分组
+
+```http
+GET https://www.yuque.com/api/mine/book_stacks
+```
+
+**请求头**：
+
+| 头 | 值 |
+|----|-----|
+| `Cookie` | 完整浏览器 Cookie 字符串 |
+| `x-csrf-token` | `yuque_ctoken` 的值 |
+| `Referer` | `https://www.yuque.com/dashboard/books` |
+
+**返回**：JSON 对象，`data` 数组包含分组结构，每个分组含 `name`（分组名）和 `books`（该分组下的知识库列表）。
+
+**对应 MCP Tool**：`yuque_list_repo_groups`
