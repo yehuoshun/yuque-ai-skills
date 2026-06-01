@@ -286,9 +286,7 @@ Content-Type: application/json
 | `description` | 简介 | - |
 | `public` | 0=私有 / 1=公开 / 2=团队内公开 | 0 |
 
-⚠️ **slug 必填**：语雀不再自动生成 slug。
-- 索引类知识库：`idx-{domain}-{n}`，如 `idx-python-1`、`idx-finance-1`
-- 非索引类知识库：`{拼音缩写}-{时间戳}`，如 `javamst-1714473600`，避免重复。
+⚠️ **slug 必填**：语雀不再自动生成 slug。生成规则：`{英文名}-{时间戳秒}`，如 `python-course-1714473600`，避免重复。
 
 **slug 格式约束**：仅支持 `[a-z0-9._-]`，大写自动转小写，禁止空格。
 
