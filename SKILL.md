@@ -441,9 +441,9 @@ entries 字段：
 
 6. 子代理完成 → 主会话读子索引库文档列表 → 逐关键词写入总库路由文档：
    yuque_create_doc(总库, 标题=关键词) → body 写入 source_books 数组
-   source_books: [{book_id, namespace, last_built: 当前时间}]
-   > ⚠️ 这里是关键词级路由，不是域级。每个关键词建一篇路由文档，标题=关键词。
-   > ⚠️ 此阶段回主会话执行，不放在子代理里。
+   source_books: [{"book_id": <id>, "namespace": "<ns>"}]
+   > ⚠️ source_books 不含 last_built。路由文档只管"搜这个关键词去哪个库找"，不需要时间戳。
+   > ⚠️ 关键词级路由，每个关键词建一篇路由文档。此阶段回主会话执行，不放子代理。
 ```
 
 ### 1b. 复用已有子库
@@ -462,6 +462,7 @@ entries 字段：
    逐关键词 → 检查总库是否已有该关键词路由文档
    - 已有 → yuque_update_doc 更新 source_books（合并/去重 book_id，追加新源库）
    - 没有 → yuque_create_doc(总库, 标题=关键词, body=source_books数组)
+   > ⚠️ source_books 不含 last_built。路由文档只管"搜这个关键词去哪个库找"。
    > ⚠️ 此阶段回主会话执行，不放在子代理里。
 ```
 
