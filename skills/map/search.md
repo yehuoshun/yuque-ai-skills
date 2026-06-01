@@ -76,7 +76,7 @@
 
 **一个关键词 = 一篇索引文档。** 标题就是关键词本身，命中直接对得上。
 
-### Phase 1 — 逐文档评分（v4 文档中心）
+### Phase 1 — 逐文档评分（v5 一对一精准锚点）
 
 ```
 1. yuque_list_docs → 列出源库全部文档（标题 + ID）
@@ -84,23 +84,22 @@
 
    文档类型处理：
    - Markdown/代码可读 → 从正文提取关键词（1-5 个），w=1-10
-   - Lake 乱码/附件/body 为空 → 降级标题提取，w=5
+   - Lake 乱码/附件/body 为空 → 降级标题提取，w=基于标题与关键词的语义拟合度评估（1-10）
+     严禁一刀切填 5。极高匹配（标题核心词 = 关键词）→ w=9-10，高度相关 → w=7-8，
+     部分相关 → w=5-6，弱相关 → w=1-4
    - 代码文档 → 从 import/注解/类名/方法签名提取
 
-3. 聚合去重 → **细粒度策略**：仅合并真正的同义不同名（如 "SpringBoot"="Spring Boot"），
-   不合并语义不同的概念（Vue2≠Vue3≠前端，JWT≠JavaWeb≠MyBatis）。
-   宁多勿少，每个微粒度关键词独立保留。
-
-**⚠️ 容量提示**：细粒度关键词可能较多（168 个关键词/55 篇）。
-子索引库文档数 > 200 或总库 > 300 时，需提示用户新建或扩容。
+3. 每个源文档独立建索引，不合并。一个源文档 = 一个关键词 = 一篇索引文档。
+   不同源文档即使主题相近，也分别建索引——精准锚点，不搞大杂烩。
 ```
 
 ### Phase 2 — 逐关键词写入（子代理 — 阶段 1）
 
 ```
-对每个关键词：
-1. LLM 汇总该关键词下所有 {did, w} → 生成 keywords[] + summary
-2. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id) → 写入子库
+对每个源文档-关键词配对：
+1. LLM 生成 keywords[]（搜索面关键词） + summary（仅覆盖该源文档）
+2. entries 只有 1 个，w 按 Phase 1 规则评估
+3. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id) → 写入子库
 ```
 
 ### Phase 3 — 总库路由同步（主会话 — 阶段 2）
@@ -133,8 +132,8 @@ Body（指向子库索引文档的指针数组）：
 |------|------|
 | `keyword` | 索引关键词（直接用作文档标题，不含前缀符号） |
 | `keywords` | 搜索面关键词数组 `string[]`（同义词/变体/缩写/口语问法） |
-| `summary` | 摘要（100-200 字） |
-| `entries` | 源文档指针数组 `[{did, ns, t?, s?, url?, w?}]` |
+| `summary` | 摘要（100-200 字，仅覆盖该唯一源文档的核心内容，精准不泛化） |
+| `entries` | 源文档指针数组 `[{did, ns, t?, s?, url?, w?}]`，**必须且只有 1 个元素** |
 | `index_book_id` | 子索引库 book_id |
 
 ---
@@ -151,7 +150,7 @@ Body（指向子库索引文档的指针数组）：
 摘要：SpringBoot 通过 @EnableAutoConfiguration 实现自动配置，条件装配注解按 classpath 动态决定 Bean 注册。多数据源场景通过 @ConfigurationProperties 分别配置 DataSource。
 
 entries：
-[{"did":584,"ns":"yehuoshun/dil9w3","t":"Spring Boot 自动配置原理","s":"abc","url":"https://www.yuque.com/yehuoshun/dil9w3/abc"},{"did":591,"ns":"yehuoshun/dil9w3","t":"条件装配与多数据源","s":"def","url":"https://www.yuque.com/yehuoshun/dil9w3/def"}]
+[{"did":584,"ns":"yehuoshun/dil9w3","t":"Spring Boot 自动配置原理","s":"abc","url":"https://www.yuque.com/yehuoshun/dil9w3/abc","w":9}]
 ```
 
 ### keywords 规则
