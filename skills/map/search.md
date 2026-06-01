@@ -58,17 +58,18 @@
 | 参数 | 说明 |
 |------|------|
 | `tokens` | 搜索 token 数组（LLM 生成） |
-| `index_book_ns` | 子索引库 namespace（如 yehuoshun/idx-misc-1） |
+| `index_book_ns` | 子索引库 namespace（如 yehuoshun/idx-python-1） |
 | `index_book_id` | 子索引库 book_id |
 
 ### 子索引库选择
 
-先通过域名判断：
-- Java / Spring / JVM 相关 → idx-java-1 (79349679)
-- Python / Django / Flask → idx-python-1 (79350288)
-- 其他 / 不确定 → idx-misc-1 (79350299)
+域名由 LLM 根据用户问题 + 源库内容动态推断，匹配 `route_book_sub` 中已配置的子库 namespace。
 
-> 域名判断由 LLM 根据用户问题内容推断。不确定时默认走 idx-misc-1。
+- 索引子库统一命名：`idx-{domain}-{n}`（如 `idx-python-1`、`idx-finance-1`）
+- domain 从源库内容推断，不限于技术栈（法律→idx-law-1、食谱→idx-cooking-1）
+- 不确定时搜全部已配置子库，或降级全库搜索
+
+> 域名不是预设枚举，是从数据里长出来的。建索引时 LLM 根据源库内容推断 domain 生成 slug。
 
 ---
 

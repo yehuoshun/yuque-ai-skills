@@ -187,7 +187,7 @@ entries 字段：
 
 ```
 0. yuque_config_status → 前置检查（配置/容量）
-1. yuque_create_repo → 创建子索引库（命名: index-{domain}）
+1. yuque_create_repo → 创建子索引库（命名: idx-{domain}-{n}，如 idx-python-1）
 2. yuque_list_docs → 列出源库全部文档（标题 + id + slug + updated_at）
 3. 逐文档评分 → yuque_get_doc 读 body → LLM 输出 [{"keyword","w"}, ...]
 4. 聚合去重 → 仅合并同义不同名，不合并语义不同概念
@@ -397,7 +397,7 @@ entries 字段：
 ```
 [子代理 — 阶段 1：子索引库构建]
 
-1. yuque_create_repo → 创建子索引库（命名: index-{domain}）
+1. yuque_create_repo → 创建子索引库（命名: idx-{domain}-{n}，如 idx-python-1）
 2. yuque_list_docs → 列出源库全部文档（标题 + slug + id + updated_at）
 
 3. 逐文档评分（核心步骤，每文档只读一次 body）：
@@ -590,7 +590,7 @@ entries 字段：
 > **block 时的 Agent 自救流程**：
 > 1. 看到 `error: "capacity_blocked"` → 从返回拿 `current_book` 信息
 > 2. 通知用户：「子索引库已满，帮你建个新的？」
-> 3. 用户确认 → `yuque_create_repo("index-{domain}-2")`
+> 3. 用户确认 → `yuque_create_repo("idx-{domain}-2")`
 > 4. `yuque_config_update(route_book_sub_add=[{book_id, namespace}])`
 > 5. 用新 `index_book_id` 重试
 >
