@@ -405,7 +405,7 @@ entries 字段：
    → 按关键词维度分发：每个关键词收集所有 {did, w, t, s}
 
 5. 逐关键词写入（可并行子代理）：
-   ⚠️ **粒度强制约束**：每个关键词最多 3 篇源文档（上下篇可合并算2篇），超过必须拆分。
+   ⚠️ **粒度强制约束**：每个关键词只对应 1 篇源文档。
    a. LLM 汇总该关键词下所有 entries → 生成搜索面 + 摘要
       → 见 §3 的「单关键词写入 Prompt」
    b. yuque_index_create(keyword, keywords[], summary, entries, index_book_id)
