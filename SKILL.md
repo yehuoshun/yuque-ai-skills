@@ -471,45 +471,53 @@ entries 字段：
 ### 2b. 单关键词写入 Prompt
 
 ```
-你是一个搜索索引构建器。当前关键词是「{keyword}」，最相关的源文档：
+你是一个搜索索引构建器。当前关键词是「{keyword}」，以下文档都属于该关键词：
 
 {entries_summary}
 
 ⚠️ 语雀搜索 API 只匹配字母数字中文，空格拆分 token 做 AND 匹配，不匹配符号和表情。
-（输出 keywords 为 string[]，代码层 cleanToken 自动清洗）
 
-## 搜索面（keywords 数组，不限长）
-1. 核心词 + 同义词 + 缩写：中英文变体、驼峰形式、简写
-2. 相关概念：该关键词涉及的下位概念、相关技术/工具/框架
-3. 口语问法："xxx怎么用""xxx是什么""xxx不生效"等自然问句
-4. 搜索视角自检：用户不知道有这个文档，会用什么词搜？
-5. 输出为 JSON 字符串数组：["SpringBoot", "SpringBoot启动", "自动配置"]
+## 文档标题（顶部）
+为这个关键词系列起一个概括性标题，如「Canvas 系列课程」「WebGL 渲染技术」。
 
-## 搜索面（search_surface 字符串，8-15 条）
-自然语言搜索面，纯文本，用中文逗号分隔。覆盖：
-1. 问句形式：xxx怎么画、如何实现xxx、xxx是什么、xxx怎么用
-2. 口语表达：画个三角形、做3D地球、给图片加滤镜
-3. 场景描述：WebGL渲染流程、Canvas绘制图表、SVG画矢量图
-4. 组合查询：着色器怎么写、性能优化技巧、数据可视化方案
-
-## 摘要（100-200 字）
-概括源文档的核心内容。
-
-## entries
-⚠️ 必须且只有 1 个 entry。w 已在评分阶段确定，这里不需要改。
+## 每个 entry 的输出
+一对多：一个关键词可对应多篇源文档，每篇独立输出：
+- et（文档标题）：源文档标题
+- ek（关键词）：该文档的技术术语 JSON 数组
+- es（搜索面）：自然语言问句/口语/场景描述，纯文本逗号分隔
+- esum（摘要）：100-200 字，概括该文档核心内容
+- did/ns/t/s/url/w：源文档指针，w 1-10
 
 ## 输出格式
 {
   "keyword": "{keyword}",
-  "keywords": ["词1", "词2", ...],
-  "search_surface": "xxx怎么画，如何实现xxx，xxx是什么，画个三角形，...",
-  "summary": "摘要内容",
   "entries": [
-    {"did": 584, "ns": "yehuoshun/dil9w3", "t": "源文档标题", "s": "slug", "url": "https://www.yuque.com/yehuoshun/dil9w3/slug", "w": 10}
+    {
+      "et": "02丨如何用Canvas绘制层次关系图？",
+      "ek": ["Canvas","指令式绘图","Canvas2D"],
+      "es": "Canvas怎么绘图，Canvas指令式绘图教程，用Canvas画层次关系图",
+      "esum": "本文介绍Canvas指令式绘图基础...",
+      "did": 584,
+      "ns": "yehuoshun/dil9w3",
+      "t": "02丨...html",
+      "s": "slug",
+      "url": "https://...",
+      "w": 9
+    },
+    {
+      "et": "28丨Canvas性能对比",
+      "ek": ["Canvas","SVG","WebGL","性能对比"],
+      "es": "Canvas和SVG哪个快...",
+      "esum": "本文对比分析Canvas、SVG、WebGL...",
+      "did": 591,
+      "ns": "yehuoshun/dil9w3",
+      "t": "28丨...html",
+      "s": "slug2",
+      "url": "https://...",
+      "w": 8
+    }
   ]
 }
-
-⚠️ entries 必须且只有 1 个。did/ns/t/s/url/w 全部必填。w 为 1-10 整数。
 ```
 
 ## 3. 增量更新
