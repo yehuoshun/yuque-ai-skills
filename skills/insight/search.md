@@ -95,13 +95,17 @@
 子索引库文档数 > 200 或总库 > 300 时，需提示用户新建或扩容。
 ```
 
-### Phase 2 — 逐关键词写入
+### Phase 2 — 逐关键词写入（单文档粒度原子操作）
+
+> ⚠️ **2026-06-02 改进**：写子索引库后**立即**同步总库路由，避免两阶段快照不一致。
 
 ```
-对每个关键词：
+对每个关键词（串行执行，并发=1）：
 1. LLM 汇总该关键词下所有 {did, w} → 生成 keywords[] + summary
 2. 调 yuque_index_create(keyword, keywords, summary, entries, index_book_id)
-3. 构建后验证：搜 2-3 个预期 query → 0 命中立即修复
+3. 紧跟着立即创建总库路由文档：
+   yuque_create_doc(总库, 标题=keyword) → body = [{"did": <索引文档did>, "ns": "<子库ns>/<slug>"}]
+4. 构建后验证：搜 2-3 个预期 query → 0 命中立即修复
 ```
 
 ### yuque_index_create 参数
