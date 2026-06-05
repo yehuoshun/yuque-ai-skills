@@ -116,7 +116,11 @@ Agent 层：
 
 要求：
 1. 提取 2-5 个最核心的技术术语，每个 ≤1 个词
-2. 覆盖不同角度：核心概念、同义表达、俗称、缩写
+2. 对每个术语，穷举所有可能的搜索形式——用户可能打中文或英文、缩写或全称、符号或文字：
+   - 含符号的术语 → 去掉符号转纯文字（C#→CSharp/C井、==→双等于/相等比较、=>→箭头函数/Lambda）
+   - 缩写 ↔ 全称（JS↔JavaScript、K8s↔Kubernetes、OOP↔面向对象）
+   - 中英互译（缓存↔Cache、消息队列↔MQ、分布式↔Distributed）
+   - 技术名去符号去冗余（Node.js→NodeJS、SpringBoot→springboot）
 3. 严禁符号、emoji——token 内部必须是纯字母/数字/中文
 4. token 无空格（如 SpringBoot），代码层 cleanToken 自动清洗
 5. 禁止泛词："方法""怎么""搞""啥"等

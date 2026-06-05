@@ -1,6 +1,6 @@
 # 语雀 AI Skill
 
-> 语雀全功能 AI Agent 技能 —— 48 MCP Tools + 24 业务 Skills（批量运维/写作辅助/知识分析/翻译/同步/导入/备份），全面超越官方 yuque-ecosystem。纯 LLM + 语雀 API，零外部依赖。
+> 语雀全功能 AI Agent 技能 —— 49 MCP Tools + 24 业务 Skills（批量运维/写作辅助/知识分析/翻译/同步/导入/备份），全面超越官方 yuque-ecosystem。纯 LLM + 语雀 API，零外部依赖。
 
 [![License](https://img.shields.io/github/license/yehuoshun/yuque-ai-mcp)](./LICENSE)
 [![SKILL.md](https://img.shields.io/badge/SKILL.md-执行规范-green)](./SKILL.md)
@@ -45,7 +45,7 @@
 | 维度 | 🏛 yuque-ecosystem | 🏛 yuque-plugin | 🦞 本项目 |
 |------|-------------------|----------------|--------|
 | Skills 总数 | 8 个 | 4（个人）/ 6（团队） | **24 个** |
-| 知识库问答 | `smart-search` | `smart-search` | **两层索引 + 多路并发 + 降级** |
+| 知识库问答 | `smart-search` | `smart-search` | **单层索引 + 多路并发 + 降级** |
 | 智能摘要 | `smart-summary`（两档） | `smart-summary`（两档） | `summarize`（L1-L4 四级） |
 | 阅读摘录 | `reading-digest` | — | `digest`（五维提取 + 知识卡片） |
 | 碎片收集 | `daily-capture` | — | `inbox`（三种模式 + 可配置清理） |
@@ -73,7 +73,7 @@
 ## 架构
 
 ```
-yuque-mcp (MCP Server)     ← 48 个 MCP Tools（CRUD/搜索/导入/统计/群组/回收站/仪表盘/健康检查/热重载/配置管理/分组管理）
+yuque-mcp (MCP Server)     ← 49 个 MCP Tools（CRUD/搜索/导入/统计/群组/回收站/仪表盘/健康检查/热重载/配置管理/分组管理）
     ↓
 业务 Skills                ← 24 个 Skill Markdown（manage/transform/insight/collect/write 五分类）
     ↓
@@ -82,7 +82,7 @@ LLM Agent                  ← 问答编排 & 业务流转
 
 | 组件 | 技术栈 | 说明 |
 |------|--------|------|
-| `server/` | TypeScript + `@modelcontextprotocol/sdk` | MCP Server，提供 48 个 tools |
+| `server/` | TypeScript + `@modelcontextprotocol/sdk` | MCP Server，提供 49 个 tools |
 | `skills/` | Markdown | 业务 Skills（manage/transform/insight/collect/write 五分类，24 个技能） |
 | `SKILL.md` | Markdown | AI Agent 执行指南（问答 pipeline + 索引构建 + 业务 skill 路由） |
 
@@ -102,7 +102,7 @@ npm run build
 
 ```bash
 cp config/yuque-config.example.json config/yuque-config.json
-# 编辑填入 token、group、default_book、route_book、route_book_sub
+# 编辑填入 token、group、default_book、route_book_sub
 ```
 
 配置格式：
@@ -112,9 +112,6 @@ cp config/yuque-config.example.json config/yuque-config.json
   "token": "语雀 API Token",
   "group": "yehuoshun",
   "default_book": { "book_id": 78276514, "namespace": "yehuoshun/index-sub-1" },
-  "route_book": [
-    { "book_id": 51689762, "namespace": "yehuoshun/rqgc16" }
-  ],
   "route_book_sub": [
     { "book_id": 78276514, "namespace": "yehuoshun/index-sub-1" }
   ],
@@ -130,8 +127,7 @@ cp config/yuque-config.example.json config/yuque-config.json
 | `token` | ✅ | 语雀 API Token（需 doc:read/doc:write/repo:read/repo:write） |
 | `group` | ✅ | 语雀用户名/login |
 | `default_book` | ✅ | 默认知识库（创建文档时未指定目标则用此库） |
-| `route_book` | ✅ | 索引总库列表（存路由文档，kb_search 路由层用，支持多总库分片） |
-| `route_book_sub` | 按需 | 默认子索引库列表（创建索引文档时未指定目标则用首个） |
+| `route_book_sub` | ✅ | 索引库列表（创建索引文档时未指定目标则用首个，kb_search 并行搜所有索引库） |
 | `graph_book` | 按需 | 图谱知识库（存 graphN 分片，搜索扩展用，不配则图谱扩展静默跳过） |
 | `user_id` | 按需 | 用户 ID（文件上传必填，`yuque_get_user` 可查） |
 | `cookie` | 按需 | 浏览器 Cookie 完整字符串（文件上传/回收站管理必填） |
@@ -152,7 +148,6 @@ cp config/yuque-config.example.json config/yuque-config.json
         "YUQUE_GROUP": "<用户名>",
         "YUQUE_DEFAULT_BOOK_ID": "<知识库ID>",
         "YUQUE_DEFAULT_BOOK_NS": "<namespace>",
-        "YUQUE_ROUTE_BOOK": "[{\"book_id\":51689762,\"namespace\":\"yehuoshun/rqgc16\"}]",
         "YUQUE_ROUTE_SUB": "[{\"book_id\":78276514,\"namespace\":\"yehuoshun/index-sub-1\"}]",
         "YUQUE_COOKIE": "<Cookie>",
         "YUQUE_CTOKEN": "<CSRF Token>",
@@ -179,7 +174,7 @@ cp config/yuque-config.example.json config/yuque-config.json
 
 ---
 
-## MCP Tools 全览（48 个）
+## MCP Tools 全览（49 个）
 
 ### 知识库分组操作 ⚠️ 需 Cookie 登录态
 
@@ -261,9 +256,9 @@ cp config/yuque-config.example.json config/yuque-config.json
 
 | Tool | 说明 |
 |------|------|
-| `yuque_kb_search` | 知识库管道搜索（双层路由 + 图谱扩展 + 自动降级）：token 数组 → 搜总库找路由文档 → 路由文档 body 的 namespace 是文档级路径 → 直接 GET /repos/{group/slug/slug} 读索引文档 → 展开 entries → 按 weight 降序返回。默认截断 20 条，超出的低权重自然淘汰。返回 `total_entries`/`truncated` 标识截断状态 |
-| `yuque_index_create` | 创建细粒度关键词索引文档：一个关键词一篇索引文档，标题为精确知识点名称。⚠️ 每个关键词只对应 1 篇源文档。LLM 先做关键词质量过滤（丢弃栏目名/编号/标签等无效词），再写 body（关键词搜索面 + 搜索面自然语言 + 摘要 + entry 指针，doc_id/namespace/doc_title/slug/url/weight 全部必填，weight 为 1-10 权重）。传 route_book_id 后自动同步总库路由 |
-| `yuque_index_update_entries` | 增量更新关键词索引文档 entries：支持 add（追加）/ remove（移除）/ update（按 doc_id 合并字段）。自动完成读-改-写-路由同步原子操作。entries 清空时自动删除索引文档 + 清理总库路由。200KB body 检查 |
+| `yuque_kb_search` | 知识库管道搜索（索引库直搜 + 图谱扩展 + 自动降级）：token 数组 → 并行搜所有索引库 → 读索引文档 body → 展开 entries → 按 weight 降序返回。默认截断 20 条，超出的低权重自然淘汰。返回 `total_entries`/`truncated` 标识截断状态 |
+| `yuque_index_create` | 创建关键词索引文档。标题为关键词，body 为 Markdown 块格式（`# 标题 / ## 关键词 / ## 搜索面 / ## 摘要 / ## 章节树(可选) / ## doc_id / ## 链接 / ## 权重`），语雀全文索引可搜。支持同义别名策略：索引构建时 LLM 根据 5 条推导规则自动生成多叫法关键词文档 |
+| `yuque_index_update_entries` | 增量更新关键词索引文档 entries：支持 add（追加）/ remove（移除）/ update（按 doc_id 合并字段）。自动完成读-改-写原子操作。entries 清空时自动删除索引文档。200KB body 检查 |
 
 ### 搜索 & 批量获取 & 元信息
 
@@ -286,15 +281,15 @@ cp config/yuque-config.example.json config/yuque-config.json
 
 | Tool | 说明 |
 |------|------|
-| `yuque_config_status` | 检查配置状态（总库/子库是否已配、容量使用率） |
-| `yuque_config_update` | 更新配置（追加 route_book/route_book_sub 条目，自动持久化并重载） |
+| `yuque_config_status` | 检查配置状态（索引库是否已配、容量使用率） |
+| `yuque_config_update` | 更新配置（追加 route_book_sub 条目，自动持久化并重载） |
 | `yuque_reload_config` | 热重载配置文件，修改后无需重启 MCP Server |
 
 ---
 
 ## 知识库问答
 
-两级索引架构：总库路由 + 子索引库 + 图谱库。总库路由文档存储文档级 namespace 指针，直接定位到子库中的索引文档。图谱库存储关键词共现邻接表（graphN 分片），listAllDocs 全量读取用于搜索扩展。纯 LLM + 语雀 API，零外部向量数据库依赖。
+单层索引架构：索引库 + 图谱库。索引库存储关键词索引文档（标题=关键词，body 为 Markdown 块格式：`# 文档标题 / ## 关键词 / ## 搜索面 / ## 摘要 / ## 章节树(可选) / ## doc_id / ## 链接 / ## 权重`）。构建时 LLM 按 5 条推导规则（去符号转写/缩写↔全称/中英互译/技术名去符号/大小写变体）自动生成多叫法关键词索引，覆盖所有搜索入口。搜索时直接并行搜所有索引库，语雀原生搜索覆盖标题+正文。图谱库存储关键词共现邻接表（graphN 分片），listAllDocs 全量读取用于搜索扩展。纯 LLM + 语雀 API，零外部向量数据库依赖。
 
 搜索管线、索引构建、搜索降级 → **[SKILL.md](./SKILL.md#二知识库问答系统)**。
 
@@ -302,7 +297,7 @@ cp config/yuque-config.example.json config/yuque-config.json
 
 ## 业务 Skills
 
-基于 MCP 48 tools 的高层业务能力。全部遵循：先预览后确认、单篇隔离不传染、上限 100 篇、结束出报告。
+基于 MCP 49 tools 的高层业务能力。全部遵循：先预览后确认、单篇隔离不传染、上限 100 篇、结束出报告。
 
 ### 知识管理（manage/）
 
@@ -376,7 +371,7 @@ yuque-ai-mcp/
 │   ├── package.json
 │   ├── tsconfig.json
 │   └── src/
-│       ├── index.ts           # Server 入口（注册 48 个 tools）
+│       ├── index.ts           # Server 入口（注册 49 个 tools）
 │       ├── client.ts          # 语雀 HTTP 客户端（v2 API + web API）
 │       ├── config.ts          # 配置读取（支持环境变量 + 配置文件）
 │       ├── shared/types.ts    # 共享类型
