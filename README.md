@@ -1,10 +1,13 @@
 # 语雀 AI Skill
 
-> 语雀全功能 AI Agent 技能 —— 49 MCP Tools + 24 业务 Skills（批量运维/写作辅助/知识分析/翻译/同步/导入/备份），全面超越官方 yuque-ecosystem。纯 LLM + 语雀 API，零外部依赖。
+> ⚠️ **DEPRECATED — 已停止维护 (2026-06-06)**
+>
+> 关键词索引架构过于复杂，已废弃。基础 CRUD 工具（list_repos / list_toc / get_doc / create_doc 等）仍可用，但索引构建、知识库搜索、图谱等高级功能不再维护。
+>
+> 替代方案：TOC 树导航（无向量 RAG），详见 [tree-search](https://github.com/yehuoshun/yuque-ai-mcp/tree/main/tree-search)（待建）。
 
 [![License](https://img.shields.io/github/license/yehuoshun/yuque-ai-mcp)](./LICENSE)
-[![SKILL.md](https://img.shields.io/badge/SKILL.md-执行规范-green)](./SKILL.md)
-[![MCP](https://img.shields.io/badge/MCP-Server-blue)](./server)
+[![Status](https://img.shields.io/badge/status-deprecated-red)](./DEPRECATED.md)
 
 ---
 
@@ -303,6 +306,7 @@ cp config/yuque-config.example.json config/yuque-config.json
 |-------|------|
 | [archive](skills/manage/archive.md) | 批量归档/备份旧文档（归档移动 / 备份复制两种模式） |
 | [backup](skills/manage/backup.md) | 知识库完整下载到本地（全量导出，含TOC结构+图片+附件） |
+| [purify](skills/manage/purify.md) | 知识库净化（清洗标题/内容/结构 → 去广告去HTML垃圾 → 重建新库） |
 | [classify](skills/manage/classify.md) | 智能分类打标（AI 分析主题 → 自动设计目录树 → 重建结构） |
 | [format](skills/manage/format.md) | 批量格式标准化（预设风格 / 参考文档 / 自定义规则三种来源） |
 | [import](skills/manage/import.md) | 外部文档导入（本地/Obsidian/Notion，格式适配 + 图片上传） |
