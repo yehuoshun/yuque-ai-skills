@@ -18,7 +18,7 @@
 ```
 yuque-mcp (MCP Server)     ← 47 个 MCP Tools（CRUD/搜索/导入/统计/群组/回收站/目录增强）
     ↓
-业务 Skills                ← 24 个 Skill Markdown（manage/transform/insight/collect/write 五分类）
+业务 Skills                ← 25 个 Skill Markdown（manage/transform/insight/collect/write 五分类）
     ↓
 LLM Agent                  ← 问答编排 & 业务流转
 ```
@@ -42,6 +42,7 @@ LLM Agent                  ← 问答编排 & 业务流转
 | Skill | 说明 |
 |-------|------|
 | [archive](skills/manage/archive.md) | 批量归档/备份旧文档（归档移动 / 备份复制两种模式） |
+| [reorganize](skills/manage/reorganize.md) | 整理/复制文档到其他知识库（源库不动，仅复制） |
 | [backup](skills/manage/backup.md) | 知识库完整下载到本地（全量导出，含TOC结构+图片+附件） |
 | [purify](skills/manage/purify.md) | 知识库净化（清洗标题/内容/结构 → 去广告去HTML垃圾 → 重建新库） |
 | [classify](skills/manage/classify.md) | 智能分类打标（AI 分析主题 → 自动设计目录树 → 重建结构） |
@@ -96,8 +97,8 @@ yuque-ai-skills/
 ├── README.md                 # 本文件
 ├── references/
 │   └── api_reference.md      # 语雀 OpenAPI 完整参考
-├── skills/                   # 业务 Skills（24 个）
-│   ├── manage/               # 知识管理（10 个）
+├── skills/                   # 业务 Skills（25 个）
+│   ├── manage/               # 知识管理（11 个）
 │   ├── transform/            # 内容加工（3 个）
 │   ├── insight/              # 洞察分析（5 个）
 │   ├── collect/              # 碎片收集（1 个）
