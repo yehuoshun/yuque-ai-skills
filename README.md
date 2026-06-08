@@ -29,17 +29,7 @@ LLM Agent                  ← 问答编排 & 业务流转
 
 ## 知识库问答
 
-**TOC 树导航（零索引）**：无需预处理、无需索引维护、无需向量库。
-
-```
-yuque_list_repos → LLM 选知识库
-       ↓
-yuque_list_toc  → LLM 导航选文档
-       ↓
-yuque_get_doc   → LLM 生成答案
-```
-
-标题质量好的知识库即开即用。标题泛化不够时，LLM 可先用 `yuque_search` 在全库范围搜索，再用 `yuque_get_doc` 读具体内容。
+**关键词 + 同义词搜全库**：零索引、零预处理。LLM 提取关键词 → 生成同义变体 → `yuque_search` 并行搜全库 → `yuque_batch_get_docs_body` 批量读正文 → LLM 生成答案。
 
 ---
 
