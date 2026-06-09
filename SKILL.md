@@ -15,6 +15,7 @@
 | 域 | 目录 | 说明 |
 |----|------|------|
 | user | `skills/user/` | 用户信息、心跳、团队 |
+| group | `skills/group/` | 团队成员管理 |
 | repo | `skills/repo/` | 知识库 CRUD |
 | doc | `skills/doc/` | 文档读写 |
 | search | `skills/search/` | 搜索 |
@@ -36,3 +37,4 @@
 | `GET /api/v2/hello` | `skills/user/hello.md` | `references/api/user_api.md` |
 | `GET /api/v2/users/:id/groups` | `skills/user/groups.md` | `references/api/user_api.md` |
 | `GET /api/v2/search` | `skills/search/search.md` | `references/api/search_api.md` |
+| `GET /api/v2/groups/{login}/users` | `skills/group/list-users.md` | `references/api/group_api.md` |
