@@ -18,7 +18,7 @@ curl -s -X POST \
   -H "Cookie: $YUQUE_COOKIE" \
   -H "x-csrf-token: $YUQUE_CTOKEN" \
   -F "file=@/path/to/file.png" \
-  "https://www.yuque.com/api/upload/attach?attachable_type=User&attachable_id=25689388&type=image&ctoken=$YUQUE_CTOKEN"
+  "https://www.yuque.com/api/upload/attach?attachable_type=User&attachable_id={user_id}&type=image&ctoken=$YUQUE_CTOKEN"
 ```
 
 ## 参数要点
@@ -27,6 +27,7 @@ curl -s -X POST \
 |------|------|
 | `file_path` | 必填，本地文件路径 |
 | `type` | image / attachment / video，默认 attachment |
+| `user_id` | 用户 ID，不传自动从 Token 获取 |
 
 ## 返回（关键字段）
 
@@ -43,5 +44,5 @@ curl -s -X POST \
 
 ## 别干的事
 
-- 别超过大小限制：图片 20MB / 附件 500MB / 视频 500MB（专业会员）
+- 别超过大小限制：图片 50MB / 附件 2GB / 视频 2GB（超级会员）
 - 别忘记配 cookie/ctoken
