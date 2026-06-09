@@ -7,13 +7,21 @@
 ## 什么时候调
 
 - 修改小记内容
+- 删除/恢复小记（`status=9` 删除，`status=0` 恢复）
 
 ## 调用
 
 ```bash
+# 更新内容
 curl -s -X PUT -H "X-Auth-Token: $YUQUE_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"body":"更新后的内容"}' \
+  "https://www.yuque.com/api/v2/notes/87204907"
+
+# 删除（软删除）
+curl -s -X PUT -H "X-Auth-Token: $YUQUE_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"status":9}' \
   "https://www.yuque.com/api/v2/notes/87204907"
 ```
 
@@ -22,7 +30,8 @@ curl -s -X PUT -H "X-Auth-Token: $YUQUE_TOKEN" \
 | 参数 | 说明 |
 |------|------|
 | `note_id` | 必填，小记 ID |
-| `body` | 必填，新内容（纯文本或 Markdown） |
+| `body` | 新内容（纯文本或 Markdown，不填则保持不变） |
+| `status` | 0=正常 / 9=删除（不填则不变） |
 
 ## 返回
 
