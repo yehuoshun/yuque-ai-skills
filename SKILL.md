@@ -24,10 +24,10 @@
 | import | `skills/import/` | 导入 |
 | note | `skills/note/` | 小记 |
 
-## 工具使用指南
+## API 使用指南
 
-调用任何工具前，**必须先读对应的 skill 文件**，了解什么时候调、调完干嘛、别干的事。
+调用任何 API 前，**必须先读对应的 skill 文件**，了解什么时候调、调完干嘛、别干的事。
 
-| 工具 | 指导文件 |
-|------|---------|
-| `yuque_get_user` | `skills/base/user.md` |
+| API | 指导文件 |
+|-----|---------|
+| `GET /api/v2/user` | `skills/base/user.md` |

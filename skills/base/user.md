@@ -15,8 +15,6 @@
 curl -s -H "X-Auth-Token: $YUQUE_TOKEN" "https://www.yuque.com/api/v2/user"
 ```
 
-或用 MCP 工具 `yuque_get_user`。
-
 ## 返回（关键字段）
 
 | 字段 | 用途 |
