@@ -39,3 +39,4 @@
 | `GET /api/v2/search` | `skills/search/search.md` | `references/api/search_api.md` |
 | `GET /api/v2/groups/{login}/users` | `skills/group/list-users.md` | `references/api/group_api.md` |
 | `PUT /api/v2/groups/{login}/users/{id}` | `skills/group/update-user.md` | `references/api/group_api.md` |
+| `DELETE /api/v2/groups/{login}/users/{id}` | `skills/group/delete-user.md` | `references/api/group_api.md` |
