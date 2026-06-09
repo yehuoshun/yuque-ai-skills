@@ -30,7 +30,7 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 |------|------|
 | `book_id` | 必填，知识库 ID 或 namespace（`group/book_slug`） |
 | `offset` | 分页偏移，默认 0 |
-| `limit` | 每页数量，≤100，默认 100。⚠️ 超过 100 时 `optional_properties` 失效 |
+| `limit` | 每页数量，≤100，默认 100。超过 100 直接返回 422 |
 | `optional_properties` | 额外字段，逗号分隔。`hits`（阅读数）、`tags`（标签）、`latest_version_id`（最新版本号） |
 
 ## 返回（关键字段）
@@ -55,5 +55,5 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 
 ## 别干的事
 
-- 别传 `limit > 100`——会触发 `optional_properties` 失效
+- 别传 `limit > 100`——直接返回 422 参数校验失败
 - 别期望按标题搜索——此端点只能列表，搜索用 `yuque_search`
