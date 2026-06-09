@@ -23,6 +23,7 @@
 | statistic | `skills/statistic/` | 统计数据 |
 | note | `skills/note/` | 小记 |
 | recycle | `skills/recycle/` | 回收站 |
+| upload | `skills/upload/` | 文件上传 |
 | export | `skills/export/` | 导出 |
 | import | `skills/import/` | 导入 |
 
