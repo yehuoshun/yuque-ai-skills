@@ -32,3 +32,4 @@
 |-----|---------|----------|
 | `GET /api/v2/user` | `skills/base/user.md` | `references/api/user_api.md` |
 | `GET /api/v2/hello` | `skills/base/hello.md` | `references/api/user_api.md` |
+| `GET /api/v2/users/:id/groups` | `skills/base/groups.md` | `references/api/user_api.md` |
