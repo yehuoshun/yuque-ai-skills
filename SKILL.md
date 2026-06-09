@@ -19,7 +19,7 @@
 | doc | `skills/doc/` | 文档读写 |
 | repo | `skills/repo/` | 知识库 CRUD |
 | search | `skills/search/` | 搜索 |
-| kb | `skills/kb/` | 知识库问答（TOC 导航） |
+| toc | `skills/toc/` | 知识库目录导航 |
 | recycle | `skills/recycle/` | 回收站 |
 | export | `skills/export/` | 导出 |
 | import | `skills/import/` | 导入 |
