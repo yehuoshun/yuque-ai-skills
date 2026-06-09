@@ -24,8 +24,10 @@
 | import | `skills/import/` | 导入 |
 | note | `skills/note/` | 小记 |
 
-## 当前可用工具
+## 工具使用指南
 
-| 工具 | 域 | 说明 |
-|------|-----|------|
-| `yuque_get_user` | base | 获取当前用户信息 |
+调用任何工具前，**必须先读对应的 skill 文件**，了解什么时候调、调完干嘛、别干的事。
+
+| 工具 | 指导文件 |
+|------|---------|
+| `yuque_get_user` | `skills/base/user.md` |
