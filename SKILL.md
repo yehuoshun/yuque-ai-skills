@@ -16,8 +16,8 @@
 |----|------|------|
 | user | `skills/user/` | 用户信息、心跳、团队 |
 | group | `skills/group/` | 团队成员管理 |
-| repo | `skills/repo/` | 知识库 CRUD |
 | doc | `skills/doc/` | 文档读写 |
+| repo | `skills/repo/` | 知识库 CRUD |
 | search | `skills/search/` | 搜索 |
 | kb | `skills/kb/` | 知识库问答（TOC 导航） |
 | recycle | `skills/recycle/` | 回收站 |
