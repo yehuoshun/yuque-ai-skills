@@ -25,7 +25,6 @@
 | recycle | `skills/recycle/` | 回收站 |
 | export | `skills/export/` | 导出 |
 | import | `skills/import/` | 导入 |
-| note | `skills/note/` | 小记 |
 
 ## API 使用指南
 
