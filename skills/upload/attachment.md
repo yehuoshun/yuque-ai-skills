@@ -4,7 +4,7 @@
 
 `POST /api/upload/attach` — Web API（Cookie 认证，非 v2 OpenAPI）。
 
-> 需要 `config.json` 中配置 `cookie` + `ctoken`。上限 10MB。
+> 需要 `config.json` 中配置 `cookie` + `ctoken`。
 
 ## 什么时候调
 
@@ -43,5 +43,5 @@ curl -s -X POST \
 
 ## 别干的事
 
-- 别传超过 10MB 的文件
+- 别超过大小限制：图片 20MB / 附件 500MB / 视频 500MB（专业会员）
 - 别忘记配 cookie/ctoken
