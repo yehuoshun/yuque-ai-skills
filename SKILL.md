@@ -21,6 +21,7 @@
 | search | `skills/search/` | 搜索 |
 | toc | `skills/toc/` | 知识库目录导航 |
 | statistic | `skills/statistic/` | 统计数据 |
+| note | `skills/note/` | 小记 |
 | recycle | `skills/recycle/` | 回收站 |
 | export | `skills/export/` | 导出 |
 | import | `skills/import/` | 导入 |
