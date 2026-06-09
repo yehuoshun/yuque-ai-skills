@@ -28,6 +28,8 @@
 
 调用任何 API 前，**必须先读对应的 skill 文件**。完整字段见 `references/api/` 下的对应 API 文档。
 
+**错误码通用**：所有 API 共用错误码，见 `references/api/errors.md`。
+
 | API | 指导文件 | API 文档 |
 |-----|---------|----------|
 | `GET /api/v2/user` | `skills/user/user.md` | `references/api/user_api.md` |
