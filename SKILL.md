@@ -14,7 +14,7 @@
 
 | 域 | 目录 | 说明 |
 |----|------|------|
-| base | `skills/base/` | 用户信息、健康检查 |
+| user | `skills/user/` | 用户信息、心跳、团队 |
 | repo | `skills/repo/` | 知识库 CRUD |
 | doc | `skills/doc/` | 文档读写 |
 | search | `skills/search/` | 搜索 |
@@ -30,6 +30,6 @@
 
 | API | 指导文件 | API 文档 |
 |-----|---------|----------|
-| `GET /api/v2/user` | `skills/base/user.md` | `references/api/user_api.md` |
-| `GET /api/v2/hello` | `skills/base/hello.md` | `references/api/user_api.md` |
-| `GET /api/v2/users/:id/groups` | `skills/base/groups.md` | `references/api/user_api.md` |
+| `GET /api/v2/user` | `skills/user/user.md` | `references/api/user_api.md` |
+| `GET /api/v2/hello` | `skills/user/hello.md` | `references/api/user_api.md` |
+| `GET /api/v2/users/:id/groups` | `skills/user/groups.md` | `references/api/user_api.md` |
