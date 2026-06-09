@@ -31,3 +31,4 @@
 | API | 指导文件 | API 文档 |
 |-----|---------|----------|
 | `GET /api/v2/user` | `skills/base/user.md` | `references/api/user_api.md` |
+| `GET /api/v2/hello` | `skills/base/hello.md` | `references/api/user_api.md` |
