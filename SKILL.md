@@ -26,8 +26,8 @@
 
 ## API 使用指南
 
-调用任何 API 前，**必须先读对应的 skill 文件**，了解什么时候调、调完干嘛、别干的事。
+调用任何 API 前，**必须先读对应的 skill 文件**。完整字段见 `references/api/` 下的对应 API 文档。
 
-| API | 指导文件 |
-|-----|---------|
-| `GET /api/v2/user` | `skills/base/user.md` |
+| API | 指导文件 | API 文档 |
+|-----|---------|----------|
+| `GET /api/v2/user` | `skills/base/user.md` | `references/api/user_api.md` |

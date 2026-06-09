@@ -2,7 +2,7 @@
 
 ## API
 
-`GET /api/v2/user` — 完整文档见 `references/api_reference.md` → 用户 API → 获取当前用户。
+`GET /api/v2/user` — 完整文档见 `references/api/user_api.md`。
 
 ## 什么时候调
 
@@ -23,7 +23,7 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" "https://www.yuque.com/api/v2/user"
 | `login` | 构造 namespace（`{login}/{book_slug}`） |
 | `name` | 展示给用户（「当前是 {name}」） |
 
-完整字段见 `references/api_reference.md` 用户 API 章节。
+完整字段见 `references/api/user_api.md`。
 
 ## 调完干嘛
 
