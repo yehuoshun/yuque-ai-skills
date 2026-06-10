@@ -1,4 +1,4 @@
-# yuque_update_doc
+# 更新文档
 
 ## API
 
@@ -47,7 +47,7 @@ curl -s -X PUT -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 告知用户更新成功
-- 如需确认内容，调 `yuque_get_doc` 验证
+- 如需确认内容，调 `GET /api/v2/repos/docs/:id`（获取文档详情） 验证
 
 ## 别干的事
 

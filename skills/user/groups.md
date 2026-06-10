@@ -1,4 +1,4 @@
-# yuque_get_user_groups
+# 获取用户所属团队列表
 
 ## API
 

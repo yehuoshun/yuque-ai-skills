@@ -1,4 +1,4 @@
-# yuque_list_recycles
+# 列出回收站项目
 
 ## API
 
@@ -39,8 +39,8 @@ curl -s -H "Cookie: $YUQUE_COOKIE" \
 
 ## 调完干嘛
 
-- 找到要恢复的项目 → 调 `yuque_restore_recycle`
-- 确认不需要的 → 调 `yuque_destroy_recycle`
+- 找到要恢复的项目 → 调 `PUT /api/mine/recycles/:id/restore`（恢复回收站）
+- 确认不需要的 → 调 `DELETE /api/mine/recycles/:id`（彻底删除）
 
 ## 别干的事
 

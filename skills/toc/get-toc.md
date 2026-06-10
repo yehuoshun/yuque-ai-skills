@@ -1,4 +1,4 @@
-# yuque_get_toc
+# 获取知识库目录
 
 ## API
 
@@ -48,4 +48,4 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 别干的事
 
 - 别以为 `level` 是连续的——中间可能有空层
-- 别直接当文档搜索用——搜索用 `yuque_search`
+- 别直接当文档搜索用——搜索用 `GET /api/v2/search`（通用搜索）

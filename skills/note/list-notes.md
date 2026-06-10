@@ -1,4 +1,4 @@
-# yuque_list_notes
+# 获取小记列表
 
 ## API
 
@@ -39,8 +39,8 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 展示小记列表
-- 拿到 ID 后调 `yuque_get_note` 获取详情
+- 拿到 ID 后调 `GET /api/v2/notes/:id`（获取小记详情） 获取详情
 
 ## 别干的事
 
-- 别期望返回完整正文——列表只返回摘要，详情用 `yuque_get_note`
+- 别期望返回完整正文——列表只返回摘要，详情用 `GET /api/v2/notes/:id`（获取小记详情）

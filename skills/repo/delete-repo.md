@@ -1,4 +1,4 @@
-# yuque_delete_repo
+# 删除知识库
 
 ## API
 
@@ -31,7 +31,7 @@ curl -s -X DELETE -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 告知用户删除成功
-- 确认知识库已不存在（调 `yuque_get_repo` 应返回 404）
+- 确认知识库已不存在（调 `GET /api/v2/repos/:book_id`（获取知识库详情） 应返回 404）
 
 ## 别干的事
 

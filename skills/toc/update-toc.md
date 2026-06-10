@@ -1,4 +1,4 @@
-# yuque_update_toc
+# 更新知识库目录
 
 ## API
 
@@ -56,7 +56,7 @@ curl -s -X PUT -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 告知用户目录更新结果
-- 调 `yuque_get_toc` 确认变更
+- 调 `GET /api/v2/repos/:book_id/toc`（获取目录） 确认变更
 
 ## 别干的事
 

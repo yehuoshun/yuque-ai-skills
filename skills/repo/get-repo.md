@@ -1,4 +1,4 @@
-# yuque_get_repo
+# 获取知识库详情
 
 ## API
 
@@ -46,4 +46,4 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 
 ## 别干的事
 
-- 别拿这个替代 `yuque_get_toc`——toc_yml 是 YAML 字符串，toc API 是结构化数组
+- 别拿这个替代 `GET /api/v2/repos/:book_id/toc`（获取目录）——toc_yml 是 YAML 字符串，toc API 是结构化数组

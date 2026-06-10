@@ -1,4 +1,4 @@
-# yuque_destroy_recycle
+# 彻底删除回收站项目
 
 ## API
 

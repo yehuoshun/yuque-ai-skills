@@ -1,4 +1,4 @@
-# yuque_get_note
+# 获取小记详情
 
 ## API
 

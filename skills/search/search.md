@@ -1,4 +1,4 @@
-# yuque_search
+# 通用搜索
 
 ## API
 

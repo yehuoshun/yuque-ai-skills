@@ -1,4 +1,4 @@
-# yuque_delete_group_user
+# 删除团队成员
 
 ## API
 
@@ -36,7 +36,7 @@ curl -s -X DELETE -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 告知用户移除结果
-- 确认是否需要再调 `yuque_get_group_users` 验证
+- 确认是否需要再调 `GET /api/v2/groups/:login/users`（获取团队成员） 验证
 
 ## 别干的事
 

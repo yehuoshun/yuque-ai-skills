@@ -1,4 +1,4 @@
-# yuque_upload_attachment
+# 上传文件到语雀 CDN
 
 ## API
 
@@ -40,7 +40,7 @@ curl -s -X POST \
 ## 调完干嘛
 
 - 拿到 `url` 后嵌入文档正文（`![alt](url)` 或 Markdown 链接）
-- 配合 `yuque_update_doc` 更新文档内容
+- 配合 `PUT /api/v2/repos/:book_id/docs/:id`（更新文档） 更新文档内容
 
 ## 别干的事
 

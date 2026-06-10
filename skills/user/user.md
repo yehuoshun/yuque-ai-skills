@@ -1,4 +1,4 @@
-# yuque_get_user
+# 获取当前用户详情
 
 ## API
 

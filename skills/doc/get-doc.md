@@ -1,10 +1,10 @@
-# yuque_get_doc
+# 获取文档详情
 
 ## API
 
 `GET /api/v2/repos/docs/{id}` — 完整文档见 `references/api/doc_api.md` → 获取文档详情。
 
-> `id` 支持文档数字 ID。slug 需配合 book 上下文（`repos/:book_id/docs/:slug`），建议先用 `yuque_list_docs` 拿 ID。
+> `id` 支持文档数字 ID。slug 需配合 book 上下文（`repos/:book_id/docs/:slug`），建议先用 `GET /api/v2/repos/:book_id/docs`（获取文档列表） 拿 ID。
 
 ## 什么时候调
 

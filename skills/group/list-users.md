@@ -1,4 +1,4 @@
-# yuque_get_group_users
+# 获取团队成员列表
 
 ## API
 
@@ -21,7 +21,7 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 
 | 参数 | 说明 |
 |------|------|
-| `login` | 必填，团队 Login 或 ID（从 `yuque_get_user_groups` 返回的 `login` 字段获取） |
+| `login` | 必填，团队 Login 或 ID（从 `GET /api/v2/users/:id/groups`（获取用户团队）返回的 `login` 字段获取） |
 | `role` | 0=管理员 / 1=成员 / 2=只读成员，不传返回全部 |
 | `offset` | 分页偏移，默认 0，每页固定 100 条 |
 
@@ -43,7 +43,7 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 展示成员列表（昵称 + 角色 + 头像）
-- 团队登录名可从返回的 `group.login` 直接获取，无需再调 `yuque_get_user_groups`
+- 团队登录名可从返回的 `group.login` 直接获取，无需再调 `GET /api/v2/users/:id/groups`（获取用户团队）
 
 ## 别干的事
 

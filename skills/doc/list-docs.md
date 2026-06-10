@@ -1,4 +1,4 @@
-# yuque_list_docs
+# 获取知识库文档列表
 
 ## API
 
@@ -56,4 +56,4 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 别干的事
 
 - 别传 `limit > 100`——直接返回 422 参数校验失败
-- 别期望按标题搜索——此端点只能列表，搜索用 `yuque_search`
+- 别期望按标题搜索——此端点只能列表，搜索用 `GET /api/v2/search`（通用搜索）

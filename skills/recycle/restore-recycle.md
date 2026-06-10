@@ -1,4 +1,4 @@
-# yuque_restore_recycle
+# 恢复回收站项目
 
 ## API
 
@@ -20,7 +20,7 @@ curl -s -X PUT -H "Cookie: $YUQUE_COOKIE" \
 
 | 参数 | 说明 |
 |------|------|
-| `recycle_id` | 必填，回收站项目 ID（从 `yuque_list_recycles` 获取） |
+| `recycle_id` | 必填，回收站项目 ID（从 `GET /api/mine/recycles`（列出回收站） 获取） |
 
 ## 返回
 

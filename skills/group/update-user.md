@@ -1,4 +1,4 @@
-# yuque_update_group_user
+# 变更团队成员角色
 
 ## API
 
@@ -40,7 +40,7 @@ curl -s -X PUT -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 告知用户变更结果（「已把 {name} 设为 {角色}」）
-- 若需确认变更后状态，调 `yuque_get_group_users` 对比
+- 若需确认变更后状态，调 `GET /api/v2/groups/:login/users`（获取团队成员） 对比
 
 ## 别干的事
 

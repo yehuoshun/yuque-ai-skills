@@ -1,4 +1,4 @@
-# yuque_get_doc_version_detail
+# 获取文档历史版本详情
 
 ## API
 
@@ -21,7 +21,7 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 
 | 参数 | 说明 |
 |------|------|
-| `id` | 必填，版本 ID（从 `yuque_get_doc_versions` 获取） |
+| `id` | 必填，版本 ID（从 `GET /api/v2/doc_versions`（获取文档历史版本） 获取） |
 
 ## 返回（关键字段）
 
@@ -42,7 +42,7 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 展示版本内容或 diff
-- 配合 `yuque_get_doc_versions` 做版本对比
+- 配合 `GET /api/v2/doc_versions`（获取文档历史版本） 做版本对比
 
 ## 别干的事
 
