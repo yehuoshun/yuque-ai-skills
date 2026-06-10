@@ -18,6 +18,7 @@
 | `GET /api/v2/hello` | user | 心跳检测 | `skills/user/hello.md` |
 | `GET /api/v2/users/:id/groups` | user | 获取用户所属的团队列表 | `skills/user/groups.md` |
 | `GET /api/v2/search` | search | 通用搜索 | `skills/search/search.md` |
+| `GET /api/v2/search` (HyDE) | search | HyDE 降级搜索 | `skills/search/hyde-search.md` |
 | `GET /api/v2/groups/:login/users` | group | 获取团队成员列表 | `skills/group/list-users.md` |
 | `PUT /api/v2/groups/:login/users/:id` | group | 变更团队成员角色 | `skills/group/update-user.md` |
 | `DELETE /api/v2/groups/:login/users/:id` | group | 删除团队成员 | `skills/group/delete-user.md` |
