@@ -34,3 +34,11 @@ curl -s -H "X-Auth-Token: $YUQUE_TOKEN" \
 | `is_pinned` | 是否置顶 |
 
 完整字段见 `references/api/note_api.md`。
+
+## 调完干嘛
+
+- 展示小记完整内容给用户
+
+## 别干的事
+
+- 别期望列表接口返回完整正文——列表只返回摘要

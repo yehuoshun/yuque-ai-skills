@@ -30,3 +30,13 @@ curl -s -X POST -H "X-Auth-Token: $YUQUE_TOKEN" \
 | `id` | 新小记 ID |
 | `slug` | 路径 |
 | `note_url` | 小记链接 |
+
+完整字段见 `references/api/note_api.md`。
+
+## 调完干嘛
+
+- 返回新小记 ID，告知用户创建成功
+
+## 别干的事
+
+- 别传空 body——API 会拒绝

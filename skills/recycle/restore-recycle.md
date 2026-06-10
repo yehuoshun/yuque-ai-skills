@@ -32,3 +32,7 @@ curl -s -X PUT -H "Cookie: $YUQUE_COOKIE" \
 
 - 告知用户恢复成功
 - 确认文档已回到原知识库
+
+## 别干的事
+
+- 别跳过回收站列表直接恢复——先调 `GET /api/mine/recycles`（列出回收站）确认 ID

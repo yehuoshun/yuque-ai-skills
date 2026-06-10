@@ -30,6 +30,11 @@ curl -s -X DELETE -H "Cookie: $YUQUE_COOKIE" \
 {"destroyed": true, "recycle_id": 123}
 ```
 
+## 调完干嘛
+
+- 告知用户已彻底删除，不可恢复
+
 ## 别干的事
 
 - 删之前先确认——不可恢复
+- 别跳过回收站列表直接删——先调 `GET /api/mine/recycles`（列出回收站）确认 ID
