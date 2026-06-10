@@ -10,22 +10,43 @@
 - **管理类**：整理语雀、归档、备份、格式化、重命名、合并、分类
 - **搜索类**：在语雀搜索、找文档
 
-## 工具域
+## API 端点索引
 
-| 域 | 目录 | 说明 |
-|----|------|------|
-| user | `skills/user/` | 用户信息、心跳、团队 |
-| group | `skills/group/` | 团队成员管理 |
-| doc | `skills/doc/` | 文档读写 |
-| repo | `skills/repo/` | 知识库 CRUD |
-| search | `skills/search/` | 搜索 |
-| toc | `skills/toc/` | 知识库目录导航 |
-| statistic | `skills/statistic/` | 统计数据 |
-| note | `skills/note/` | 小记 |
-| recycle | `skills/recycle/` | 回收站 |
-| upload | `skills/upload/` | 文件上传 |
-| export | `skills/export/` | 导出 |
-| import | `skills/import/` | 导入 |
+| 端点 | 域 | 说明 | skill 文件 |
+|------|-----|------|------------|
+| `GET /api/v2/user` | user | 获取当前 Token 的用户详情 | `skills/user/user.md` |
+| `GET /api/v2/hello` | user | 心跳检测 | `skills/user/hello.md` |
+| `GET /api/v2/users/:id/groups` | user | 获取用户所属的团队列表 | `skills/user/groups.md` |
+| `GET /api/v2/search` | search | 通用搜索 | `skills/search/search.md` |
+| `GET /api/v2/groups/:login/users` | group | 获取团队成员列表 | `skills/group/list-users.md` |
+| `PUT /api/v2/groups/:login/users/:id` | group | 变更团队成员角色 | `skills/group/update-user.md` |
+| `DELETE /api/v2/groups/:login/users/:id` | group | 删除团队成员 | `skills/group/delete-user.md` |
+| `GET /api/v2/repos/:book_id/docs` | doc | 获取知识库文档列表 | `skills/doc/list-docs.md` |
+| `POST /api/v2/repos/:book_id/docs` | doc | 创建文档 | `skills/doc/create-doc.md` |
+| `GET /api/v2/repos/docs/:id` | doc | 获取文档详情 | `skills/doc/get-doc.md` |
+| `PUT /api/v2/repos/:book_id/docs/:id` | doc | 更新文档 | `skills/doc/update-doc.md` |
+| `DELETE /api/v2/repos/:book_id/docs/:id` | doc | 删除文档 | `skills/doc/delete-doc.md` |
+| `GET /api/v2/doc_versions` | doc | 获取文档历史版本列表 | `skills/doc/versions.md` |
+| `GET /api/v2/doc_versions/:id` | doc | 获取文档历史版本详情 | `skills/doc/version-detail.md` |
+| `GET /api/v2/repos/:book_id/toc` | toc | 获取知识库目录 | `skills/toc/get-toc.md` |
+| `PUT /api/v2/repos/:book_id/toc` | toc | 更新知识库目录 | `skills/toc/update-toc.md` |
+| `GET /api/v2/users/:login/repos` | repo | 获取知识库列表 | `skills/repo/list-repos.md` |
+| `POST /api/v2/users/:login/repos` | repo | 创建知识库 | `skills/repo/create-repo.md` |
+| `GET /api/v2/repos/:book_id` | repo | 获取知识库详情 | `skills/repo/get-repo.md` |
+| `PUT /api/v2/repos/:book_id` | repo | 更新知识库 | `skills/repo/update-repo.md` |
+| `DELETE /api/v2/repos/:book_id` | repo | 删除知识库 | `skills/repo/delete-repo.md` |
+| `GET /api/v2/groups/:login/statistics` | statistic | 团队汇总统计 | `skills/statistic/group-statistics.md` |
+| `GET /api/v2/groups/:login/statistics/members` | statistic | 团队成员统计 | `skills/statistic/member-statistics.md` |
+| `GET /api/v2/groups/:login/statistics/books` | statistic | 团队知识库统计 | `skills/statistic/book-statistics.md` |
+| `GET /api/v2/groups/:login/statistics/docs` | statistic | 团队文档统计 | `skills/statistic/doc-statistics.md` |
+| `GET /api/v2/notes` | note | 获取小记列表 | `skills/note/list-notes.md` |
+| `GET /api/v2/notes/:id` | note | 获取小记详情 | `skills/note/get-note.md` |
+| `POST /api/v2/notes` | note | 创建小记 | `skills/note/create-note.md` |
+| `PUT /api/v2/notes/:id` | note | 更新小记 | `skills/note/update-note.md` |
+| `GET /api/mine/recycles` | recycle | 列出回收站项目 | `skills/recycle/list-recycles.md` |
+| `PUT /api/mine/recycles/:id/restore` | recycle | 恢复回收站项目 | `skills/recycle/restore-recycle.md` |
+| `DELETE /api/mine/recycles/:id` | recycle | 彻底删除回收站项目 | `skills/recycle/destroy-recycle.md` |
+| `POST /api/upload/attach` | upload | 上传文件到语雀 CDN | `skills/upload/attachment.md` |
 
 ## API 使用指南
 
