@@ -49,6 +49,9 @@
 | `DELETE /api/mine/recycles/:id` | recycle | 彻底删除回收站项目 | `skills/recycle/destroy-recycle.md` |
 | `POST /api/upload/attach` | upload | 上传文件到语雀 CDN | `skills/upload/attachment.md` |
 | `无（纯工具函数）` | doc | 生成文档嵌入阅读器 URL | `skills/doc/embed-url.md` |
+| `GET /api/v2/yfm/boards` | resource | 获取文档中的画板资源（思维导图/流程图/架构图） | `skills/resource/get-resource.md` |
+| `POST /api/v2/yfm/boards` | resource | 在文档中创建画板资源（思维导图/流程图/架构图） | `skills/resource/create-resource.md` |
+| `PUT /api/v2/yfm/boards` | resource | 更新文档中的画板资源（思维导图/流程图/架构图） | `skills/resource/update-resource.md` |
 
 ## API 使用指南
 
