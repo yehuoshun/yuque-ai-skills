@@ -48,6 +48,7 @@
 | `PUT /api/mine/recycles/:id/restore` | recycle | 恢复回收站项目 | `skills/recycle/restore-recycle.md` |
 | `DELETE /api/mine/recycles/:id` | recycle | 彻底删除回收站项目 | `skills/recycle/destroy-recycle.md` |
 | `POST /api/upload/attach` | upload | 上传文件到语雀 CDN | `skills/upload/attachment.md` |
+| `无（纯工具函数）` | doc | 生成文档嵌入阅读器 URL | `skills/doc/embed-url.md` |
 
 ## API 使用指南
 
