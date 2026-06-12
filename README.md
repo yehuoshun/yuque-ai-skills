@@ -19,7 +19,7 @@ skills/
 ├── note/            # 小记（4 个）
 ├── recycle/         # 回收站（3 个）
 ├── upload/          # 文件上传（1 个）
-├── resource/        # 画板资源（3 个）
+├── board/           # 画板资源（3 个）
 └── user/            # 用户信息（3 个）
 
 references/api/      # API 参考文档（按域拆分）
@@ -39,7 +39,7 @@ references/api/      # API 参考文档（按域拆分）
 | note | 4 | 小记 CRUD |
 | recycle | 3 | 回收站列表/恢复/删除 |
 | upload | 1 | 文件上传 |
-| resource | 3 | 画板资源（思维导图/流程图/架构图） |
+| board | 3 | 画板资源（思维导图/流程图/架构图） |
 | **合计** | **38** | |
 
 ## 配套仓库

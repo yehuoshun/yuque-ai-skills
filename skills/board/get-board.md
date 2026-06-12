@@ -1,4 +1,4 @@
-# yuque_get_resource
+# yuque_get_board
 
 > 端点：`GET /api/v2/yfm/boards`
 > 说明：获取文档中的画板资源（思维导图/流程图/架构图），返回 JSON DSL 和摘要统计

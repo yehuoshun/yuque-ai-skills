@@ -1,4 +1,4 @@
-# yuque_create_resource
+# yuque_create_board
 
 > 端点：`POST /api/v2/yfm/boards`
 > 说明：在文档中创建画板资源（思维导图/流程图/架构图）

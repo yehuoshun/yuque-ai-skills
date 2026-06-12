@@ -1,4 +1,4 @@
-# yuque_update_resource
+# yuque_update_board
 
 > 端点：`PUT /api/v2/yfm/boards`
 > 说明：更新文档中的画板资源（思维导图/流程图/架构图）
