@@ -4,7 +4,7 @@
 
 `POST /api/v2/repos/{book_id}/docs` — 完整文档见 `references/api/doc_api.md` → 创建文档。
 
-> `book_id` 支持数字 ID 或 namespace 格式。⚠️ 创建后不会自动添加到目录。
+> `book_id` 支持数字 ID 或 namespace 格式。✅ 创建后自动追加到知识库目录末尾。
 
 ## 什么时候调
 
@@ -45,9 +45,9 @@ curl -s -X POST -H "X-Auth-Token: $YUQUE_TOKEN" \
 ## 调完干嘛
 
 - 告知用户创建成功（文档标题 + 链接）
-- 如需加入目录，调知识库目录更新接口
+- 已自动追加到目录末尾，无需手动操作
 
 ## 别干的事
 
-- 别忘记创建后更新目录——新文档不会自动出现在目录中
 - 别用 `format=lake` 除非明确需要语雀私有格式
+- 如果自动追加目录失败，工具会返回警告信息，届时手动调 `yuque_update_toc` 补充
