@@ -2,6 +2,8 @@
 
 语雀 Skill 层 — 工具使用指导、场景模式、最佳实践。
 
+> **📌 输出裁剪**：所有工具默认返回精简字段（去除 `_serializer`、`type` 等元数据）。传 `raw=true` 可获取全量原始 JSON。
+
 > ⚠️ 本仓库不包含可执行代码，只做用法文档。MCP 工具实现在 [yuque-ai-mcp](https://github.com/yehuoshun/yuque-ai-mcp)。
 
 ## 目录结构

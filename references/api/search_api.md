@@ -1,3 +1,6 @@
+> **📌 输出裁剪**：所有工具默认返回精简字段（去除 `_serializer`、`type` 等元数据）。传 `raw=true` 可获取全量原始 JSON。
+> 
+
 # 语雀 OpenAPI 参考
 
 > 基地址：`https://www.yuque.com/api/v2`
