@@ -12,7 +12,7 @@
 skills/
 ├── search/          # 搜索
 │   ├── search.md    # 通用搜索
-│   └── hyde-search.md  # HyDE 降级搜索
+│   └── rag-search.md   # RAG 增强搜索
 ├── doc/             # 文档 CRUD（7 个）
 ├── repo/            # 知识库管理（5 个）
 ├── group/           # 团队管理（3 个）
