@@ -13,7 +13,7 @@ skills/
 ├── search/          # 搜索
 │   ├── search.md    # 通用搜索
 │   └── rag-search.md   # RAG 增强搜索
-├── doc/             # 文档 CRUD（8 个）
+├── doc/             # 文档 CRUD + 版本管理 + 批量获取 + 嵌入（9 个）
 ├── repo/            # 知识库管理（6 个）
 ├── group/           # 团队管理（3 个）
 ├── toc/             # 目录管理（2 个）
@@ -32,7 +32,7 @@ references/api/      # API 参考文档（按域拆分）
 | 域 | 工具数 | 说明 |
 |-----|--------|------|
 | user | 3 | 用户信息、心跳、团队列表 |
-| search | 2 | 通用搜索 + HyDE 降级搜索 |
+| search | 2 | 通用搜索 + RAG 增强搜索 |
 | doc | 9 | 文档 CRUD + 版本管理 + 批量获取 |
 | repo | 6 | 知识库 CRUD + 批量获取 |
 | group | 3 | 团队成员管理 |
