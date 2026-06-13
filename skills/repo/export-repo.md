@@ -1,4 +1,4 @@
-# yuque_export_docs
+# yuque_export_repo
 
 > 端点：批量操作（无对应单一 API 端点）
 > 说明：批量导出知识库全部文档为 Markdown 文件，支持图片/附件下载与降级

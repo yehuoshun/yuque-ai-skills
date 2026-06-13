@@ -55,7 +55,7 @@
 | `PUT /api/v2/yfm/boards` | board | 更新文档中的画板资源（思维导图/流程图/架构图） | `skills/board/update-board.md` |
 | 批量 GET（并发） | doc | 批量获取文档详情（只读，max 20） | `skills/doc/batch-get-docs.md` |
 | 批量 GET（并发） | repo | 批量获取知识库详情（只读，max 20） | `skills/repo/batch-get-repos.md` |
-| 无（批量操作） | doc | 批量导出知识库文档为 Markdown（含图片下载/降级） | `skills/doc/export-docs.md` |
+| 无（批量操作） | repo | 批量导出知识库文档为 Markdown（含图片下载/降级） | `skills/repo/export-repo.md` |
 
 ## API 使用指南
 
