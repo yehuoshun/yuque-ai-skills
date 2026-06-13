@@ -13,8 +13,8 @@ skills/
 ├── search/          # 搜索
 │   ├── search.md    # 通用搜索
 │   └── rag-search.md   # RAG 增强搜索
-├── doc/             # 文档 CRUD（7 个）
-├── repo/            # 知识库管理（5 个）
+├── doc/             # 文档 CRUD（8 个）
+├── repo/            # 知识库管理（6 个）
 ├── group/           # 团队管理（3 个）
 ├── toc/             # 目录管理（2 个）
 ├── statistic/       # 统计数据（4 个）
@@ -33,8 +33,8 @@ references/api/      # API 参考文档（按域拆分）
 |-----|--------|------|
 | user | 3 | 用户信息、心跳、团队列表 |
 | search | 2 | 通用搜索 + HyDE 降级搜索 |
-| doc | 8 | 文档 CRUD + 版本管理 |
-| repo | 5 | 知识库 CRUD |
+| doc | 9 | 文档 CRUD + 版本管理 + 批量获取 |
+| repo | 6 | 知识库 CRUD + 批量获取 |
 | group | 3 | 团队成员管理 |
 | toc | 2 | 目录获取 + 更新 |
 | statistic | 4 | 团队/成员/知识库/文档统计 |
@@ -42,7 +42,7 @@ references/api/      # API 参考文档（按域拆分）
 | recycle | 3 | 回收站列表/恢复/删除 |
 | upload | 1 | 文件上传 |
 | board | 3 | 画板资源（思维导图/流程图/架构图） |
-| **合计** | **38** | |
+| **合计** | **40** | |
 
 ## 配套仓库
 
