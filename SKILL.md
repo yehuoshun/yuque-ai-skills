@@ -25,6 +25,7 @@
 | `DELETE /api/v2/groups/:login/users/:id` | group | 删除团队成员 | `skills/group/delete-user.md` |
 | `GET /api/v2/repos/:book_id/docs` | doc | 获取知识库文档列表 | `skills/doc/list-docs.md` |
 | `POST /api/v2/repos/:book_id/docs` | doc | 创建文档 | `skills/doc/create-doc.md` |
+| 无（本地操作） | doc | 从本地文件导入文档到语雀（含图片上传/降级） | `skills/doc/import-doc.md` |
 | `GET /api/v2/repos/docs/:id` | doc | 获取文档详情 | `skills/doc/get-doc.md` |
 | 无（单篇操作） | doc | 导出单篇文档为 Markdown（含图片下载/降级） | `skills/doc/export-doc.md` |
 | `PUT /api/v2/repos/:book_id/docs/:id` | doc | 更新文档 | `skills/doc/update-doc.md` |
