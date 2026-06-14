@@ -52,7 +52,7 @@
 | `DELETE /api/mine/recycles/:id` | recycle | 彻底删除回收站项目 | `skills/recycle/destroy-recycle.md` |
 | `POST /api/upload/attach` | upload | 上传文件到语雀 CDN | `skills/upload/attachment.md` |
 | `无（纯工具函数）` | doc | 生成文档嵌入阅读器 URL | `skills/doc/embed-url.md` |
-| `MCP: yuque_copy_doc` | doc | 单文档跨库复制（Agent 清洗+分类，工具建目录+创建） | `skills/doc/copy-doc.md` |
+| `MCP: yuque_copy_doc` | doc | 单文档跨库复制（支持 doc_id 自动拉取 / Agent 手动清洗两种模式） | `skills/doc/copy-doc.md` |
 | `MCP: yuque_copy_repo` | repo | 批量跨库复制（Agent 清洗+分类，工具批量创建） | `skills/repo/copy-repo.md` |
 | `GET /api/v2/yfm/boards` | board | 获取文档中的画板资源（思维导图/流程图/架构图） | `skills/board/get-board.md` |
 | `POST /api/v2/yfm/boards` | board | 在文档中创建画板资源（思维导图/流程图/架构图） | `skills/board/create-board.md` |
