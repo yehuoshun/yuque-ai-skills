@@ -26,7 +26,7 @@
   "status": "done",
   "doc": { "id": "123", "slug": "my-doc", "title": "文档标题", "format": "markdown" },
   "output_dir": "/tmp/yuque-export/my-doc",
-  "file": "/tmp/yuque-export/my-doc/my-doc.md",
+  "file": "/tmp/yuque-export/my-doc/文档标题.md",
   "images_downloaded": 3,
   "images_failed": 1
 }
@@ -43,6 +43,7 @@
 ## 注意事项
 
 - 图片下载 15 秒超时，超时自动降级为原 CDN 链接
+- 输出文件以文档标题命名，非法字符替换为 `_`
 - 输出文件包含 YAML frontmatter（标题、时间、字数等）
 - markdown 格式文档直接使用 body 字段，html/lake 格式自动转换
 
