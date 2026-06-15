@@ -49,29 +49,31 @@
 无（RSS 抓取写入）
 ```
 
-抓取 RSS/Atom Feed，解析条目，去重后写入目标知识库。
+抓取 RSS/Atom Feed，语雀 KV slug 去重后写入目标知识库。
 
 **参数**：
 
-| 参数 | 类型 | 必填 | 说明 |
-|------|------|:--:|------|
-| source | string | ✅ | 数据源 key，如 `cnblogs` |
-| feed_type | string | ✅ | feed 类型，如 `sitehome`、`picked` |
-| feed_params | object | ❌ | 模板参数，如 `{ username: "hsewr333" }` |
-| target_repo | string | ✅ | 目标知识库 ID 或 namespace |
-| max_items | number | ❌ | 最大抓取数，默认 10，上限 50 |
-| mode | string | ❌ | `append`（默认）/ `update` / `dry_run` |
-| dedup_field | string | ❌ | 去重字段：`title`（默认）/ `link` / `guid` |
-| title_prefix | string | ❌ | 文档标题前缀，如 `[博客园] ` |
+| 参数 | 类型 | 必填 | 默认 | 说明 |
+|------|------|:--:|------|------|
+| source | string | ✅ | - | 数据源 key，如 `cnblogs` |
+| feed_type | string | ✅ | - | feed 类型，如 `sitehome`、`picked` |
+| feed_params | object | ❌ | - | 模板参数，如 `{ username: "hsewr333" }` |
+| target_repo | string | ❌ | config | RSS 目标知识库，不传从 config.json `rss` 读 |
+| kv_repo | string | ❌ | config | KV 去重知识库，不传从 config.json `kv` 读 |
+| max_items | number | ❌ | 10 | 最大抓取数，上限 50 |
+| mode | string | ❌ | `append` | `append` / `dry_run` |
+| title_prefix | string | ❌ | - | 文档标题前缀，如 `[博客园] ` |
 
 **响应示例**（dry_run）：
 ```json
 {
   "mode": "dry_run",
   "source": "博客园 / 首页最新",
+  "feed_url": "https://feed.cnblogs.com/blog/sitehome/rss",
+  "feed_title": "博客园_首页",
   "total": 3,
   "entries": [
-    { "title": "...", "link": "https://...", "author": "...", "published": "..." }
+    { "title": "...", "link": "https://...", "slug": "cnblogs-20538011", "author": "...", "published": "..." }
   ]
 }
 ```
@@ -80,15 +82,46 @@
 ```json
 {
   "source": "博客园 / 首页最新",
+  "feed_url": "https://feed.cnblogs.com/blog/sitehome/rss",
+  "target_repo": "123456",
+  "kv_repo": "123456",
   "fetched": 10,
   "new": 3,
   "skipped": 7,
-  "dedup": { "field": "title", "existing_docs": 42 },
+  "dedup": { "strategy": "yuque-kv-slug" },
   "results": [
-    { "title": "...", "link": "...", "doc_id": 12345, "status": "created" }
+    { "title": "...", "link": "...", "slug": "cnblogs-20538011", "doc_id": 12345, "status": "created" }
   ]
 }
 ```
+
+## 去重机制
+
+**语雀 KV slug 方案**：每篇文章以 `{source}-{site_article_id}` 作为文档 slug，通过 `GET /repos/{kv_repo}/docs/{slug}` 判断是否已存在。O(1) 单次 API 调用，无文档数量上限。
+
+博客园：`https://www.cnblogs.com/xxx/p/20538011` → slug `cnblogs-20538011`
+
+其他数据源 fallback 到 `md5(link).slice(0, 12)`。
+
+## 配置
+
+```json
+{
+  "rss": {
+    "default_repo": { "book_id": "123456", "namespace": "my-group/default" },
+    "cnblogs": { "book_id": "123456", "enable_kv": true }
+  },
+  "kv": {
+    "default_repo": { "book_id": "789012", "namespace": "my-group/kv" },
+    "cnblogs": { "book_id": "789012" }
+  }
+}
+```
+
+- `rss`：RSS 文章写入的目标知识库
+- `kv`：去重 slug 查询的知识库（可与 rss 相同）
+- `enable_kv`：false 时跳过去重，全量写入
+- `target_repo` / `kv_repo` 参数不传时自动从配置读取
 
 ## 使用场景
 
@@ -103,6 +136,7 @@
 ```ts
 "new_source": {
   name: "新数据源",
+  slugResolver: (link) => { /* 提取站点 ID */ },
   feeds: {
     main: { label: "主 feed", url: "https://example.com/rss" },
     user: {
