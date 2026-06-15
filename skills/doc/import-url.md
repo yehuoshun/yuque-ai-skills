@@ -17,12 +17,14 @@
 
 ## 网页清洗逻辑
 
-- 移除 script / style / nav / footer / header / aside / iframe
+- 移除 script / style / nav / footer / header / aside / iframe / noscript
 - 优先提取 `<article>` 或 `<main>` 内容
-- HTML 实体解码（`&amp;` → `&`）
-- 合并连续空行
-- 内容上限 100KB（超出截断）
-- 自动在文末追加源链接
+- **format=html**：保留 HTML 结构（去注释，不去标签），上限 100KB
+- **format=markdown**：
+  - `<a href>` 转为 `[text](href)`，`<img>` 转为 `![alt](src)`
+  - HTML 实体解码（`&amp;` → `&`）
+  - 合并连续空行，上限 100KB
+- 自动在文末追加源链接（markdown 用 `> 📋`，html 用 `<blockquote><a>`）
 
 ## 返回
 
