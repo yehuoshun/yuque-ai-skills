@@ -2,7 +2,7 @@
 
 ## 功能
 
-在 KV 命名空间中设置一个 key-value 对。读取已有 map → 更新/新增 key → 写回。
+增量设置 KV 命名空间中的一个 key-value 对。只读最后一个分片，判断大小后 PUT 更新或 POST 创建新分片。
 
 ## 使用场景
 
@@ -14,10 +14,9 @@
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| `namespace` | string | ✅ | KV 命名空间，如 `cnblogs`、`weibo` |
+| `namespace` | string | ✅ | KV 命名空间，如 `cnblogs`、`weibo`。需先在 config.json 中配置。 |
 | `key` | string | ✅ | 要设置的 key |
 | `value` | string | ✅ | 要存储的值 |
-| `repo` | string | ❌ | KV 知识库 ID 或 namespace，默认使用 config.json 中 kv.default_repo |
 | `raw` | boolean | ❌ | 返回原始 JSON（默认 false） |
 
 ## 调用示例
@@ -37,13 +36,29 @@
   "namespace": "cnblogs",
   "key": "cnblogs-123456",
   "value": "https://www.cnblogs.com/xxx/p/123456.html",
-  "action": "created",
-  "total_keys": 43
+  "shards": 2
 }
 ```
 
 ## 注意事项
 
-- 如果 key 已存在，action 为 `updated`；否则为 `created`
-- 每次 set 涉及 2-3 次 API 调用（读 + 写），批量操作建议攒一批后一次性调用
-- 底层存储：单文档 JSON map，一个 namespace 一篇文档
+- 增量写入：只读最后一个分片，不读全量
+- 单分片 body 上限 250KB，超出自动创建新分片
+- 新分片的 doc_id 自动追加到 config.json 的 docs 数组
+- namespace 需先在 config.json 中配置 book_id
+
+## 分片配置
+
+```json
+{
+  "kv": {
+    "enabled": true,
+    "namespaces": {
+      "cnblogs": {
+        "book_id": 80197550,
+        "docs": [274164064]
+      }
+    }
+  }
+}
+```

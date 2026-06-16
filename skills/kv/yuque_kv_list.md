@@ -2,7 +2,7 @@
 
 ## 功能
 
-列出 KV 知识库中所有命名空间（文档）。
+列出 config.json 中所有已配置的 KV 命名空间。
 
 ## 使用场景
 
@@ -14,7 +14,6 @@
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| `repo` | string | ❌ | KV 知识库 ID 或 namespace，默认使用 config.json 中 kv.default_repo |
 | `raw` | boolean | ❌ | 返回原始 JSON（默认 false） |
 
 ## 调用示例
@@ -27,17 +26,25 @@
 
 ```json
 {
-  "repo": "80197550",
-  "count": 3,
+  "count": 2,
   "namespaces": [
-    { "namespace": "cnblogs", "title": "cnblogs", "updated_at": "2026-06-16T14:00:00.000Z" },
-    { "namespace": "weibo", "title": "weibo", "updated_at": "2026-06-15T10:00:00.000Z" },
-    { "namespace": "test", "title": "test", "updated_at": "2026-06-16T14:05:00.000Z" }
+    {
+      "namespace": "cnblogs",
+      "book_id": 80197550,
+      "shards": 2,
+      "doc_ids": [274164064, 274164065]
+    },
+    {
+      "namespace": "weibo",
+      "book_id": 80197550,
+      "shards": 1,
+      "doc_ids": [274164066]
+    }
   ]
 }
 ```
 
 ## 注意事项
 
-- 列出的是 KV 知识库中所有文档，每个文档的 slug 就是 namespace
-- 不解析文档内容，只返回基本元信息
+- 直接从 config.json 读取，不调 API
+- 不解析文档内容，只返回配置元信息
