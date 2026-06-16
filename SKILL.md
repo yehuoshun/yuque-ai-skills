@@ -49,6 +49,7 @@
 | `GET /api/mine/recycles` | recycle | 列出回收站项目 |
 | `PUT /api/mine/recycles/:id/restore` | recycle | 恢复回收站项目 |
 | `DELETE /api/mine/recycles/:id` | recycle | 彻底删除回收站项目 |
+| `GET /api/mine/book_stacks` | mine | 获取知识库分组（书架）列表 |
 | `POST /api/upload/attach` | upload | 上传文件到语雀 CDN |
 | `无（纯工具函数）` | doc | 生成文档嵌入阅读器 URL |
 | 无（跨库操作） | doc | 单文档跨库复制（LLM 分类 + 内容清洗） |
@@ -64,6 +65,7 @@
 | `无（CSS 提取）` | crawler | CSS 选择器从 HTML 提取内容/属性 | `skills/crawler/yuque_crawl_extract.md` |
 | `无（爬取写入）` | crawler | 抓取→提取→去重→写入语雀一站式管道 | `skills/crawler/yuque_crawl_save.md` |
 | `无（博客抓取）` | crawler | 博客园专用：抓取→cheerio HTML→Markdown→写入 | `skills/crawler/yuque_crawl_blog.md` |
+| `GET /api/mine/book_stacks` | mine | 获取知识库分组（书架）列表 | `skills/mine/yuque_get_book_stacks.md` |
 | 批量 GET（并发） | doc | 批量获取文档详情（只读，max 20） |
 | 批量 GET（并发） | repo | 批量获取知识库详情（只读，max 20） |
 | 无（批量操作） | repo | 批量导出知识库文档为 Markdown（按TOC目录结构 + 标题命名 + INDEX/GRAPH） |
@@ -82,7 +84,10 @@
 {
   "token": "语雀 API Token",
   "api_base": "https://www.yuque.com/api/v2",
-  "cookie": "可选，回收站/上传功能需要",
-  "ctoken": "可选，从 Cookie 中提取"
+  "cookie": "可选，回收站/上传/book_stacks 功能需要",
+  "ctoken": "可选，从 Cookie 中提取",
+  "rss": { "enabled": true, "default_repo": {"id": 0}, "sources": {} },
+  "kv": { "enabled": false, "default_repo": {"id": 0} },
+  "crawler": { "enabled": true, "default_repo": {"id": 0}, "sources": {} }
 }
 ```
