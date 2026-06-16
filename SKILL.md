@@ -59,7 +59,7 @@
 | `POST /api/v2/yfm/boards` | board | 在文档中创建画板资源（思维导图/流程图/架构图） |
 | `PUT /api/v2/yfm/boards` | board | 更新文档中的画板资源（思维导图/流程图/架构图） |
 | `无（RSS 数据源列表）` | rss | 列出所有可用 RSS 数据源及 feed 类型 | `skills/rss/rss-list-sources.md` |
-| `无（RSS 抓取写入）` | rss | 抓取 RSS/Atom Feed，解析后去重写入语雀知识库 | `skills/rss/rss-fetch.md` |
+| `无（RSS 抓取写入）` | rss | 抓取 RSS/Atom Feed，解析后去重写入语雀知识库（自动加入目录，支持 id/book_id/namespace 三种知识库标识） | `skills/rss/rss-fetch.md` |
 | 批量 GET（并发） | doc | 批量获取文档详情（只读，max 20） |
 | 批量 GET（并发） | repo | 批量获取知识库详情（只读，max 20） |
 | 无（批量操作） | repo | 批量导出知识库文档为 Markdown（按TOC目录结构 + 标题命名 + INDEX/GRAPH） |

@@ -26,7 +26,7 @@ curl -s -X POST -H "X-Auth-Token: $YUQUE_TOKEN" \
 |------|------|------|------|
 | `login` | path | string | 用户/团队的 Login 或 ID（必填） |
 | `name` | body | string | 知识库名称（必填） |
-| `slug` | body | string | 知识库路径（必填） |
+| `slug` | body | string | 知识库路径（可选，不传则自动生成。规则：中文→拼音首字母缩写，英文→kebab-case，加时间戳后4位） |
 | `description` | body | string | 简介 |
 | `public` | body | int | 0=私密 / 1=公开 / 2=企业内公开（默认 0） |
 | `enhancedPrivacy` | body | bool | 增强私密性：非管理员成员也设为无权限 |
