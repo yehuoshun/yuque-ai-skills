@@ -9,6 +9,7 @@
 | `yuque_crawl_fetch` | HTTP GET 抓取网页原始 HTML |
 | `yuque_crawl_extract` | CSS 选择器从 HTML 提取内容 |
 | `yuque_crawl_save` | 抓取→提取→去重→写入语雀一站式管道 |
+| `yuque_crawl_blog` | 博客园专用：抓取→cheerio HTML→Markdown→写入 |
 
 ## 配置
 

@@ -63,6 +63,7 @@
 | `无（HTTP 抓取）` | crawler | 抓取网页原始 HTML，返回响应头+状态码 | `skills/crawler/yuque_crawl_fetch.md` |
 | `无（CSS 提取）` | crawler | CSS 选择器从 HTML 提取内容/属性 | `skills/crawler/yuque_crawl_extract.md` |
 | `无（爬取写入）` | crawler | 抓取→提取→去重→写入语雀一站式管道 | `skills/crawler/yuque_crawl_save.md` |
+| `无（博客抓取）` | crawler | 博客园专用：抓取→cheerio HTML→Markdown→写入 | `skills/crawler/yuque_crawl_blog.md` |
 | 批量 GET（并发） | doc | 批量获取文档详情（只读，max 20） |
 | 批量 GET（并发） | repo | 批量获取知识库详情（只读，max 20） |
 | 无（批量操作） | repo | 批量导出知识库文档为 Markdown（按TOC目录结构 + 标题命名 + INDEX/GRAPH） |
