@@ -66,6 +66,10 @@
 | `无（爬取写入）` | crawler | 抓取→提取→去重→写入语雀一站式管道 | `skills/crawler/yuque_crawl_save.md` |
 | `无（博客抓取）` | crawler | 博客园专用：抓取→cheerio HTML→Markdown→写入 | `skills/crawler/yuque_crawl_blog.md` |
 | `GET /api/mine/book_stacks` | mine | 获取知识库分组（书架）列表 | `skills/mine/yuque_get_book_stacks.md` |
+| 无（KV 读取） | kv | 读取 KV 命名空间的完整 JSON key-value map | `skills/kv/yuque_kv_get.md` |
+| 无（KV 写入） | kv | 设置 KV 命名空间中的一个 key-value 对 | `skills/kv/yuque_kv_set.md` |
+| 无（KV 删除） | kv | 删除 KV 命名空间中的一个 key | `skills/kv/yuque_kv_delete.md` |
+| 无（KV 列表） | kv | 列出 KV 知识库中所有命名空间 | `skills/kv/yuque_kv_list.md` |
 | 批量 GET（并发） | doc | 批量获取文档详情（只读，max 20） |
 | 批量 GET（并发） | repo | 批量获取知识库详情（只读，max 20） |
 | 无（批量操作） | repo | 批量导出知识库文档为 Markdown（按TOC目录结构 + 标题命名 + INDEX/GRAPH） |
