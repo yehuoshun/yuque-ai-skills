@@ -108,19 +108,21 @@
 ```json
 {
   "rss": {
+    "enabled": true,
     "default_repo": { "book_id": "123456", "namespace": "my-group/default" },
-    "cnblogs": { "book_id": "123456", "enable_kv": true }
+    "sources": {
+      "cnblogs": { "book_id": "123456" }
+    }
   },
   "kv": {
-    "default_repo": { "book_id": "789012", "namespace": "my-group/kv" },
-    "cnblogs": { "book_id": "789012" }
+    "enabled": false,
+    "default_repo": { "book_id": "789012", "namespace": "my-group/kv" }
   }
 }
 ```
 
-- `rss`：RSS 文章写入的目标知识库
-- `kv`：去重 slug 查询的知识库（可与 rss 相同）
-- `enable_kv`：false 时跳过去重，全量写入
+- `rss`：RSS 文章写入的目标知识库，`enabled` 控制是否启用
+- `kv`：去重 slug 查询的知识库，`enabled=true` 时启用去重
 - `target_repo` / `kv_repo` 参数不传时自动从配置读取
 
 ## 使用场景
