@@ -48,7 +48,7 @@ references/api/      # API 参考文档（按域拆分）
 | crawler | 4 | 网页爬虫（抓取 + CSS提取 + 一站式写入 + 博客园专用，KV去重） |
 | mine | 1 | 个人 Web API（知识库分组/书架列表，Cookie 认证） |
 | kv | 4 | KV 键值存储（增量分片，config 记录 {book_id, docs:[doc_id]}，单文档上限 250KB） |
-| **合计** | **58** | |
+| **合计** | **59** | |
 
 ## 配套仓库
 

@@ -50,6 +50,7 @@
 | `PUT /api/mine/recycles/:id/restore` | recycle | 恢复回收站项目 |
 | `DELETE /api/mine/recycles/:id` | recycle | 彻底删除回收站项目 |
 | `GET /api/mine/book_stacks` | mine | 获取知识库分组（书架）列表 |
+| `GET /api/mine/editor_center` | mine | 获取个人编辑中心全景数据（知识库/文档/字数/编辑/互动统计） |
 | `POST /api/upload/attach` | upload | 上传文件到语雀 CDN |
 | `无（纯工具函数）` | doc | 生成文档嵌入阅读器 URL |
 | 无（跨库操作） | doc | 单文档跨库复制（LLM 分类 + 内容清洗） |
@@ -66,6 +67,7 @@
 | `无（爬取写入）` | crawler | 抓取→提取→去重→写入语雀一站式管道 | `skills/crawler/yuque_crawl_save.md` |
 | `无（博客抓取）` | crawler | 博客园专用：抓取→cheerio HTML→Markdown→写入 | `skills/crawler/yuque_crawl_blog.md` |
 | `GET /api/mine/book_stacks` | mine | 获取知识库分组（书架）列表 | `skills/mine/yuque_get_book_stacks.md` |
+| `GET /api/mine/editor_center` | mine | 获取个人编辑中心全景数据 | `skills/mine/yuque_get_editor_center.md` |
 | 无（KV 读取） | kv | 读取 KV 命名空间的完整 JSON key-value map（分片合并） | `skills/kv/yuque_kv_get.md` |
 | 无（KV 写入） | kv | 增量设置 key-value，超 250KB 自动分片 | `skills/kv/yuque_kv_set.md` |
 | 无（KV 删除） | kv | 遍历分片查找并删除 key | `skills/kv/yuque_kv_delete.md` |
