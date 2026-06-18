@@ -22,7 +22,7 @@ skills/
 ├── recycle/         # 回收站（3 个）
 ├── upload/          # 文件上传（1 个）
 ├── board/           # 画板资源（3 个）
-├── rss/             # RSS 抓取（2 个）
+├── rss/             # RSS 抓取（3 个）
 ├── kv/              # KV 键值存储（4 个）
 └── user/            # 用户信息（3 个）
 
@@ -44,11 +44,11 @@ references/api/      # API 参考文档（按域拆分）
 | recycle | 3 | 回收站列表/恢复/删除 |
 | upload | 1 | 文件上传 |
 | board | 3 | 画板资源（思维导图/流程图/架构图） |
-| rss | 2 | RSS 抓取（数据源列表 + 抓取写入，自动去重+目录，支持 id/book_id/namespace） |
+| rss | 3 | RSS 抓取（数据源列表 + 抓取写入 + 定时策略分析，自动去重+目录，支持 id/book_id/namespace） |
 | crawler | 4 | 网页爬虫（抓取 + CSS提取 + 一站式写入 + 博客园专用，KV去重） |
 | mine | 1 | 个人 Web API（知识库分组/书架列表，Cookie 认证） |
 | kv | 4 | KV 键值存储（增量分片，config 记录 {book_id, docs:[doc_id]}，单文档上限 250KB） |
-| **合计** | **59** | |
+| **合计** | **60** | |
 
 ## 配套仓库
 

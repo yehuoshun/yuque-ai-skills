@@ -62,6 +62,7 @@
 | `PUT /api/v2/yfm/boards` | board | 更新文档中的画板资源（思维导图/流程图/架构图） |
 | `无（RSS 数据源列表）` | rss | 列出所有可用 RSS 数据源及 feed 类型 | `skills/rss/rss-list-sources.md` |
 | `无（RSS 抓取写入）` | rss | 抓取 RSS/Atom Feed，解析后去重写入语雀知识库（自动加入目录，支持 id/book_id/namespace 三种知识库标识） | `skills/rss/rss-fetch.md` |
+| `无（RSS 定时策略）` | rss | 分析 KV 去重数据中的作者更新频率，输出分档抓取策略建议 | `skills/rss/rss-schedule.md` |
 | `无（HTTP 抓取）` | crawler | 抓取网页原始 HTML，返回响应头+状态码 | `skills/crawler/yuque_crawl_fetch.md` |
 | `无（CSS 提取）` | crawler | CSS 选择器从 HTML 提取内容/属性 | `skills/crawler/yuque_crawl_extract.md` |
 | `无（爬取写入）` | crawler | 抓取→提取→去重→写入语雀一站式管道 | `skills/crawler/yuque_crawl_save.md` |
