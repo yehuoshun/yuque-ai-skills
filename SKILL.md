@@ -67,6 +67,7 @@
 | `无（CSS 提取）` | crawler | CSS 选择器从 HTML 提取内容/属性 | `skills/crawler/yuque_crawl_extract.md` |
 | `无（爬取写入）` | crawler | 抓取→提取→去重→写入语雀一站式管道 | `skills/crawler/yuque_crawl_save.md` |
 | `无（博客抓取）` | crawler | 博客园专用：抓取→cheerio HTML→Markdown→写入 | `skills/crawler/yuque_crawl_blog.md` |
+| `无（爬虫定时策略）` | crawler | 分析爬虫最近抓取频率，生成推荐抓取时间并写入配置知识库 | `skills/crawler/crawl-schedule.md` |
 | `GET /api/mine/book_stacks` | mine | 获取知识库分组（书架）列表 | `skills/mine/yuque_get_book_stacks.md` |
 | `GET /api/mine/editor_center` | mine | 获取个人编辑中心全景数据 | `skills/mine/yuque_get_editor_center.md` |
 | 无（KV 读取） | kv | 读取 KV 命名空间的完整 JSON key-value map（分片合并） | `skills/kv/yuque_kv_get.md` |

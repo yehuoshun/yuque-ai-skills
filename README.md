@@ -45,10 +45,10 @@ references/api/      # API 参考文档（按域拆分）
 | upload | 1 | 文件上传 |
 | board | 3 | 画板资源（思维导图/流程图/架构图） |
 | rss | 3 | RSS 抓取（数据源列表 + 抓取写入 + 定时策略分析，自动去重+目录，支持 id/book_id/namespace） |
-| crawler | 4 | 网页爬虫（抓取 + CSS提取 + 一站式写入 + 博客园专用，KV去重） |
+| crawler | 5 | 网页爬虫（抓取 + CSS提取 + 一站式写入 + 博客园专用 + 定时策略，KV去重） |
 | mine | 1 | 个人 Web API（知识库分组/书架列表，Cookie 认证） |
 | kv | 4 | KV 键值存储（增量分片，config 记录 {book_id, docs:[doc_id]}，单文档上限 250KB） |
-| **合计** | **60** | |
+| **合计** | **61** | |
 
 ## 配套仓库
 
