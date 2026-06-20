@@ -39,7 +39,7 @@ mcporter call "yuque-mcp.yuque_batch_update_toc" --args '{
 | `createTitle` | 创建目录节点 | `title` |
 | `appendNode` | 挂载文档到目录 | `doc_ids`（JSON 数组字符串） |
 | `removeNode` | 删除目录节点 | `node_uuid` |
-| `moveNode` | 移动节点（remove+append） | `node_uuid` |
+| `moveNode` | 移动节点（remove+append） | `node_uuid`，可选 `target_uuid` 或 `target_title` |
 | `copyDoc` | 跨库复制文档 | `doc_id` |
 
 ## 返回
