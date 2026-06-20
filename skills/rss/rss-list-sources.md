@@ -47,5 +47,5 @@
 
 ## 注意事项
 
-- 数据源配置在 `server/src/rss/sources.ts`，新增数据源只需改配置文件
+- 数据源配置在 `config.json` 的 `rss.sources` 中，新增数据源只需改配置，无需改代码
 - 此 tool 只读配置，不发起网络请求

@@ -158,6 +158,15 @@
   "kv": { "enabled": true },
   "rss": {
     "enabled": true,
+    "sources": {
+      "cnblogs": {
+        "name": "博客园",
+        "slug_pattern": "/p/(\\d+)",
+        "feeds": {
+          "sitehome": { "label": "首页", "url": "https://feed.cnblogs.com/blog/sitehome/rss" }
+        }
+      }
+    },
     "namespaces": {
       "cnblogs": {
         "book_id": [80197497],
@@ -169,7 +178,7 @@
   "crawler": {
     "enabled": true,
     "namespaces": {
-      "cnblogs": {
+      "my-source": {
         "book_id": [80197497],
         "kv_slugs": ["80197550/274164064"],
         "schedule_slugs": []
