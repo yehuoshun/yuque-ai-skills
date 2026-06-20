@@ -160,9 +160,9 @@
     "enabled": true,
     "namespaces": {
       "cnblogs": {
-        "book_id": 80197497,
+        "book_id": [80197497],
         "kv_slugs": ["80197550/274164064"],
-        "schedule_slugs": ["80278170/274357940"]
+        "schedule_slugs": []
       }
     }
   },
@@ -170,9 +170,9 @@
     "enabled": true,
     "namespaces": {
       "cnblogs": {
-        "book_id": 80197497,
+        "book_id": [80197497],
         "kv_slugs": ["80197550/274164064"],
-        "schedule_slugs": ["80278170/274358465"]
+        "schedule_slugs": []
       }
     }
   }
