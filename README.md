@@ -1,58 +1,59 @@
-# yuque-ai-skills
+<p align="center">
+  <h1 align="center">yuque-ai-skills</h1>
+  <p align="center">
+    <b>61 usage guides for the 61-tool Yuque MCP Server</b>
+  </p>
+</p>
 
-Yuque Skill layer — usage guides, patterns, and best practices.
+<p align="center">
+  <a href="https://github.com/yehuoshun/yuque-ai-skills"><img src="https://img.shields.io/badge/guides-61-orange" alt="guides" /></a>
+  <a href="https://github.com/yehuoshun/yuque-ai-mcp"><img src="https://img.shields.io/badge/mcp-v2.7.4-blue" alt="mcp" /></a>
+</p>
 
-[中文文档 / Chinese Documentation](README_CN.md)
+<p align="center">
+  <a href="README_CN.md">中文文档</a>
+</p>
 
-> **📌 Output Trimming**: All tools return trimmed fields by default. Pass `raw=true` for full raw JSON.
+---
 
-> ⚠️ This repo contains no executable code — only usage docs. MCP implementation at [yuque-ai-mcp](https://github.com/yehuoshun/yuque-ai-mcp).
+Skill layer for [yuque-ai-mcp](https://github.com/yehuoshun/yuque-ai-mcp) — usage guides, patterns, and best practices for AI agents.
 
-## Structure
-
-```
-skills/
-├── user/            # User (3)
-├── search/          # Search (2)
-├── group/           # Group (3)
-├── doc/             # Doc (14)
-├── toc/             # TOC (3)
-├── repo/            # Repo (8)
-├── statistic/       # Statistics (4)
-├── note/            # Note (4)
-├── recycle/         # Recycle (3)
-├── upload/          # Upload (1)
-├── board/           # Board (3)
-├── rss/             # RSS (3)
-├── crawler/         # Crawler (4)
-├── mine/            # Mine (2)
-└── kv/              # KV Store (4)
-
-references/api/      # API reference docs (17 domains)
-```
+> ⚠️ This repo contains no executable code — only usage docs.
 
 ## Coverage
 
 | Domain | Tools | Description |
-|-----|--------|------|
-| user | 3 | User info, heartbeat, group list |
-| search | 2 | General search + RAG-enhanced search |
-| doc | 14 | Doc CRUD + versions + batch + import/export + cross-book copy |
-| repo | 8 | Repo CRUD + batch + export + cross-book copy |
-| group | 3 | Group member management |
-| toc | 3 | TOC get/update/batch |
+|--------|-------|-------------|
+| doc | 14 | CRUD, versions, diff, batch, import/export, cross-book copy |
+| repo | 8 | CRUD, batch, cross-book copy, full export |
+| toc | 3 | Get, update, batch update |
+| search | 2 | General + RAG-enhanced search |
+| user | 3 | User info, heartbeat, groups |
+| group | 3 | Member management |
 | statistic | 4 | Group/member/repo/doc statistics |
-| note | 4 | Note CRUD |
-| recycle | 3 | Recycle list/restore/destroy |
-| upload | 1 | File upload |
-| board | 3 | Board (mindmap/flowchart/architecture diagram) |
-| rss | 3 | RSS fetch (source list + fetch + schedule analysis) |
-| crawler | 4 | Web crawler (fetch + CSS extract + dedup save + schedule) |
-| mine | 2 | Web API (book stacks + editor center, Cookie auth) |
-| kv | 4 | KV store (incremental sharding, 250KB limit per doc) |
+| note | 4 | CRUD + soft-delete |
+| recycle | 3 | List, restore, destroy |
+| upload | 1 | File upload to CDN |
+| board | 3 | Mindmap, flowchart, architecture diagram |
+| mine | 2 | Book stacks, editor center |
+| rss | 3 | Source list, fetch + dedup, schedule |
+| crawler | 4 | Fetch, CSS extract, dedup save, schedule |
+| kv | 4 | Incremental sharding key-value store |
 | **Total** | **61** | |
+
+## Structure
+
+```
+skills/           # 15 domain directories, 61 skill files
+references/api/   # API reference docs (17 domains)
+SKILL.md          # Master index with endpoint table
+```
 
 ## Related
 
-- [yuque-ai-mcp](https://github.com/yehuoshun/yuque-ai-mcp) — MCP Server implementation (TypeScript, HTTP SSE + stdio dual mode)
-- Both repos stay in sync — new MCP tools → new skill files
+- [yuque-ai-mcp](https://github.com/yehuoshun/yuque-ai-mcp) — MCP Server implementation
+- Both repos kept in sync — new MCP tools → new skill files
+
+## License
+
+MIT
