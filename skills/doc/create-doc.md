@@ -30,6 +30,7 @@ curl -s -X POST -H "X-Auth-Token: $YUQUE_TOKEN" \
 | `format` | body | string | 内容格式：markdown（默认）/ html / lake |
 | `body` | body | string | 正文内容（必填） |
 | `public` | body | int | 0=私密 / 1=公开 / 2=企业内公开，默认继承知识库 |
+| `parent_uuid` | body | string | 父节点 UUID，文档挂到指定 TITLE 节点下，不传则挂根目录 |
 
 ## 返回（关键字段）
 
