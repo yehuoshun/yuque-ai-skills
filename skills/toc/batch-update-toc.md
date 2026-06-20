@@ -32,15 +32,26 @@ mcporter call "yuque-mcp.yuque_batch_update_toc" --args '{
 ## ops 操作类型
 
 | action | 说明 | 必填字段 | 可选字段 |
-|--------|------|---------|---------|
+|--------|------|---------|----------|
 | `createTitle` | 创建目录节点（自动去重） | `title` | `target_uuid` |
 | `appendNode` | 挂载文档到目录 | `doc_ids`（JSON 数组字符串） | `target_uuid` / `target_title` |
 | `removeNode` | 删除目录节点 | `node_uuid` | — |
-| `moveNode` | 移动节点（remove+append） | `node_uuid` | `target_uuid` / `target_title` |
+| `moveNode` | 移动节点 | `node_uuid` | `target_uuid` / `target_title` / `doc_id` |
 
 ### createTitle 自动去重
 
 创建前先查缓存，目录已存在则复用 uuid 不重复创建，返回 `"复用已有目录: xxx"`。
+
+### appendNode 挂载逻辑
+
+- **无 `target_uuid`**：直接挂到根目录
+- **有 `target_uuid`**：先挂根再移。语雀 API 的 `target_uuid` 对游离文档不可靠，工具自动处理三步：挂根 → 删根 → 挂目标
+
+### moveNode 游离文档处理
+
+- 节点在 TOC 中：正常 remove + append
+- 节点不在 TOC 中（游离文档）：提供 `doc_id` 字段，工具自动挂根再移
+- 不提供 `doc_id` 且不在 TOC：返回明确错误提示
 
 ### target_title 按名称查找
 
@@ -75,4 +86,5 @@ mcporter call "yuque-mcp.yuque_batch_update_toc" --args '{
 
 - 别用本工具跨库复制文档（用 `yuque_copy_doc`）
 - 别忘记 `confirm` 必须传 `"RESTRUCTURE"`
-- `appendNode` 对已存在文档不会改变 parent_uuid，移动文档用 `moveNode`
+- 移动文档用 `moveNode`，别用 `appendNode`（appendNode 不会改变已有文档的 parent_uuid）
+- 游离文档（不在 TOC 中）用 `moveNode` + `doc_id`，或 `appendNode` + `target_uuid`（工具自动挂根再移）
