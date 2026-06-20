@@ -10,23 +10,23 @@
 
 ```
 skills/
-├── search/          # 搜索
-│   ├── search.md    # 通用搜索
-│   └── rag-search.md   # RAG 增强搜索
-├── doc/             # 文档 CRUD + 版本管理 + 批量获取 + 嵌入 + 导入导出 + 跨库复制 + URL导入（14 个）
-├── repo/            # 知识库管理 + 导出 + 跨库复制（8 个）
+├── user/            # 用户信息（3 个）
+├── search/          # 搜索（2 个）
 ├── group/           # 团队管理（3 个）
+├── doc/             # 文档 CRUD（14 个）
 ├── toc/             # 目录管理（3 个）
+├── repo/            # 知识库管理（8 个）
 ├── statistic/       # 统计数据（4 个）
 ├── note/            # 小记（4 个）
 ├── recycle/         # 回收站（3 个）
 ├── upload/          # 文件上传（1 个）
 ├── board/           # 画板资源（3 个）
 ├── rss/             # RSS 抓取（3 个）
-├── kv/              # KV 键值存储（4 个）
-└── user/            # 用户信息（3 个）
+├── crawler/         # 网页爬虫（4 个）
+├── mine/            # 个人数据（2 个）
+└── kv/              # KV 键值存储（4 个）
 
-references/api/      # API 参考文档（按域拆分）
+references/api/      # API 参考文档（17 个域）
 ```
 
 ## 覆盖范围
@@ -44,9 +44,9 @@ references/api/      # API 参考文档（按域拆分）
 | recycle | 3 | 回收站列表/恢复/删除 |
 | upload | 1 | 文件上传 |
 | board | 3 | 画板资源（思维导图/流程图/架构图） |
-| rss | 3 | RSS 抓取（数据源列表 + 抓取写入 + 定时策略分析，kv_slugs/schedule_slugs 配置） |
-| crawler | 5 | 网页爬虫（抓取 + CSS提取 + 一站式写入 + 博客园专用 + 定时策略，KV去重） |
-| mine | 1 | 个人 Web API（知识库分组/书架列表，Cookie 认证） |
+| rss | 3 | RSS 抓取（数据源列表 + 抓取写入 + 定时策略分析） |
+| crawler | 4 | 网页爬虫（抓取 + CSS提取 + 去重写入 + 定时策略，KV去重） |
+| mine | 2 | 个人 Web API（书架列表 + 编辑中心，Cookie 认证） |
 | kv | 4 | KV 键值存储（增量分片，需指定 domain 定位 kv_slugs，单文档上限 250KB） |
 | **合计** | **61** | |
 
