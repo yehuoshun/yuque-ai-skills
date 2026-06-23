@@ -1,18 +1,14 @@
-<p align="center">
-  <h1 align="center">yuque-ai-skills</h1>
-  <p align="center">
-    <b>62 usage guides for the 62-tool Yuque MCP Server</b>
+<div align="center">
+  <h1>yuque-ai-skills</h1>
+  <p><b>62 usage guides for the 62-tool Yuque MCP Server</b></p>
+  <p>
+    <a href="https://github.com/yehuoshun/yuque-ai-skills"><img src="https://img.shields.io/badge/guides-62-orange" alt="guides" /></a>
+    <a href="https://github.com/yehuoshun/yuque-ai-mcp"><img src="https://img.shields.io/badge/mcp-v2.7.8-blue" alt="mcp" /></a>
   </p>
-</p>
-
-<p align="center">
-  <a href="https://github.com/yehuoshun/yuque-ai-skills"><img src="https://img.shields.io/badge/guides-62-orange" alt="guides" /></a>
-  <a href="https://github.com/yehuoshun/yuque-ai-mcp"><img src="https://img.shields.io/badge/mcp-v2.7.8-blue" alt="mcp" /></a>
-</p>
-
-<p align="center">
-  <a href="README_CN.md">中文文档</a>
-</p>
+  <p>
+    <a href="README_CN.md">中文文档</a>
+  </p>
+</div>
 
 ---
 
