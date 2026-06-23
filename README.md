@@ -1,12 +1,12 @@
 <p align="center">
   <h1 align="center">yuque-ai-skills</h1>
   <p align="center">
-    <b>61 usage guides for the 61-tool Yuque MCP Server</b>
+    <b>62 usage guides for the 62-tool Yuque MCP Server</b>
   </p>
 </p>
 
 <p align="center">
-  <a href="https://github.com/yehuoshun/yuque-ai-skills"><img src="https://img.shields.io/badge/guides-61-orange" alt="guides" /></a>
+  <a href="https://github.com/yehuoshun/yuque-ai-skills"><img src="https://img.shields.io/badge/guides-62-orange" alt="guides" /></a>
   <a href="https://github.com/yehuoshun/yuque-ai-mcp"><img src="https://img.shields.io/badge/mcp-v2.7.4-blue" alt="mcp" /></a>
 </p>
 
@@ -24,7 +24,7 @@ Skill layer for [yuque-ai-mcp](https://github.com/yehuoshun/yuque-ai-mcp) — us
 
 | Domain | Tools | Description |
 |--------|-------|-------------|
-| doc | 14 | CRUD, versions, diff, batch, import/export, cross-book copy |
+| doc | 15 | CRUD, versions, diff, batch, import/export, cross-book copy, resource download |
 | repo | 8 | CRUD, batch, cross-book copy, full export |
 | toc | 3 | Get, update, batch update |
 | search | 2 | General + RAG-enhanced search |
@@ -39,12 +39,12 @@ Skill layer for [yuque-ai-mcp](https://github.com/yehuoshun/yuque-ai-mcp) — us
 | rss | 3 | Source list, fetch + dedup, schedule |
 | crawler | 4 | Fetch, CSS extract, dedup save, schedule |
 | kv | 4 | Incremental sharding key-value store |
-| **Total** | **61** | |
+| **Total** | **62** | |
 
 ## Structure
 
 ```
-skills/           # 15 domain directories, 61 skill files
+skills/           # 15 domain directories, 62 skill files
 references/api/   # API reference docs (17 domains)
 SKILL.md          # Master index with endpoint table
 ```

@@ -1,6 +1,6 @@
 # yuque-ai-mcp
 
-语雀全功能 MCP Server，61 个工具 / 15 个域。当用户提到「语雀」「yuque」「知识库」「文档」「团队」等关键词时触发。
+语雀全功能 MCP Server，62 个工具 / 15 个域。当用户提到「语雀」「yuque」「知识库」「文档」「团队」等关键词时触发。
 
 ## 触发场景
 
@@ -38,7 +38,7 @@
 | `yuque_update_group_user` | 变更团队成员角色 |
 | `yuque_delete_group_user` | 删除团队成员 |
 
-### doc（14 工具）
+### doc（15 工具）
 | 工具 | 说明 |
 |------|------|
 | `yuque_list_docs` | 获取知识库文档列表 |
@@ -51,7 +51,8 @@
 | `yuque_get_doc_version_detail` | 获取文档历史版本详情 |
 | `yuque_diff_doc_versions` | 对比两个版本的行级差异 |
 | `yuque_copy_doc` | 单文档跨库复制 |
-| `yuque_export_doc` | 导出单篇文档为 Markdown（含图片下载） |
+| `yuque_export_doc` | 导出单篇文档为 Markdown 文件（资源下载独立） |
+| `yuque_export_resources` | 下载文档中的图片/附件到本地目录 |
 | `yuque_import_url` | 从网页 URL 导入文档 |
 | `yuque_import_file` | 从本地文件导入文档（direct/upload_assets/embed_assets） |
 | `yuque_embed_url` | 生成文档嵌入阅读器 URL |
