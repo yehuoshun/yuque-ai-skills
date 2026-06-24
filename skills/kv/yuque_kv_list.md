@@ -30,13 +30,13 @@
   "namespaces": [
     {
       "namespace": "cnblogs",
-      "book_id": 80197550,
+      "book_id": 0,
       "shards": 2,
-      "doc_ids": [274164064, 274164065]
+      "doc_ids": [0, 274164065]
     },
     {
       "namespace": "weibo",
-      "book_id": 80197550,
+      "book_id": 0,
       "shards": 1,
       "doc_ids": [274164066]
     }

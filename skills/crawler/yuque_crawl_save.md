@@ -28,9 +28,9 @@
     "enabled": true,
     "namespaces": {
       "cnblogs": {
-        "book_id": 80197497,
-        "kv_slugs": ["80197550/274164064"],
-        "schedule_slugs": ["80278170/274358465"]
+        "book_id": 0,
+        "kv_slugs": ["0/0"],
+        "schedule_slugs": ["0/0"]
       }
     }
   }

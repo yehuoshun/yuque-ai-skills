@@ -51,8 +51,8 @@
 | `yuque_get_doc_version_detail` | 获取文档历史版本详情 |
 | `yuque_diff_doc_versions` | 对比两个版本的行级差异 |
 | `yuque_copy_doc` | 单文档跨库复制 |
-| `yuque_export_doc` | 导出单篇文档为 Markdown 文件（资源下载独立） |
-| `yuque_export_resources` | 下载文档中的图片/附件到本地目录 |
+| `yuque_export_doc` | 导出单篇文档为 Markdown 文件（不含资源下载，需调 yuque_export_resources） |
+| `yuque_export_resources` | 下载文档中的图片/附件到本地目录，返回 URL→本地路径映射 |
 | `yuque_import_url` | 从网页 URL 导入文档 |
 | `yuque_import_file` | 从本地文件导入文档（direct/upload_assets/embed_assets） |
 | `yuque_embed_url` | 生成文档嵌入阅读器 URL |
@@ -159,19 +159,10 @@
   "kv": { "enabled": true },
   "rss": {
     "enabled": true,
-    "sources": {
-      "cnblogs": {
-        "name": "博客园",
-        "slug_pattern": "/p/(\\d+)",
-        "feeds": {
-          "sitehome": { "label": "首页", "url": "https://feed.cnblogs.com/blog/sitehome/rss" }
-        }
-      }
-    },
     "namespaces": {
       "cnblogs": {
-        "book_id": [80197497],
-        "kv_slugs": ["80197550/274164064"],
+        "book_id": 0,
+        "kv_slugs": [],
         "schedule_slugs": []
       }
     }
@@ -180,8 +171,8 @@
     "enabled": true,
     "namespaces": {
       "my-source": {
-        "book_id": [80197497],
-        "kv_slugs": ["80197550/274164064"],
+        "book_id": 0,
+        "kv_slugs": [],
         "schedule_slugs": []
       }
     }

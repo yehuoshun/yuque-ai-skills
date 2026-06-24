@@ -46,7 +46,7 @@
 {
   "source": "博客园 / 首页最新",
   "feed_url": "https://feed.cnblogs.com/blog/sitehome/rss",
-  "target_repo": 80197497,
+  "target_repo": 0,
   "kv_namespace": "cnblogs",
   "fetched": 10,
   "new": 3,
@@ -109,8 +109,8 @@ slug 生成优先级：
     },
     "namespaces": {
       "cnblogs": {
-        "book_id": [80197497],
-        "kv_slugs": ["80197550/274164064"],
+        "book_id": [0],
+        "kv_slugs": ["0/0"],
         "schedule_slugs": []
       }
     }

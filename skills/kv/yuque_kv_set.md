@@ -55,8 +55,8 @@
     "enabled": true,
     "namespaces": {
       "cnblogs": {
-        "book_id": 80197550,
-        "docs": [274164064]
+        "book_id": 0,
+        "docs": [0]
       }
     }
   }

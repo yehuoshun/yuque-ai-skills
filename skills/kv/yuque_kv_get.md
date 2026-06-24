@@ -30,7 +30,7 @@
 ```json
 {
   "namespace": "cnblogs",
-  "book_id": 80197550,
+  "book_id": 0,
   "shards": 2,
   "count": 5000,
   "data": {
@@ -54,8 +54,8 @@
     "enabled": true,
     "namespaces": {
       "cnblogs": {
-        "book_id": 80197550,
-        "docs": [274164064, 274164065]
+        "book_id": 0,
+        "docs": [0, 274164065]
       }
     }
   }

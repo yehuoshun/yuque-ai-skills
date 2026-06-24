@@ -30,7 +30,7 @@
   "rss": {
     "enabled": true,
     "schedule": {
-      "book_id": 80278170
+      "book_id": 0
     }
   }
 }
