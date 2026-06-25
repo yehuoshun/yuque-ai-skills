@@ -88,7 +88,14 @@ yuque-ai-skills/
     └── api/
         ├── errors.md           # 错误码参考
         ├── extended_api.md     # 扩展 API 参考
-        ├── doc/                # 15 个文档工具
+        ├── doc/                # 15 个文档工具（7 原生 + 8 扩展）
+        │   ├── list_docs.md
+        │   ├── create_doc.md
+        │   ├── get_doc.md
+        │   ├── update_doc.md
+        │   ├── delete_doc.md
+        │   ├── get_doc_versions.md
+        │   └── get_doc_version_detail.md
         ├── repo/               # 8 个知识库工具
         ├── toc/                # 3 个目录工具
         ├── search/             # 3 个搜索工具

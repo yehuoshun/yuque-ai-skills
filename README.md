@@ -88,7 +88,14 @@ yuque-ai-skills/
     └── api/
         ├── errors.md           # Error code reference
         ├── extended_api.md     # Extended API reference
-        ├── doc/                # 15 document tools
+        ├── doc/                # 15 document tools (7 native + 8 extended)
+        │   ├── list_docs.md
+        │   ├── create_doc.md
+        │   ├── get_doc.md
+        │   ├── update_doc.md
+        │   ├── delete_doc.md
+        │   ├── get_doc_versions.md
+        │   └── get_doc_version_detail.md
         ├── repo/               # 8 repository tools
         ├── toc/                # 3 TOC tools
         ├── search/             # 3 search tools
