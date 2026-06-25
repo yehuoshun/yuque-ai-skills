@@ -16,167 +16,55 @@
 - 网页爬虫
 - KV 存储
 
-## API 端点索引
+## 域索引
 
-### user（3 工具）
-| 工具 | 说明 |
+| 域 | 工具数 | 说明 | 详细 |
+|----|--------|------|------|
+| doc | 15 | 文档 CRUD、导入导出、版本管理 | [index/doc.md](index/doc.md) |
+| repo | 8 | 知识库 CRUD、复制、导出 | [index/repo.md](index/repo.md) |
+| search | 3 | 全文搜索、RAG 问答、Cookie 搜索 | [index/search.md](index/search.md) |
+| toc | 3 | 目录读取、更新、批量更新 | [index/toc.md](index/toc.md) |
+| user | 3 | 用户信息、团队列表、心跳检测 | [index/user.md](index/user.md) |
+| group | 3 | 团队成员管理 | [index/group.md](index/group.md) |
+| note | 4 | 小记 CRUD | [index/note.md](index/note.md) |
+| recycle | 3 | 回收站列表、恢复、销毁 | [index/recycle.md](index/recycle.md) |
+| statistic | 4 | 团队/成员/知识库/文档统计 | [index/statistic.md](index/statistic.md) |
+| board | 3 | 画板资源 CRUD | [index/board.md](index/board.md) |
+| upload | 1 | 上传文件到 CDN | [index/upload.md](index/upload.md) |
+| rss | 3 | RSS 源管理、抓取、调度 | [index/rss.md](index/rss.md) |
+| crawler | 4 | 网页抓取、提取、去重保存、调度 | [index/crawler.md](index/crawler.md) |
+| kv | 4 | KV 存储读写删列 | [index/kv.md](index/kv.md) |
+| mine | 2 | 书架分组、编辑中心 | [index/mine.md](index/mine.md) |
+
+## 公共文档
+
+| 文档 | 说明 |
 |------|------|
-| `yuque_hello` | 心跳检测，验证 Token 有效性 |
-| `yuque_get_user` | 获取当前 Token 的用户详情 |
-| `yuque_get_user_groups` | 获取用户所属的团队列表 |
+| [common/config.md](common/config.md) | 配置结构 |
+| [common/auth.md](common/auth.md) | Token / Cookie 认证 |
+| [common/conventions.md](common/conventions.md) | book_id 格式、分页、频率限制 |
+| [common/errors.md](common/errors.md) | 统一错误码及处理策略 |
 
-### search（3 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_search` | 通用搜索文档/知识库 |
-| `yuque_rag_search` | RAG 检索增强搜索 + 自动获取文档内容 |
-| `yuque_web_search` | Cookie 态 Web 搜索，返回完整文档对象 + 精确总数 + 高亮摘要 |
+## API 参考
 
-### group（3 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_get_group_users` | 获取团队成员列表 |
-| `yuque_update_group_user` | 变更团队成员角色 |
-| `yuque_delete_group_user` | 删除团队成员 |
+每个域的完整 API 字段定义见 `references/api/`：
 
-### doc（15 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_list_docs` | 获取知识库文档列表 |
-| `yuque_create_doc` | 创建文档 |
-| `yuque_get_doc` | 获取文档详情（支持 ID 或 slug） |
-| `yuque_update_doc` | 更新文档 |
-| `yuque_delete_doc` | 删除文档 |
-| `yuque_batch_get_docs` | 批量获取文档详情（max 20） |
-| `yuque_get_doc_versions` | 获取文档历史版本列表 |
-| `yuque_get_doc_version_detail` | 获取文档历史版本详情 |
-| `yuque_diff_doc_versions` | 对比两个版本的行级差异 |
-| `yuque_copy_doc` | 单文档跨库复制 |
-| `yuque_export_doc` | 导出单篇文档为 Markdown 文件（不含资源下载，需调 yuque_export_resources） |
-| `yuque_export_resources` | 下载文档中的图片/附件到本地目录，返回 URL→本地路径映射 |
-| `yuque_import_url` | 从网页 URL 导入文档 |
-| `yuque_import_file` | 从本地文件导入文档（direct/upload_assets/embed_assets） |
-| `yuque_embed_url` | 生成文档嵌入阅读器 URL |
-
-### toc（3 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_get_toc` | 获取知识库目录 |
-| `yuque_update_toc` | 更新知识库目录 |
-| `yuque_batch_update_toc` | 批量更新目录（Agent 出计划，Tool 执行） |
-
-### repo（8 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_list_repos` | 获取知识库列表（用户/团队） |
-| `yuque_create_repo` | 创建知识库 |
-| `yuque_get_repo` | 获取知识库详情 |
-| `yuque_update_repo` | 更新知识库 |
-| `yuque_delete_repo` | 删除知识库 |
-| `yuque_batch_get_repos` | 批量获取知识库详情（max 20） |
-| `yuque_copy_repo` | 批量跨库复制（LLM 分类 + 目录重建） |
-| `yuque_export_repo` | 批量导出知识库为 Markdown（按 TOC 目录结构） |
-
-### statistic（4 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_get_group_statistics` | 获取团队汇总统计数据 |
-| `yuque_get_member_statistics` | 获取团队成员统计数据 |
-| `yuque_get_book_statistics` | 获取团队知识库统计数据 |
-| `yuque_get_doc_statistics` | 获取团队文档统计数据 |
-
-### note（4 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_list_notes` | 获取小记列表 |
-| `yuque_get_note` | 获取小记详情 |
-| `yuque_create_note` | 创建小记 |
-| `yuque_update_note` | 更新小记 |
-
-### recycle（3 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_list_recycles` | 列出回收站项目 |
-| `yuque_restore_recycle` | 恢复回收站项目 |
-| `yuque_destroy_recycle` | 彻底删除回收站项目 |
-
-### upload（1 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_upload_attachment` | 上传文件到语雀 CDN |
-
-### board（3 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_get_board` | 获取文档中的画板资源 |
-| `yuque_create_board` | 在文档中创建画板资源 |
-| `yuque_update_board` | 更新文档中的画板资源 |
-
-### rss（3 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_rss_list_sources` | 列出所有可用 RSS 数据源及 feed 类型 |
-| `yuque_rss_fetch` | 抓取 RSS/Atom Feed，解析后去重写入语雀 |
-| `yuque_rss_schedule` | 分析更新频率，生成推荐抓取时间并写入配置 |
-
-### crawler（4 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_crawl_fetch` | 抓取网页原始 HTML |
-| `yuque_crawl_extract` | CSS 选择器从 HTML 提取内容 |
-| `yuque_crawl_save` | 去重 + 写入语雀（接收 Agent 清洗后的内容） |
-| `yuque_crawl_schedule` | 分析爬虫抓取频率，生成推荐抓取时间 |
-
-> **清洗规范**：Agent 负责 fetch → 提取正文 → HTML→Markdown → 传干净 body 给 `crawl_save`。详见 `references/api/crawler/crawler_api.md`。
-
-### mine（2 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_get_book_stacks` | 获取知识库分组（书架）列表 |
-| `yuque_get_editor_center` | 获取个人编辑中心全景数据 |
-
-### kv（4 工具）
-| 工具 | 说明 |
-|------|------|
-| `yuque_kv_get` | 读取 KV 命名空间的完整 JSON map（分片合并） |
-| `yuque_kv_set` | 增量设置 key-value，超 250KB 自动分片 |
-| `yuque_kv_delete` | 遍历分片查找并删除 key |
-| `yuque_kv_list` | 列出已配置的 KV 命名空间 |
-
-## 错误码
-
-所有工具共用统一错误处理。API 失败时返回结构化错误信息（含状态码、中文描述、响应摘要）。
-
-完整错误码及处理策略见 `references/api/errors.md`。
-
-## 配置
-
-```json
-{
-  "token": "语雀 API Token",
-  "api_base": "https://www.yuque.com/api/v2",
-  "cookie": "可选，回收站/上传/mine 功能需要",
-  "ctoken": "可选，从 Cookie 中提取",
-  "kv": { "enabled": true },
-  "rss": {
-    "enabled": true,
-    "namespaces": {
-      "cnblogs": {
-        "book_id": 0,
-        "kv_slugs": [],
-        "schedule_slugs": []
-      }
-    }
-  },
-  "crawler": {
-    "enabled": true,
-    "namespaces": {
-      "my-source": {
-        "book_id": 0,
-        "kv_slugs": [],
-        "schedule_slugs": []
-      }
-    }
-  }
-}
-```
+| 文件 | 对应域 |
+|------|--------|
+| `references/api/doc_api.md` | doc |
+| `references/api/repo_api.md` | repo |
+| `references/api/search_api.md` | search |
+| `references/api/toc_api.md` | toc |
+| `references/api/user_api.md` | user |
+| `references/api/group_api.md` | group |
+| `references/api/note_api.md` | note |
+| `references/api/recycle_api.md` | recycle |
+| `references/api/statistic_api.md` | statistic |
+| `references/api/board_api.md` | board |
+| `references/api/upload_api.md` | upload |
+| `references/api/rss_api.md` | rss |
+| `references/api/crawler_api.md` | crawler |
+| `references/api/kv_api.md` | kv |
+| `references/api/mine_api.md` | mine |
+| `references/api/errors.md` | 错误码（同上 common） |
+| `references/api/extended_api.md` | 扩展端点 |
