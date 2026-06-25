@@ -127,7 +127,7 @@
 | `yuque_crawl_save` | 去重 + 写入语雀（接收 Agent 清洗后的内容） |
 | `yuque_crawl_schedule` | 分析爬虫抓取频率，生成推荐抓取时间 |
 
-> **清洗规范**：Agent 负责 fetch → 提取正文 → HTML→Markdown → 传干净 body 给 `crawl_save`。详见 `references/api/crawler_api.md`。
+> **清洗规范**：Agent 负责 fetch → 提取正文 → HTML→Markdown → 传干净 body 给 `crawl_save`。详见 `references/api/crawler/crawler_api.md`。
 
 ### mine（2 工具）
 | 工具 | 说明 |

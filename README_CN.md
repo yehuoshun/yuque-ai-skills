@@ -85,23 +85,24 @@ yuque-ai-skills/
 ├── README.md                   # 英文文档
 ├── README_CN.md                # 本文件
 └── references/
-    └── api/                    # 每个 API 域一个文件
-        ├── doc_api.md          # 15 个文档工具
-        ├── repo_api.md         # 8 个知识库工具
-        ├── toc_api.md          # 3 个目录工具
-        ├── search_api.md       # 3 个搜索工具
-        ├── user_api.md         # 3 个用户工具
-        ├── group_api.md        # 3 个团队工具
-        ├── statistic_api.md    # 4 个统计工具
-        ├── note_api.md         # 4 个小记工具
-        ├── recycle_api.md      # 3 个回收站工具
-        ├── upload_api.md       # 1 个上传工具
-        ├── board_api.md        # 3 个画板工具
-        ├── mine_api.md         # 2 个个人工具
-        ├── rss_api.md          # 3 个 RSS 工具
-        ├── crawler_api.md      # 4 个爬虫工具
-        ├── kv_api.md           # 4 个 KV 工具
-        └── errors.md           # 错误码参考
+    └── api/
+        ├── errors.md           # 错误码参考
+        ├── extended_api.md     # 扩展 API 参考
+        ├── doc/                # 15 个文档工具
+        ├── repo/               # 8 个知识库工具
+        ├── toc/                # 3 个目录工具
+        ├── search/             # 3 个搜索工具
+        ├── user/               # 3 个用户工具
+        ├── group/              # 3 个团队工具
+        ├── statistic/          # 4 个统计工具
+        ├── note/               # 4 个小记工具
+        ├── recycle/            # 3 个回收站工具
+        ├── upload/             # 1 个上传工具
+        ├── board/              # 3 个画板工具
+        ├── mine/               # 2 个个人工具
+        ├── rss/                # 3 个 RSS 工具
+        ├── crawler/            # 4 个爬虫工具
+        └── kv/                 # 4 个 KV 工具
 ```
 
 ## 领域概览

@@ -85,23 +85,24 @@ yuque-ai-skills/
 ├── README.md                   # This file
 ├── README_CN.md                # 中文文档
 └── references/
-    └── api/                    # One file per API domain
-        ├── doc_api.md          # 15 document tools
-        ├── repo_api.md         # 8 repository tools
-        ├── toc_api.md          # 3 TOC tools
-        ├── search_api.md       # 3 search tools
-        ├── user_api.md         # 3 user tools
-        ├── group_api.md        # 3 group tools
-        ├── statistic_api.md    # 4 statistics tools
-        ├── note_api.md         # 4 note tools
-        ├── recycle_api.md      # 3 recycle tools
-        ├── upload_api.md       # 1 upload tool
-        ├── board_api.md        # 3 board tools
-        ├── mine_api.md         # 2 mine tools
-        ├── rss_api.md          # 3 RSS tools
-        ├── crawler_api.md      # 4 crawler tools
-        ├── kv_api.md           # 4 KV tools
-        └── errors.md           # Error code reference
+    └── api/
+        ├── errors.md           # Error code reference
+        ├── extended_api.md     # Extended API reference
+        ├── doc/                # 15 document tools
+        ├── repo/               # 8 repository tools
+        ├── toc/                # 3 TOC tools
+        ├── search/             # 3 search tools
+        ├── user/               # 3 user tools
+        ├── group/              # 3 group tools
+        ├── statistic/          # 4 statistics tools
+        ├── note/               # 4 note tools
+        ├── recycle/            # 3 recycle tools
+        ├── upload/             # 1 upload tool
+        ├── board/              # 3 board tools
+        ├── mine/               # 2 mine tools
+        ├── rss/                # 3 RSS tools
+        ├── crawler/            # 4 crawler tools
+        └── kv/                 # 4 KV tools
 ```
 
 ## Domain Overview
