@@ -33,6 +33,55 @@ curl -s 'https://www.yuque.com/api/zsearch?q={关键词}&type=content&scope=%2F&
   -b '{cookie}'
 ```
 
+## 高级搜索语法
+
+`q` 参数支持以下高级语法（来源：语雀官方《高级搜索语法》）：
+
+### 精确短语
+用英文双引号 `"..."` 包裹含空格的词组，禁止分词。
+```
+"知识 大会"     → 匹配"知识大会"，不做分词
+```
+
+### 标题限定
+`in:title` 将搜索范围限定在标题中。
+```
+语雀是什么 in:title     → 标题含"语雀是什么"
+```
+
+### 布尔运算符
+`NOT`、`AND`、`OR` 仅用于字符串关键词。
+```
+帮助文档 NOT 桌面端      → 含"帮助文档"但不含"桌面端"
+帮助文档 AND 桌面端      → 同时含两者
+帮助文档 OR 桌面端       → 含任一
+```
+
+### 日期过滤
+按更新时间过滤，格式 `YYYY-MM-DD`。
+```
+帮助 updated:>2021-01-01              → 2021-01-01 之后
+帮助 updated:2021-01-01..2021-03-01    → 日期范围内
+```
+
+### 范围限定
+`url:` 限定搜索特定团队、知识库或用户。
+```
+搜索 url:https://www.yuque.com/yuque              → 在"语雀"团队中
+搜索 url:https://www.yuque.com/yuque/changelog     → 在指定知识库中
+前端 url:https://www.yuque.com/zenany              → 在指定用户中
+搜索 url:yuque                                     → 用团队ID
+about yuque url:yuque/support_en                   → 团队ID/知识库slug
+```
+
+### 可见性过滤
+```
+搜索 is:related     → 仅"与我相关"
+搜索 is:public      → 仅公开内容
+```
+
+> ⚠️ `is:related` 和 `url:` 同时使用时，`url:` 会被忽略。
+
 ## 参数要点
 
 | 参数 | 说明 |
