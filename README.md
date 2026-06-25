@@ -84,29 +84,124 @@ yuque-ai-skills/
 ├── SKILL.md                    # Master index — all 63 tools with quick reference
 ├── README.md                   # This file
 ├── README_CN.md                # 中文文档
-├── skills/
-│   ├── common/                 # Shared docs: auth, config, conventions, errors
-│   ├── doc/                    # 15 document tools
-│   ├── repo/                   # 8 repository tools
-│   ├── toc/                    # 3 TOC tools
-│   ├── search/                 # 3 search tools
-│   ├── user/                   # 3 user tools
-│   ├── group/                  # 3 group tools
-│   ├── statistic/              # 4 statistics tools
-│   ├── note/                   # 4 note tools
-│   ├── recycle/                # 3 recycle tools
-│   ├── upload/                 # 1 upload tool
-│   ├── board/                  # 3 board tools
-│   ├── mine/                   # 2 mine tools
-│   ├── rss/                    # 3 RSS tools
-│   ├── crawler/                # 4 crawler tools
-│   └── kv/                     # 4 KV tools
-├── references/
-│   └── api/                    # API field definitions (one per domain)
+├── AGENT-INSTALL.md            # MCP server install guide
+├── assets/
+│   └── banner.png
 ├── config/
 │   └── config.example.json
-└── assets/
-    └── banner.png
+├── .github/
+│   └── workflows/
+│       └── dingtalk-notify.yml
+├── skills/
+│   ├── common/                 # Shared docs (reused across domains)
+│   │   ├── auth.md
+│   │   ├── config.md
+│   │   ├── conventions.md
+│   │   └── errors.md
+│   ├── doc/                    # 15 document tools
+│   │   ├── list-docs.md
+│   │   ├── create-doc.md
+│   │   ├── get-doc.md
+│   │   ├── update-doc.md
+│   │   ├── delete-doc.md
+│   │   ├── batch-get-docs.md
+│   │   ├── get-doc-versions.md
+│   │   ├── get-doc-version-detail.md
+│   │   ├── diff-doc-versions.md
+│   │   ├── copy-doc.md
+│   │   ├── export-doc.md
+│   │   ├── export-resources.md
+│   │   ├── import-url.md
+│   │   ├── import-file.md
+│   │   └── embed-url.md
+│   ├── repo/                   # 8 repository tools
+│   │   ├── list-repos.md
+│   │   ├── create-repo.md
+│   │   ├── get-repo.md
+│   │   ├── update-repo.md
+│   │   ├── delete-repo.md
+│   │   ├── batch-get-repos.md
+│   │   ├── copy-repo.md
+│   │   └── export-repo.md
+│   ├── toc/                    # 3 TOC tools
+│   │   ├── get-toc.md
+│   │   ├── update-toc.md
+│   │   └── batch-update-toc.md
+│   ├── search/                 # 3 search tools
+│   │   ├── search.md
+│   │   ├── rag-search.md
+│   │   └── web-search.md
+│   ├── user/                   # 3 user tools
+│   │   ├── hello.md
+│   │   ├── get-user.md
+│   │   └── get-user-groups.md
+│   ├── group/                  # 3 group tools
+│   │   ├── get-group-users.md
+│   │   ├── update-group-user.md
+│   │   └── delete-group-user.md
+│   ├── statistic/              # 4 statistics tools
+│   │   ├── get-group-statistics.md
+│   │   ├── get-member-statistics.md
+│   │   ├── get-book-statistics.md
+│   │   └── get-doc-statistics.md
+│   ├── note/                   # 4 note tools
+│   │   ├── list-notes.md
+│   │   ├── get-note.md
+│   │   ├── create-note.md
+│   │   └── update-note.md
+│   ├── recycle/                # 3 recycle tools
+│   │   ├── list-recycles.md
+│   │   ├── restore-recycle.md
+│   │   └── destroy-recycle.md
+│   ├── upload/                 # 1 upload tool
+│   │   └── upload-attachment.md
+│   ├── board/                  # 3 board tools
+│   │   ├── get-board.md
+│   │   ├── create-board.md
+│   │   └── update-board.md
+│   ├── mine/                   # 2 mine tools
+│   │   ├── yuque_get_book_stacks.md
+│   │   └── yuque_get_editor_center.md
+│   ├── rss/                    # 3 RSS tools
+│   │   ├── rss-list-sources.md
+│   │   ├── rss-fetch.md
+│   │   └── rss-schedule.md
+│   ├── crawler/                # 4 crawler tools
+│   │   ├── yuque_crawl_fetch.md
+│   │   ├── yuque_crawl_extract.md
+│   │   ├── yuque_crawl_save.md
+│   │   └── crawl-schedule.md
+│   └── kv/                     # 4 KV tools
+│       ├── yuque_kv_get.md
+│       ├── yuque_kv_set.md
+│       ├── yuque_kv_delete.md
+│       └── yuque_kv_list.md
+└── references/
+    └── api/                    # API field definitions
+        ├── errors.md
+        ├── extended_api.md
+        ├── doc/
+        │   ├── create_doc.md
+        │   ├── get_doc.md
+        │   ├── update_doc.md
+        │   ├── delete_doc.md
+        │   ├── list_docs.md
+        │   ├── get_doc_versions.md
+        │   └── get_doc_version_detail.md
+        ├── repo/repo_api.md
+        ├── toc/toc_api.md
+        ├── search/search_api.md
+        ├── user/user_api.md
+        ├── group/group_api.md
+        ├── statistic/statistic_api.md
+        ├── note/note_api.md
+        ├── recycle/recycle_api.md
+        ├── upload/upload_api.md
+        ├── board/board_api.md
+        ├── mine/mine_api.md
+        ├── rss/rss_api.md
+        ├── crawler/crawler_api.md
+        └── kv/kv_api.md
 ```
 
 ## Domain Overview

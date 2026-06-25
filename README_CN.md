@@ -84,29 +84,124 @@ yuque-ai-skills/
 ├── SKILL.md                    # 主索引——全部 63 个工具速查表
 ├── README.md                   # 英文文档
 ├── README_CN.md                # 本文件
-├── skills/
-│   ├── common/                 # 公共文档：认证、配置、约定、错误码
-│   ├── doc/                    # 15 个文档工具
-│   ├── repo/                   # 8 个知识库工具
-│   ├── toc/                    # 3 个目录工具
-│   ├── search/                 # 3 个搜索工具
-│   ├── user/                   # 3 个用户工具
-│   ├── group/                  # 3 个团队工具
-│   ├── statistic/              # 4 个统计工具
-│   ├── note/                   # 4 个小记工具
-│   ├── recycle/                # 3 个回收站工具
-│   ├── upload/                 # 1 个上传工具
-│   ├── board/                  # 3 个画板工具
-│   ├── mine/                   # 2 个个人工具
-│   ├── rss/                    # 3 个 RSS 工具
-│   ├── crawler/                # 4 个爬虫工具
-│   └── kv/                     # 4 个 KV 工具
-├── references/
-│   └── api/                    # API 字段定义（每域一个）
+├── AGENT-INSTALL.md            # MCP 服务安装指南
+├── assets/
+│   └── banner.png
 ├── config/
 │   └── config.example.json
-└── assets/
-    └── banner.png
+├── .github/
+│   └── workflows/
+│       └── dingtalk-notify.yml
+├── skills/
+│   ├── common/                 # 公共文档（跨域复用）
+│   │   ├── auth.md
+│   │   ├── config.md
+│   │   ├── conventions.md
+│   │   └── errors.md
+│   ├── doc/                    # 15 个文档工具
+│   │   ├── list-docs.md
+│   │   ├── create-doc.md
+│   │   ├── get-doc.md
+│   │   ├── update-doc.md
+│   │   ├── delete-doc.md
+│   │   ├── batch-get-docs.md
+│   │   ├── get-doc-versions.md
+│   │   ├── get-doc-version-detail.md
+│   │   ├── diff-doc-versions.md
+│   │   ├── copy-doc.md
+│   │   ├── export-doc.md
+│   │   ├── export-resources.md
+│   │   ├── import-url.md
+│   │   ├── import-file.md
+│   │   └── embed-url.md
+│   ├── repo/                   # 8 个知识库工具
+│   │   ├── list-repos.md
+│   │   ├── create-repo.md
+│   │   ├── get-repo.md
+│   │   ├── update-repo.md
+│   │   ├── delete-repo.md
+│   │   ├── batch-get-repos.md
+│   │   ├── copy-repo.md
+│   │   └── export-repo.md
+│   ├── toc/                    # 3 个目录工具
+│   │   ├── get-toc.md
+│   │   ├── update-toc.md
+│   │   └── batch-update-toc.md
+│   ├── search/                 # 3 个搜索工具
+│   │   ├── search.md
+│   │   ├── rag-search.md
+│   │   └── web-search.md
+│   ├── user/                   # 3 个用户工具
+│   │   ├── hello.md
+│   │   ├── get-user.md
+│   │   └── get-user-groups.md
+│   ├── group/                  # 3 个团队工具
+│   │   ├── get-group-users.md
+│   │   ├── update-group-user.md
+│   │   └── delete-group-user.md
+│   ├── statistic/              # 4 个统计工具
+│   │   ├── get-group-statistics.md
+│   │   ├── get-member-statistics.md
+│   │   ├── get-book-statistics.md
+│   │   └── get-doc-statistics.md
+│   ├── note/                   # 4 个小记工具
+│   │   ├── list-notes.md
+│   │   ├── get-note.md
+│   │   ├── create-note.md
+│   │   └── update-note.md
+│   ├── recycle/                # 3 个回收站工具
+│   │   ├── list-recycles.md
+│   │   ├── restore-recycle.md
+│   │   └── destroy-recycle.md
+│   ├── upload/                 # 1 个上传工具
+│   │   └── upload-attachment.md
+│   ├── board/                  # 3 个画板工具
+│   │   ├── get-board.md
+│   │   ├── create-board.md
+│   │   └── update-board.md
+│   ├── mine/                   # 2 个个人工具
+│   │   ├── yuque_get_book_stacks.md
+│   │   └── yuque_get_editor_center.md
+│   ├── rss/                    # 3 个 RSS 工具
+│   │   ├── rss-list-sources.md
+│   │   ├── rss-fetch.md
+│   │   └── rss-schedule.md
+│   ├── crawler/                # 4 个爬虫工具
+│   │   ├── yuque_crawl_fetch.md
+│   │   ├── yuque_crawl_extract.md
+│   │   ├── yuque_crawl_save.md
+│   │   └── crawl-schedule.md
+│   └── kv/                     # 4 个 KV 工具
+│       ├── yuque_kv_get.md
+│       ├── yuque_kv_set.md
+│       ├── yuque_kv_delete.md
+│       └── yuque_kv_list.md
+└── references/
+    └── api/                    # API 字段定义
+        ├── errors.md
+        ├── extended_api.md
+        ├── doc/
+        │   ├── create_doc.md
+        │   ├── get_doc.md
+        │   ├── update_doc.md
+        │   ├── delete_doc.md
+        │   ├── list_docs.md
+        │   ├── get_doc_versions.md
+        │   └── get_doc_version_detail.md
+        ├── repo/repo_api.md
+        ├── toc/toc_api.md
+        ├── search/search_api.md
+        ├── user/user_api.md
+        ├── group/group_api.md
+        ├── statistic/statistic_api.md
+        ├── note/note_api.md
+        ├── recycle/recycle_api.md
+        ├── upload/upload_api.md
+        ├── board/board_api.md
+        ├── mine/mine_api.md
+        ├── rss/rss_api.md
+        ├── crawler/crawler_api.md
+        └── kv/kv_api.md
 ```
 
 ## 领域概览
