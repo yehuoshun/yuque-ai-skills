@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yehuoshun/yuque-ai-mcp/main/assets/banner.png" width="800" alt="yuque-ai-skills" />
+  <img src="https://raw.githubusercontent.com/yehuoshun/yuque-ai-skills/main/assets/banner.png" width="800" alt="yuque-ai-skills" />
 </p>
 
 <h1 align="center">yuque-ai-skills</h1>
@@ -58,7 +58,7 @@ Skills are **pure documentation** — no code, no runtime, no dependencies. Any 
 ### For AI Agents
 
 1. Read `SKILL.md` — the master index of all 63 tools
-2. For each tool you need, read the corresponding file in `references/api/`
+2. For each tool you need, read the corresponding file in `skills/{domain}/`
 3. Call the Yuque API directly using the endpoint and parameters from the skill
 
 ```bash
@@ -84,32 +84,29 @@ yuque-ai-skills/
 ├── SKILL.md                    # Master index — all 63 tools with quick reference
 ├── README.md                   # This file
 ├── README_CN.md                # 中文文档
-└── references/
-    └── api/
-        ├── errors.md           # Error code reference
-        ├── extended_api.md     # Extended API reference
-        ├── doc/                # 15 document tools (7 native + 8 extended)
-        │   ├── list_docs.md
-        │   ├── create_doc.md
-        │   ├── get_doc.md
-        │   ├── update_doc.md
-        │   ├── delete_doc.md
-        │   ├── get_doc_versions.md
-        │   └── get_doc_version_detail.md
-        ├── repo/               # 8 repository tools
-        ├── toc/                # 3 TOC tools
-        ├── search/             # 3 search tools
-        ├── user/               # 3 user tools
-        ├── group/              # 3 group tools
-        ├── statistic/          # 4 statistics tools
-        ├── note/               # 4 note tools
-        ├── recycle/            # 3 recycle tools
-        ├── upload/             # 1 upload tool
-        ├── board/              # 3 board tools
-        ├── mine/               # 2 mine tools
-        ├── rss/                # 3 RSS tools
-        ├── crawler/            # 4 crawler tools
-        └── kv/                 # 4 KV tools
+├── skills/
+│   ├── common/                 # Shared docs: auth, config, conventions, errors
+│   ├── doc/                    # 15 document tools
+│   ├── repo/                   # 8 repository tools
+│   ├── toc/                    # 3 TOC tools
+│   ├── search/                 # 3 search tools
+│   ├── user/                   # 3 user tools
+│   ├── group/                  # 3 group tools
+│   ├── statistic/              # 4 statistics tools
+│   ├── note/                   # 4 note tools
+│   ├── recycle/                # 3 recycle tools
+│   ├── upload/                 # 1 upload tool
+│   ├── board/                  # 3 board tools
+│   ├── mine/                   # 2 mine tools
+│   ├── rss/                    # 3 RSS tools
+│   ├── crawler/                # 4 crawler tools
+│   └── kv/                     # 4 KV tools
+├── references/
+│   └── api/                    # API field definitions (one per domain)
+├── config/
+│   └── config.example.json
+└── assets/
+    └── banner.png
 ```
 
 ## Domain Overview
