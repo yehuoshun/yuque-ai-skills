@@ -20,21 +20,21 @@
 
 | 域 | 工具数 | 说明 | 详细 |
 |----|--------|------|------|
-| doc | 15 | 文档 CRUD、导入导出、版本管理 | [skills/index/doc.md](skills/index/doc.md) |
-| repo | 8 | 知识库 CRUD、复制、导出 | [skills/index/repo.md](skills/index/repo.md) |
-| search | 3 | 全文搜索、RAG 问答、Cookie 搜索 | [skills/index/search.md](skills/index/search.md) |
-| toc | 3 | 目录读取、更新、批量更新 | [skills/index/toc.md](skills/index/toc.md) |
-| user | 3 | 用户信息、团队列表、心跳检测 | [skills/index/user.md](skills/index/user.md) |
-| group | 3 | 团队成员管理 | [skills/index/group.md](skills/index/group.md) |
-| note | 4 | 小记 CRUD | [skills/index/note.md](skills/index/note.md) |
-| recycle | 3 | 回收站列表、恢复、销毁 | [skills/index/recycle.md](skills/index/recycle.md) |
-| statistic | 4 | 团队/成员/知识库/文档统计 | [skills/index/statistic.md](skills/index/statistic.md) |
-| board | 3 | 画板资源 CRUD | [skills/index/board.md](skills/index/board.md) |
-| upload | 1 | 上传文件到 CDN | [skills/index/upload.md](skills/index/upload.md) |
-| rss | 3 | RSS 源管理、抓取、调度 | [skills/index/rss.md](skills/index/rss.md) |
-| crawler | 4 | 网页抓取、提取、去重保存、调度 | [skills/index/crawler.md](skills/index/crawler.md) |
-| kv | 4 | KV 存储读写删列 | [skills/index/kv.md](skills/index/kv.md) |
-| mine | 2 | 书架分组、编辑中心 | [skills/index/mine.md](skills/index/mine.md) |
+| doc | 15 | 文档 CRUD、导入导出、版本管理 | [skills/doc/](skills/doc/) |
+| repo | 8 | 知识库 CRUD、复制、导出 | [skills/repo/](skills/repo/) |
+| search | 3 | 全文搜索、RAG 问答、Cookie 搜索 | [skills/search/](skills/search/) |
+| toc | 3 | 目录读取、更新、批量更新 | [skills/toc/](skills/toc/) |
+| user | 3 | 用户信息、团队列表、心跳检测 | [skills/user/](skills/user/) |
+| group | 3 | 团队成员管理 | [skills/group/](skills/group/) |
+| note | 4 | 小记 CRUD | [skills/note/](skills/note/) |
+| recycle | 3 | 回收站列表、恢复、销毁 | [skills/recycle/](skills/recycle/) |
+| statistic | 4 | 团队/成员/知识库/文档统计 | [skills/statistic/](skills/statistic/) |
+| board | 3 | 画板资源 CRUD | [skills/board/](skills/board/) |
+| upload | 1 | 上传文件到 CDN | [skills/upload/](skills/upload/) |
+| rss | 3 | RSS 源管理、抓取、调度 | [skills/rss/](skills/rss/) |
+| crawler | 4 | 网页抓取、提取、去重保存、调度 | [skills/crawler/](skills/crawler/) |
+| kv | 4 | KV 存储读写删列 | [skills/kv/](skills/kv/) |
+| mine | 2 | 书架分组、编辑中心 | [skills/mine/](skills/mine/) |
 
 ## 公共文档
 
