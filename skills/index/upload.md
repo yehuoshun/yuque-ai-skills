@@ -1,6 +1,6 @@
 # upload — 上传（1 工具）
 
-> 需要 Cookie 认证，见 `common/auth.md`。通用约定见 `common/conventions.md`，错误码见 `common/errors.md`
+> 需要 Cookie 认证，见 `skills/common/auth.md`。通用约定见 `skills/common/conventions.md`，错误码见 `skills/common/errors.md`
 
 ## 端点速查
 

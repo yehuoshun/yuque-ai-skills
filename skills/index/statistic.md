@@ -1,6 +1,6 @@
 # statistic — 统计（4 工具）
 
-> 通用约定见 `common/conventions.md`，错误码见 `common/errors.md`
+> 通用约定见 `skills/common/conventions.md`，错误码见 `skills/common/errors.md`
 
 ## 端点速查
 

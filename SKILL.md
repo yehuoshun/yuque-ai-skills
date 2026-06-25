@@ -20,30 +20,30 @@
 
 | 域 | 工具数 | 说明 | 详细 |
 |----|--------|------|------|
-| doc | 15 | 文档 CRUD、导入导出、版本管理 | [index/doc.md](index/doc.md) |
-| repo | 8 | 知识库 CRUD、复制、导出 | [index/repo.md](index/repo.md) |
-| search | 3 | 全文搜索、RAG 问答、Cookie 搜索 | [index/search.md](index/search.md) |
-| toc | 3 | 目录读取、更新、批量更新 | [index/toc.md](index/toc.md) |
-| user | 3 | 用户信息、团队列表、心跳检测 | [index/user.md](index/user.md) |
-| group | 3 | 团队成员管理 | [index/group.md](index/group.md) |
-| note | 4 | 小记 CRUD | [index/note.md](index/note.md) |
-| recycle | 3 | 回收站列表、恢复、销毁 | [index/recycle.md](index/recycle.md) |
-| statistic | 4 | 团队/成员/知识库/文档统计 | [index/statistic.md](index/statistic.md) |
-| board | 3 | 画板资源 CRUD | [index/board.md](index/board.md) |
-| upload | 1 | 上传文件到 CDN | [index/upload.md](index/upload.md) |
-| rss | 3 | RSS 源管理、抓取、调度 | [index/rss.md](index/rss.md) |
-| crawler | 4 | 网页抓取、提取、去重保存、调度 | [index/crawler.md](index/crawler.md) |
-| kv | 4 | KV 存储读写删列 | [index/kv.md](index/kv.md) |
-| mine | 2 | 书架分组、编辑中心 | [index/mine.md](index/mine.md) |
+| doc | 15 | 文档 CRUD、导入导出、版本管理 | [skills/index/doc.md](skills/index/doc.md) |
+| repo | 8 | 知识库 CRUD、复制、导出 | [skills/index/repo.md](skills/index/repo.md) |
+| search | 3 | 全文搜索、RAG 问答、Cookie 搜索 | [skills/index/search.md](skills/index/search.md) |
+| toc | 3 | 目录读取、更新、批量更新 | [skills/index/toc.md](skills/index/toc.md) |
+| user | 3 | 用户信息、团队列表、心跳检测 | [skills/index/user.md](skills/index/user.md) |
+| group | 3 | 团队成员管理 | [skills/index/group.md](skills/index/group.md) |
+| note | 4 | 小记 CRUD | [skills/index/note.md](skills/index/note.md) |
+| recycle | 3 | 回收站列表、恢复、销毁 | [skills/index/recycle.md](skills/index/recycle.md) |
+| statistic | 4 | 团队/成员/知识库/文档统计 | [skills/index/statistic.md](skills/index/statistic.md) |
+| board | 3 | 画板资源 CRUD | [skills/index/board.md](skills/index/board.md) |
+| upload | 1 | 上传文件到 CDN | [skills/index/upload.md](skills/index/upload.md) |
+| rss | 3 | RSS 源管理、抓取、调度 | [skills/index/rss.md](skills/index/rss.md) |
+| crawler | 4 | 网页抓取、提取、去重保存、调度 | [skills/index/crawler.md](skills/index/crawler.md) |
+| kv | 4 | KV 存储读写删列 | [skills/index/kv.md](skills/index/kv.md) |
+| mine | 2 | 书架分组、编辑中心 | [skills/index/mine.md](skills/index/mine.md) |
 
 ## 公共文档
 
 | 文档 | 说明 |
 |------|------|
-| [common/config.md](common/config.md) | 配置结构 |
-| [common/auth.md](common/auth.md) | Token / Cookie 认证 |
-| [common/conventions.md](common/conventions.md) | book_id 格式、分页、频率限制 |
-| [common/errors.md](common/errors.md) | 统一错误码及处理策略 |
+| [skills/common/config.md](skills/common/config.md) | 配置结构 |
+| [skills/common/auth.md](skills/common/auth.md) | Token / Cookie 认证 |
+| [skills/common/conventions.md](skills/common/conventions.md) | book_id 格式、分页、频率限制 |
+| [skills/common/errors.md](skills/common/errors.md) | 统一错误码及处理策略 |
 
 ## API 参考
 
